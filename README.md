@@ -6,4 +6,4 @@
 
 2.启动服务
 
-3.访问接口`http://127.0.0.1/client/test`, client服务未认证会跳转到授权服务器认证授权，获取到token后访问资源服务器`/resource/test`接口
+3.访问接口`http://127.0.0.1:8070/client/test`, client服务未认证会跳转到授权服务器认证授权，获取到token后访问资源服务器`/resource/test`接口
