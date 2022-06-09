@@ -10,24 +10,16 @@ spring:
     oauth2:
       client:
         registration:
-          messaging-client-oidc:
-            provider: spring
+          messaging-client-authorization-code:
+            provider: client-provider
             client-id: relive-client
             client-secret: relive-client
             authorization-grant-type: authorization_code
             redirect-uri: "http://127.0.0.1:8070/login/oauth2/code/{registrationId}"
             scope: profile
-            client-name: messaging-client-oidc
-          messaging-client-authorization-code:
-            provider: spring
-            client-id: relive-client
-            client-secret: relive-client
-            authorization-grant-type: authorization_code
-            redirect-uri: "http://127.0.0.1:8070/authorized"
-            scope: message.read
             client-name: messaging-client-authorization-code
         provider:
-          spring:
+          client-provider:
             issuer-uri: http://127.0.0.1:8080
             jwk-set-uri: http://127.0.0.1:8080/oauth2/jwks
             userInfo-uri: http://127.0.0.1:8080/oauth2/userInfo
