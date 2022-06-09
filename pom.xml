@@ -9,15 +9,16 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>spring-security-oauth2-resourceserver</module>
-        <module>spring-security-oauth2-integrated-authorizationserver</module>
-        <module>spring-security-oauth2-client</module>
+        <module>oauth2-resourceserver</module>
+        <module>oauth2-integrated-authorizationserver</module>
+        <module>oauth2-client</module>
+        <module>oauth2-custom-consent-authorizationserver</module>
     </modules>
 
     <parent>
         <artifactId>spring-boot-starter-parent</artifactId>
         <groupId>org.springframework.boot</groupId>
-        <version>2.5.5</version>
+        <version>2.6.7</version>
     </parent>
 
     <properties>
@@ -30,9 +31,15 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>2020.0.4</version>
+                <version>2021.0.2</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-oauth2-authorization-server</artifactId>
+                <version>0.3.0</version>
             </dependency>
 
             <dependency>

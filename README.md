@@ -1,9 +1,19 @@
 ## spring-oauth2-sample
-1. 首先配置域名解析，修改hosts文件，添加以下配置
-```
-127.0.0.1   auth-server
-```
 
-2.启动服务
+This module contains information on using Spring Security OAuth2
 
-3.访问接口`http://127.0.0.1:8070/client/test`, client服务未认证会跳转到授权服务器认证授权，获取到token后访问资源服务器`/resource/test`接口
+### Relevant Articles:
+
+- [将JWT与Spring Security OAuth2结合使用]()
+- [自定义OAuth2授权同意页面]()
+- [Spring Security OAuth2客户端]()
+- [Spring Security的OAuth2资源服务器]()
+- [（待完成）Spring Security OAuth2登录]()
+- [（待完成）将Spring Cloud Gateway 与OAuth2模式一起使用]()
+- [（待完成）Spring Security OAuth2和动态客户端注册]()
+- [（待完成）将Spring Security OAuth2授权服务JWT密钥与Consul 配置中心结合使用]()
+- [（待完成）Spring Security和OpenID Connect]()
+- [（待完成）Spring Security OAuth2 授权码结合redis]()
+- [（待完成）Spring Security OAuth2 不透明令牌结合redis]()
+- [（带完成）Spring Security OAuth2获取token添加限制]()
+- [（待完成）Spring Security OAuth2 jwks和Cache]()
