@@ -9,7 +9,7 @@ This module contains information on using Spring Security OAuth2
 - [Spring Security OAuth2客户端]()
 - [Spring Security的OAuth2资源服务器]()
 - [（待完成）Spring Security OAuth2登录]()
-- [（待完成）将Spring Cloud Gateway 与OAuth2模式一起使用]()
+- [将Spring Cloud Gateway 与OAuth2模式一起使用]()
 - [（待完成）Spring Security OAuth2和动态客户端注册]()
 - [（待完成）将Spring Security OAuth2授权服务JWT密钥与Consul 配置中心结合使用]()
 - [（待完成）Spring Security和OpenID Connect]()
