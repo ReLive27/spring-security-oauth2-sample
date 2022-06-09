@@ -46,7 +46,7 @@ public class AuthorizationServerConfig {
     public RegisteredClientRepository registeredClientRepository(JdbcTemplate jdbcTemplate) {
         RegisteredClient registeredClient = RegisteredClient.withId(UUID.randomUUID().toString())
                 .clientId("relive-client")
-                .clientSecret("relive-client")
+                .clientSecret("{noop}relive-client")
                 .clientAuthenticationMethods(s -> {
                     s.add(ClientAuthenticationMethod.CLIENT_SECRET_POST);
                     s.add(ClientAuthenticationMethod.CLIENT_SECRET_BASIC);
@@ -55,7 +55,7 @@ public class AuthorizationServerConfig {
                 .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
                 .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
                 .authorizationGrantType(AuthorizationGrantType.PASSWORD)
-                .redirectUri("http://127.0.0.1:8070/login/oauth2/code/messaging-client-oidc")
+                .redirectUri("http://127.0.0.1:8070/login/oauth2/code/messaging-client-authorization-code")
                 .scope(OidcScopes.PROFILE)
                 .scope("message.read")
                 .scope("message.write")

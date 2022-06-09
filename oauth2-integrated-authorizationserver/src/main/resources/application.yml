@@ -15,3 +15,10 @@ spring:
     check-location: true
     locations: classpath:db/migration
     validate-on-migrate: true
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+    org.springframework.security: DEBUG
+    org.springframework.security.oauth2: DEBUG
