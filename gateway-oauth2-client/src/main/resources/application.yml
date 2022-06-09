@@ -1,0 +1,48 @@
+server:
+  port: 8070
+  servlet:
+    session:
+      cookie:
+        name: GATEWAY-CLIENT
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: resource-server
+          uri: http://127.0.0.1:8090
+          predicates:
+            Path=/resource/**
+          filters:
+            - TokenRelay
+  security:
+    oauth2:
+      client:
+        registration:
+          messaging-client-authorization-code:
+            provider: gateway-client-provider
+            client-id: relive-client
+            client-secret: "relive-client"
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            scope: profile
+            client-name: messaging-client-authorization-code
+        provider:
+          gateway-client-provider:
+            #issuer-uri: http://127.0.0.1:8080
+            authorization-uri: http://127.0.0.1:8080/oauth2/authorize
+            token-uri: http://127.0.0.1:8080/oauth2/token
+            jwk-set-uri: http://127.0.0.1:8080/oauth2/jwks
+            userInfo-uri: http://127.0.0.1:8080/oauth2/userInfo
+            user-info-authentication-method: form
+            user-name-attribute: username
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+    org.springframework.security: INFO
+    org.springframework.security.oauth2: INFO
+    org.springframework.cloud.gateway: INFO

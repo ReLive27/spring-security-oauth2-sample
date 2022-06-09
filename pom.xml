@@ -13,6 +13,7 @@
         <module>oauth2-integrated-authorizationserver</module>
         <module>oauth2-client</module>
         <module>oauth2-custom-consent-authorizationserver</module>
+        <module>gateway-oauth2-client</module>
     </modules>
 
     <parent>
