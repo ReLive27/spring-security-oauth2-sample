@@ -1,0 +1,10 @@
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://127.0.0.1:8080
+          jwk-set-uri: http://127.0.0.1:8080/oauth2/jwks #添加jwkSetUri配置，资源服务器不会在启动时 ping 授权服务器
+
+server:
+  port: 8090
