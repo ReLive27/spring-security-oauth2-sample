@@ -21,23 +21,24 @@ spring:
     oauth2:
       client:
         registration:
-          messaging-client-authorization-code:
+          messaging-client-oidc:
             provider: gateway-client-provider
             client-id: relive-client
-            client-secret: "relive-client"
+            client-secret: relive-client
             authorization-grant-type: authorization_code
             redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
-            scope: profile
-            client-name: messaging-client-authorization-code
+            scope:
+              - openid
+              - profile
+              - read
+            client-name: messaging-client-oidc
         provider:
           gateway-client-provider:
             #issuer-uri: http://127.0.0.1:8080
             authorization-uri: http://127.0.0.1:8080/oauth2/authorize
             token-uri: http://127.0.0.1:8080/oauth2/token
             jwk-set-uri: http://127.0.0.1:8080/oauth2/jwks
-            userInfo-uri: http://127.0.0.1:8080/oauth2/userInfo
-            user-info-authentication-method: form
-            user-name-attribute: username
+            user-name-attribute: sub
 
 logging:
   level:

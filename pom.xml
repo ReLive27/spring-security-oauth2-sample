@@ -9,11 +9,12 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>oauth2-resourceserver</module>
-        <module>oauth2-integrated-authorizationserver</module>
-        <module>oauth2-client</module>
         <module>oauth2-custom-consent-authorizationserver</module>
-        <module>gateway-oauth2-client</module>
+        <module>gateway-oauth2-login</module>
+        <module>oauth2-persistence-client</module>
+        <module>oauth2-jwt</module>
+        <module>oauth2-login</module>
+        <module>oidc-login</module>
     </modules>
 
     <parent>
@@ -40,7 +41,7 @@
             <dependency>
                 <groupId>org.springframework.security</groupId>
                 <artifactId>spring-security-oauth2-authorization-server</artifactId>
-                <version>0.3.0</version>
+                <version>0.3.1</version>
             </dependency>
 
             <dependency>
