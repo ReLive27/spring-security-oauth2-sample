@@ -2,8 +2,6 @@ package com.relive.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.oauth2.core.endpoint.OAuth2ParameterNames;
-import org.springframework.security.oauth2.server.authorization.OAuth2AuthorizationConsent;
-import org.springframework.security.oauth2.server.authorization.OAuth2AuthorizationConsentService;
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClient;
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClientRepository;
 import org.springframework.stereotype.Controller;
@@ -23,7 +21,6 @@ import java.util.*;
 @RequiredArgsConstructor
 public class AuthorizationConsentController {
     private final RegisteredClientRepository registeredClientRepository;
-    private final OAuth2AuthorizationConsentService authorizationConsentService;
 
     @GetMapping(value = "/oauth2/consent")
     public String consent(Principal principal, Model model,
@@ -31,36 +28,27 @@ public class AuthorizationConsentController {
                           @RequestParam(OAuth2ParameterNames.SCOPE) String scope,
                           @RequestParam(OAuth2ParameterNames.STATE) String state) {
 
-        Set<String> scopesToApprove = new HashSet<>();
-        Set<String> previouslyApprovedScopes = new HashSet<>();
+        Set<String> scopesToApprove = new LinkedHashSet<>();
         RegisteredClient registeredClient = this.registeredClientRepository.findByClientId(clientId);
-        OAuth2AuthorizationConsent currentAuthorizationConsent =
-                this.authorizationConsentService.findById(registeredClient.getId(), principal.getName());
-        Set<String> authorizedScopes;
-        if (currentAuthorizationConsent != null) {
-            authorizedScopes = currentAuthorizationConsent.getScopes();
-        } else {
-            authorizedScopes = Collections.emptySet();
-        }
+        Set<String> scopes = registeredClient.getScopes();
         for (String requestedScope : StringUtils.delimitedListToStringArray(scope, " ")) {
-            if (authorizedScopes.contains(requestedScope)) {
-                previouslyApprovedScopes.add(requestedScope);
-            } else {
+            if (scopes.contains(requestedScope)) {
                 scopesToApprove.add(requestedScope);
             }
         }
 
         model.addAttribute("clientId", clientId);
+        model.addAttribute("clientName", registeredClient.getClientName());
         model.addAttribute("state", state);
         model.addAttribute("scopes", withDescription(scopesToApprove));
-        model.addAttribute("previouslyApprovedScopes", withDescription(previouslyApprovedScopes));
         model.addAttribute("principalName", principal.getName());
+        model.addAttribute("redirectUri", registeredClient.getRedirectUris().iterator().next());
 
         return "consent";
     }
 
     private static Set<ScopeWithDescription> withDescription(Set<String> scopes) {
-        Set<ScopeWithDescription> scopeWithDescriptions = new HashSet<>();
+        Set<ScopeWithDescription> scopeWithDescriptions = new LinkedHashSet<>();
         for (String scope : scopes) {
             scopeWithDescriptions.add(new ScopeWithDescription(scope));
 
@@ -69,20 +57,21 @@ public class AuthorizationConsentController {
     }
 
     public static class ScopeWithDescription {
-        private static final String DEFAULT_DESCRIPTION = "UNKNOWN SCOPE - We cannot provide information about this permission, use caution when granting this.";
+        private static final String DEFAULT_DESCRIPTION = "我们无法提供有关此权限的信息";
         private static final Map<String, String> scopeDescriptions = new HashMap<>();
+
         static {
             scopeDescriptions.put(
+                    "profile",
+                    "验证您的身份"
+            );
+            scopeDescriptions.put(
                     "message.read",
-                    "This application will be able to read your message."
+                    "了解您可以访问哪些权限"
             );
             scopeDescriptions.put(
                     "message.write",
-                    "This application will be able to add new messages. It will also be able to edit and delete existing messages."
-            );
-            scopeDescriptions.put(
-                    "other.scope",
-                    "This is another scope example of a scope description."
+                    "代表您行事"
             );
         }
 
