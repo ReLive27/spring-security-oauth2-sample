@@ -6,8 +6,6 @@ server:
         name: CLIENT-SESSION
 
 spring:
-  application:
-    name: auth-server
   datasource:
     druid:
       db-type: mysql
