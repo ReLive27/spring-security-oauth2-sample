@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <title>login</title>
+    <style>
+        body {
+            background-color: mintcream;
+        }
+
+        p {
+            text-align: center;
+        }
+
+        form {
+            width: 100%;
+            height: 300px;
+            margin: 0px auto;
+        }
+
+        .input1 {
+            width: 80%;
+            height: 40px;
+            margin-left: 10%;
+            margin-bottom: 30px;
+            border: #ccc 1px solid;
+            border-radius: 3px;
+        }
+
+        #submit-btn {
+            width: 80%;
+            float: right;
+            height: 40px;
+            font-size: 18px;
+            border-color: #cccccc;
+            margin-right: 10%;
+        }
+    </style>
+</head>
+<body>
+<div style="width: 30%;height: 400px;margin: 30px auto;border: #ccc 1px solid;border-radius: 3px">
+    <h3 style="text-align: center">OAuth2 Client Login</h3>
+    <p th:if="${param.error}">
+        Invalid username and password.
+    </p>
+    <p th:if="${param.logout}">
+        You have been logged out.
+    </p>
+    <form th:action="@{/login}" method="post">
+        <div>
+            <input class="input1" type="text" name="username" placeholder="Username"/>
+        </div>
+        <div>
+            <input class="input1" type="password" name="password" placeholder="Password"/>
+        </div>
+        <input id="submit-btn" class="btn btn-primary btn-lg" type="submit" value="登录"/>
+    </form>
+</div>
+</body>
+</html>

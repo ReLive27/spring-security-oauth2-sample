@@ -1,6 +1,6 @@
 CREATE TABLE `oauth2_registered_client`
 (
-    `registration_id`                  varchar(100)  NOT NULL,
+    `registration_id`                 varchar(100)  NOT NULL,
     `client_id`                       varchar(100)  NOT NULL,
     `client_secret`                   varchar(200)  DEFAULT NULL,
     `client_authentication_method`    varchar(100)  NOT NULL,
@@ -16,5 +16,5 @@ CREATE TABLE `oauth2_registered_client`
     `user_info_authentication_method` varchar(100)  DEFAULT NULL,
     `user_name_attribute_name`        varchar(100)  DEFAULT NULL,
     `configuration_metadata`          varchar(2000) DEFAULT NULL,
-    PRIMARY KEY (`id`)
+    PRIMARY KEY (`registration_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
