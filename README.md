@@ -6,7 +6,7 @@ This module contains information on using Spring Security OAuth2
 
 - [将JWT与Spring Security OAuth2结合使用](https://relive27.github.io/2022/06/26/spring-security-oauth2-jwt/)
 - [自定义OAuth2授权同意页面](https://relive27.github.io/2022/06/28/custom-oauth2-consent-page/)
-- [（待更新）Spring Security OAuth2持久化客户端]()
+- [（待更新）Spring Security 持久化OAuth2客户端]()
 - [（待更新）Spring Security OAuth2客户端-客户端模式]()  
 - [（待更新）Spring Security OAuth2客户端-PKCE]()
 - [（待更新）Spring Security OAuth2登录]()
