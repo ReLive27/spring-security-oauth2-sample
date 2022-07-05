@@ -16,6 +16,7 @@
         <module>oauth2-login</module>
         <module>oidc-login</module>
         <module>oauth2-client-model</module>
+        <module>oauth2-pkce</module>
     </modules>
 
     <parent>
