@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <title>home</title>
+    <style>
+        body {
+            background-color: mintcream;
+        }
+    </style>
+</head>
+<body>
+<h5 style="margin-left: 5%">Article List</h5>
+<div th:each="article: ${articles}" class="form-group form-check py-1" style="margin-left: 5%">
+    <p th:text="${article}"></p>
+</div>
+</body>
+</html>
