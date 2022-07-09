@@ -19,3 +19,5 @@
 6.`oauth2-login-client`还将支持OAuth2登录，使用*GrantedAuthoritiesMapper*将`authorizationserver`授权服务角色*ROLE_ADMIN*映射为客户端服务*ROLE_OPERATION*角色，
 登录成功后拥有*ROLE_OPERATION*角色的用户将看到以下内容：
 ![](./images/oauth2-login.png)
+<br><br>
+7.启动服务，访问http://127.0.0.1:8070/home ,首先使用Form表单登录，其次退出登录，使用OAuth2登录，您将看到不同的展示信息。
