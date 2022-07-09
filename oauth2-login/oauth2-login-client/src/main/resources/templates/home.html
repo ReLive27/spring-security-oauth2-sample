@@ -17,5 +17,21 @@
 <div th:each="article: ${articles}" class="form-group form-check py-1" style="margin-left: 5%">
     <p th:text="${article}"></p>
 </div>
+
+<div style="margin-left: 5%">
+    <input class="logoutButton" type="button" value="logout">
+</div>
 </body>
+
+<script>
+    var btn = document.getElementsByClassName('logoutButton').item(0);
+    url = 'http://127.0.0.1:8070/logout';
+    btn.onclick = function httpGet() {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open("GET", url, false);
+        xmlHttp.send(null);
+        window.location.reload();
+        console.log(xmlHttp.responseText);
+    };
+</script>
 </html>
