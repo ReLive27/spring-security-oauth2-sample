@@ -9,7 +9,7 @@
   - redirectUri: http://127.0.0.1:8070/login/oauth2/code/messaging-client-authorization-code
 
 3.`oauth2-server`注册了一个用户，`admin`/`password`<br>
-4.`resource-server`是一个SpringBoot的资源服务，提供/resource/test受保护API。
+4.`resource-server`是一个SpringBoot的资源服务，提供/resource/test受保护API。<br>
 5.oauth2-client是一个客户端。<br>
 6.数据库表创建使用[Flyway](https://flywaydb.org)数据库版本控制组件，只需更改数据库用户名密码启动程序。<br>
 7.测试启动服务后，访问http://127.0.0.1:8070/client/test
