@@ -13,11 +13,19 @@
 <br><br>
 4.`oauth2-login-client`是一个OAuth2客户端，它包含Form表单登录和OAuth2登录。
 <br><br>
-5.`oauth2-login-client`Form登录用户（admin/password）赋予*ROLE_SYSTEM*角色，拥有该角色的用户登录成功将看到以下内容：
-![](./images/form.png)
+5.`oauth2-login-client`Form登录用户（admin/password）赋予*ROLE_SYSTEM*角色，拥有该角色的用户登录成功将在页面看到以下内容：
+
+**Article List**
+- Java
+- Python
+- C++
+
 <br><br>
 6.`oauth2-login-client`还将支持OAuth2登录，使用*GrantedAuthoritiesMapper*将`authorizationserver`授权服务角色*ROLE_ADMIN*映射为客户端服务*ROLE_OPERATION*角色，
-登录成功后拥有*ROLE_OPERATION*角色的用户将看到以下内容：
-![](./images/oauth2-login.png)
+登录成功后拥有*ROLE_OPERATION*角色的用户将在页面看到以下内容：
+  
+**Article List**
+- Java
+
 <br><br>
 7.启动服务，访问http://127.0.0.1:8070/home ,首先使用Form表单登录，其次退出登录，使用OAuth2登录，您将看到不同的展示信息。
