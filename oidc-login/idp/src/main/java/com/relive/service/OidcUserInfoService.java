@@ -12,8 +12,10 @@ import java.util.Collections;
 import java.util.Set;
 
 /**
+ * 用户信息映射器
+ *
  * @author: ReLive
- * @date: 2022/6/23 8:16 下午
+ * @date: 2022/6/24 3:56 下午
  */
 @Service
 public class OidcUserInfoService {
@@ -52,3 +54,4 @@ public class OidcUserInfoService {
         return builder.build();
     }
 }
+
