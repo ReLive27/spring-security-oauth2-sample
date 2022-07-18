@@ -1,7 +1,5 @@
 ## spring-oauth2-sample
 
----
-
 <p align="left">
 	<a href="https://github.com/ReLive27/spring-security-oauth2-sample/stargazers"><img src="https://img.shields.io/github/stars/ReLive27/spring-security-oauth2-sample?style=flat-square&logo=GitHub"></a>
 	<a href="https://github.com/ReLive27/spring-security-oauth2-sample/network/members"><img src="https://img.shields.io/github/forks/ReLive27/spring-security-oauth2-sample?style=flat-square&logo=GitHub"></a>
@@ -29,7 +27,7 @@ This module contains information on using Spring Security OAuth2
 - [（待更新）Spring Security OAuth2客户端模式获取token添加访问限制]()
 - [（待更新）Spring Security 实现OAuth2.0协议核心接口指南]()
 
-### Build and Deploy the Project
+### Build and Deploy the Project:
 ```
 mvn clean install
 ```
