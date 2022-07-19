@@ -23,7 +23,7 @@ spring:
             authorization-uri: http://127.0.0.1:8080/oauth2/authorize
             token-uri: http://127.0.0.1:8080/oauth2/token
             user-info-uri: http://127.0.0.1:8080/userInfo
-            user-name-attribute: sub
+            user-name-attribute: data.sub
             user-info-authentication-method: form
 
 logging:

@@ -2,11 +2,6 @@ package com.relive.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.convert.converter.Converter;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.http.RequestEntity;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.GrantedAuthority;
@@ -15,16 +10,11 @@ import org.springframework.security.core.authority.mapping.GrantedAuthoritiesMap
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.oauth2.client.registration.ClientRegistration;
-import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
-import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.core.user.OAuth2UserAuthority;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.util.StringUtils;
-import org.springframework.web.util.UriComponentsBuilder;
 
-import java.net.URI;
 import java.util.*;
 
 /**
@@ -49,22 +39,8 @@ public class SecurityConfig {
     }
 
     @Bean
-    DefaultOAuth2UserService defaultOAuth2UserService() {
-        DefaultOAuth2UserService defaultOAuth2UserService = new DefaultOAuth2UserService();
-        defaultOAuth2UserService.setRequestEntityConverter(new Converter<OAuth2UserRequest, RequestEntity<?>>() {
-            @Override
-            public RequestEntity<?> convert(OAuth2UserRequest userRequest) {
-                ClientRegistration clientRegistration = userRequest.getClientRegistration();
-                HttpHeaders headers = new HttpHeaders();
-                headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-                URI uri = UriComponentsBuilder.fromUriString(clientRegistration.getProviderDetails().getUserInfoEndpoint().getUri()).build().toUri();
-                headers.setContentType(MediaType.APPLICATION_JSON);
-                headers.setBearerAuth(userRequest.getAccessToken().getTokenValue());
-                RequestEntity request = new RequestEntity(headers, HttpMethod.POST, uri);
-                return request;
-            }
-        });
-        return defaultOAuth2UserService;
+    DefaultJsonOAuth2UserService defaultJsonOAuth2UserService() {
+        return new DefaultJsonOAuth2UserService();
     }
 
     @Bean
