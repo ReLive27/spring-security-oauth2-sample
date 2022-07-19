@@ -14,11 +14,10 @@ This module contains information on using Spring Security OAuth2
 - [将JWT与Spring Security OAuth2结合使用](https://relive27.github.io/2022/06/26/spring-security-oauth2-jwt/)
 - [自定义OAuth2授权同意页面](https://relive27.github.io/2022/06/28/custom-oauth2-consent-page/)
 - [Spring Security 持久化OAuth2客户端](https://relive27.github.io/2022/07/03/persisrence-oauth2-client/)
-- [Spring Security OAuth2客户端凭据授权](https://relive27.github.io/2022/07/09/oauth2-client-model/)  
+- [Spring Security OAuth2客户端凭据授权](https://relive27.github.io/2022/07/09/oauth2-client-model/)
 - [Spring Security OAuth2 带有用于代码交换的证明密钥 (PKCE) 的授权码流](https://relive27.github.io/2022/07/17/oauth2-pkce/)
 - [（待更新）Spring Security OAuth2登录]()
 - [（待更新）Spring Security和OpenID Connect]()
-- [（待更新）使用 Spring Session 和 Redis 扩展OAuth2.0授权服务]()
 - [（待更新）将Spring Cloud Gateway 与OAuth2模式一起使用]()
 - [（待更新）Spring Security OAuth2和动态客户端注册]()
 - [（待更新）配置Spring Security OAuth2配置资源服务器JWK缓存]()
@@ -28,7 +27,15 @@ This module contains information on using Spring Security OAuth2
 - [（待更新）Spring Security 实现OAuth2.0协议核心接口指南]()
 
 ### Build and Deploy the Project:
+
 ```
 mvn clean install
 ```
+
 这是一个 Spring Boot 项目，因此您只需使用主类即可部署它。
+
+### Version
+
+| spring boot 版本  | spring cloud 版本  | Spring Authorization Server 版本 |
+| ---------------- | ----------------- |----------------- |
+| 2.6.7            | 2021.0.2          | 0.3.1            |
