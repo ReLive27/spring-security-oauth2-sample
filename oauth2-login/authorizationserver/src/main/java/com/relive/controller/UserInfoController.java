@@ -5,6 +5,7 @@ import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Collections;
 import java.util.Map;
 
 /**
@@ -16,6 +17,6 @@ public class UserInfoController {
 
     @PostMapping("/userInfo")
     public Map<String, Object> getUserInfo(@AuthenticationPrincipal Jwt jwt) {
-        return jwt.getClaims();
+        return Collections.singletonMap("data", jwt.getClaims());
     }
 }
