@@ -39,3 +39,4 @@ mvn clean install
 | spring boot 版本  | spring cloud 版本  | Spring Authorization Server 版本 |
 | ---------------- | ----------------- |----------------- |
 | 2.6.7            | 2021.0.2          | 0.3.1            |
+
