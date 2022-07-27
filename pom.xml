@@ -17,6 +17,11 @@
         <module>oidc-login</module>
         <module>oauth2-client-model</module>
         <module>oauth2-pkce</module>
+        <module>oauth2-client-registration</module>
+        <module>oauth2-jwk-redis</module>
+        <module>oauth2-jwk-consul-config</module>
+        <module>oauth2-opaque-token</module>
+        <module>oauth2-token-access-restrictions</module>
     </modules>
 
     <parent>
