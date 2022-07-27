@@ -15,20 +15,18 @@ import org.springframework.util.StringUtils;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Function;
 
 /**
  * @author: ReLive
  * @date: 2022/6/20 5:07 下午
  */
-public class JdbcClientRegistrationRepository implements ClientRegistrationRepository {
+public class JdbcClientRegistrationRepository implements ClientRegistrationRepository, Iterable<ClientRegistration> {
     private static final String COLUMN_NAMES = "registration_id,client_id,client_secret,client_authentication_method,authorization_grant_type,client_name,redirect_uri,scopes,authorization_uri,token_uri,jwk_set_uri,issuer_uri,user_info_uri,user_info_authentication_method,user_name_attribute_name,configuration_metadata";
     private static final String TABLE_NAME = "oauth2_registered_client";
-    private static final String LOAD_CLIENT_REGISTERED_SQL = "SELECT " + COLUMN_NAMES + " FROM " + TABLE_NAME + " WHERE ";
+    private static final String LOAD_CLIENT_REGISTERED_SQL = "SELECT " + COLUMN_NAMES + " FROM " + TABLE_NAME;
+    private static final String LOAD_CLIENT_REGISTERED_QUERY_SQL = LOAD_CLIENT_REGISTERED_SQL + " WHERE ";
     private static final String INSERT_CLIENT_REGISTERED_SQL = "INSERT INTO " + TABLE_NAME + "(" + COLUMN_NAMES + ") VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     private static final String UPDATE_CLIENT_REGISTERED_SQL = "UPDATE " + TABLE_NAME + " SET client_id = ?,client_secret = ?,client_authentication_method = ?,authorization_grant_type = ?,client_name = ?,redirect_uri = ?,scopes = ?,authorization_uri = ?,token_uri = ?,jwk_set_uri = ?,issuer_uri = ?,user_info_uri = ?,user_info_authentication_method = ?,user_name_attribute_name = ? WHERE registration_id = ?";
     private final JdbcOperations jdbcOperations;
@@ -50,7 +48,7 @@ public class JdbcClientRegistrationRepository implements ClientRegistrationRepos
     }
 
     private ClientRegistration findBy(String filter, Object... args) {
-        List<ClientRegistration> result = this.jdbcOperations.query(LOAD_CLIENT_REGISTERED_SQL + filter, this.clientRegistrationRowMapper, args);
+        List<ClientRegistration> result = this.jdbcOperations.query(LOAD_CLIENT_REGISTERED_QUERY_SQL + filter, this.clientRegistrationRowMapper, args);
         return !result.isEmpty() ? result.get(0) : null;
     }
 
@@ -76,6 +74,16 @@ public class JdbcClientRegistrationRepository implements ClientRegistrationRepos
         PreparedStatementSetter statementSetter = new ArgumentPreparedStatementSetter(parameterValues.toArray());
         this.jdbcOperations.update(INSERT_CLIENT_REGISTERED_SQL, statementSetter);
     }
+
+    public List<ClientRegistration> findAny() {
+        List<ClientRegistration> result = this.jdbcOperations.query(LOAD_CLIENT_REGISTERED_SQL, this.clientRegistrationRowMapper);
+        return result.isEmpty() ? Collections.emptyList() : result;
+    }
+
+    public Iterator<ClientRegistration> iterator() {
+        return this.findAny().iterator();
+    }
+
 
     public static class ClientRegistrationRowMapper implements RowMapper<ClientRegistration> {
         private ObjectMapper objectMapper = new ObjectMapper();
