@@ -21,7 +21,7 @@ spring:
     oauth2:
       client:
         registration:
-          messaging-client-oidc:
+          messaging-gateway-oidc:
             provider: gateway-client-provider
             client-id: relive-client
             client-secret: relive-client
@@ -31,14 +31,25 @@ spring:
               - openid
               - profile
               - read
-            client-name: messaging-client-oidc
+            client-name: messaging-gateway-oidc
         provider:
           gateway-client-provider:
             #issuer-uri: http://127.0.0.1:8080
             authorization-uri: http://127.0.0.1:8080/oauth2/authorize
             token-uri: http://127.0.0.1:8080/oauth2/token
             jwk-set-uri: http://127.0.0.1:8080/oauth2/jwks
+            user-info-uri: http://127.0.0.1:8080/userinfo
             user-name-attribute: sub
+
+  session:
+    store-type: redis # 会话存储类型
+    redis:
+      flush-mode: on_save # 会话刷新模式
+      namespace: gateway:session # 用于存储会话的键的命名空间
+  redis:
+    host: localhost
+    port: 6379
+    password: 123456
 
 logging:
   level:

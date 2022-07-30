@@ -12,7 +12,7 @@ import static org.springframework.security.config.Customizer.withDefaults;
  * @author: ReLive
  * @date: 2022/6/9 12:46 下午
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 @EnableWebFluxSecurity
 public class OAuth2LoginSecurityConfig {
 
