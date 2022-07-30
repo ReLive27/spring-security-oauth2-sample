@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.OAuth2AuthorizationServerConfiguration;
@@ -21,7 +22,11 @@ import org.springframework.security.oauth2.core.OAuth2TokenFormat;
 import org.springframework.security.oauth2.core.oidc.OidcScopes;
 import org.springframework.security.oauth2.jose.jws.SignatureAlgorithm;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
-import org.springframework.security.oauth2.server.authorization.client.InMemoryRegisteredClientRepository;
+import org.springframework.security.oauth2.server.authorization.JdbcOAuth2AuthorizationConsentService;
+import org.springframework.security.oauth2.server.authorization.JdbcOAuth2AuthorizationService;
+import org.springframework.security.oauth2.server.authorization.OAuth2AuthorizationConsentService;
+import org.springframework.security.oauth2.server.authorization.OAuth2AuthorizationService;
+import org.springframework.security.oauth2.server.authorization.client.JdbcRegisteredClientRepository;
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClient;
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClientRepository;
 import org.springframework.security.oauth2.server.authorization.config.ClientSettings;
@@ -46,17 +51,17 @@ public class AuthorizationServerConfig {
     public SecurityFilterChain authorizationServerSecurityFilterChain(HttpSecurity http) throws Exception {
         OAuth2AuthorizationServerConfigurer<HttpSecurity> authorizationServerConfigurer =
                 new OAuth2AuthorizationServerConfigurer<>();
-
-
+        //配置OIDC
         authorizationServerConfigurer.oidc(Customizer.withDefaults());
 
         RequestMatcher endpointsMatcher = authorizationServerConfigurer.getEndpointsMatcher();
 
-        return http.requestMatcher(endpointsMatcher).authorizeRequests((authorizeRequests) -> {
-            ((ExpressionUrlAuthorizationConfigurer.AuthorizedUrl) authorizeRequests.anyRequest()).authenticated();
-        }).csrf((csrf) -> {
-            csrf.ignoringRequestMatchers(new RequestMatcher[]{endpointsMatcher});
-        }).apply(authorizationServerConfigurer)
+        return http.requestMatcher(endpointsMatcher)
+                .authorizeRequests((authorizeRequests) -> {
+                    ((ExpressionUrlAuthorizationConfigurer.AuthorizedUrl) authorizeRequests.anyRequest()).authenticated();
+                }).csrf((csrf) -> {
+                    csrf.ignoringRequestMatchers(new RequestMatcher[]{endpointsMatcher});
+                }).apply(authorizationServerConfigurer)
                 .and()
                 .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
                 .exceptionHandling(exceptions -> exceptions.
@@ -67,7 +72,7 @@ public class AuthorizationServerConfig {
     }
 
     @Bean
-    public RegisteredClientRepository registeredClientRepository() {
+    public RegisteredClientRepository registeredClientRepository(JdbcTemplate jdbcTemplate) {
         RegisteredClient registeredClient = RegisteredClient.withId(UUID.randomUUID().toString())
                 .clientId("relive-client")
                 .clientSecret("{noop}relive-client")
@@ -77,16 +82,14 @@ public class AuthorizationServerConfig {
                 })
                 .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
                 .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
-                .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
-                .authorizationGrantType(AuthorizationGrantType.PASSWORD)
-                .redirectUri("http://127.0.0.1:8070/login/oauth2/code/messaging-client-oidc")
+                .redirectUri("http://127.0.0.1:8070/login/oauth2/code/messaging-gateway-oidc")
                 .scope(OidcScopes.OPENID)
                 .scope(OidcScopes.PROFILE)
                 .scope(OidcScopes.EMAIL)
                 .scope("read")
                 .clientSettings(ClientSettings.builder()
-                        .requireAuthorizationConsent(true)//requireAuthorizationConsent：是否需要授权统同意
-                        .requireProofKey(false)//requireProofKey：是否需要证明密钥
+                        .requireAuthorizationConsent(false) //不需要授权同意
+                        .requireProofKey(false)
                         .build())
                 .tokenSettings(TokenSettings.builder()
                         .accessTokenFormat(OAuth2TokenFormat.SELF_CONTAINED) // 生成JWT令牌
@@ -96,9 +99,21 @@ public class AuthorizationServerConfig {
                         .reuseRefreshTokens(true)//reuseRefreshTokens：是否重用刷新令牌
                         .build())
                 .build();
-        return new InMemoryRegisteredClientRepository(registeredClient);
+
+        JdbcRegisteredClientRepository registeredClientRepository = new JdbcRegisteredClientRepository(jdbcTemplate);
+        registeredClientRepository.save(registeredClient);
+        return registeredClientRepository;
     }
 
+    @Bean
+    public OAuth2AuthorizationService authorizationService(JdbcTemplate jdbcTemplate, RegisteredClientRepository registeredClientRepository) {
+        return new JdbcOAuth2AuthorizationService(jdbcTemplate, registeredClientRepository);
+    }
+
+    @Bean
+    public OAuth2AuthorizationConsentService authorizationConsentService(JdbcTemplate jdbcTemplate, RegisteredClientRepository registeredClientRepository) {
+        return new JdbcOAuth2AuthorizationConsentService(jdbcTemplate, registeredClientRepository);
+    }
 
     @Bean
     public ProviderSettings providerSettings() {
