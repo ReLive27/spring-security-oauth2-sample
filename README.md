@@ -17,7 +17,7 @@ This module contains information on using Spring Security OAuth2
 - [Spring Security OAuth2客户端凭据授权](https://relive27.github.io/2022/07/09/oauth2-client-model/)
 - [Spring Security OAuth2 带有用于代码交换的证明密钥 (PKCE) 的授权码流](https://relive27.github.io/2022/07/17/oauth2-pkce/)
 - [Spring Security OAuth2登录](https://relive27.github.io/2022/07/25/oauth2-login/)
-- [（待更新）Spring Security和OpenID Connect]()
+- [Spring Security和OpenID Connect](https://relive27.github.io/2022/08/01/springn-security-oidc/)
 - [（待更新）将Spring Cloud Gateway 与OAuth2模式一起使用]()
 - [（待更新）Spring Security OAuth2和动态客户端注册]()
 - [（待更新）配置Spring Security OAuth2配置资源服务器JWK缓存]()
