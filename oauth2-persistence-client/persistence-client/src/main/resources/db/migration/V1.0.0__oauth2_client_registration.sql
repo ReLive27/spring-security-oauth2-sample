@@ -1,4 +1,4 @@
-CREATE TABLE `oauth2_registered_client`
+CREATE TABLE `oauth2_client_registered`
 (
     `registration_id`                 varchar(100)  NOT NULL,
     `client_id`                       varchar(100)  NOT NULL,
