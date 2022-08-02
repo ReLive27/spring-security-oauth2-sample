@@ -1,4 +1,4 @@
-CREATE TABLE `oauth2_registered_client`
+CREATE TABLE `oauth2_client_registered`
 (
     `registration_id`                 varchar(100)  NOT NULL,
     `client_id`                       varchar(100)  NOT NULL,
@@ -72,7 +72,7 @@ CREATE TABLE `oauth2_client_role_mapping`
     PRIMARY KEY (`id`)
 );
 
-INSERT INTO `oauth2_registered_client` (`registration_id`, `client_id`, `client_secret`, `client_authentication_method`,
+INSERT INTO `oauth2_client_registered` (`registration_id`, `client_id`, `client_secret`, `client_authentication_method`,
                                         `authorization_grant_type`, `client_name`, `redirect_uri`, `scopes`,
                                         `authorization_uri`, `token_uri`, `jwk_set_uri`, `issuer_uri`, `user_info_uri`,
                                         `user_info_authentication_method`, `user_name_attribute_name`,
