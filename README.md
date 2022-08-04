@@ -1,4 +1,5 @@
-## spring-oauth2-sample
+## <font size="6p">spring-oauth2-sample</font> <font size="3p">  | [English Documentation](README_EN.md)</font>
+
 
 <p align="left">
 	<a href="https://github.com/ReLive27/spring-security-oauth2-sample/stargazers"><img src="https://img.shields.io/github/stars/ReLive27/spring-security-oauth2-sample?style=flat-square&logo=GitHub"></a>
@@ -7,9 +8,9 @@
 	<a href="https://github.com/ReLive27/spring-security-oauth2-sample/issues"><img src="https://img.shields.io/github/issues/ReLive27/spring-security-oauth2-sample.svg?style=flat-square&logo=GitHub"></a>
 	<a href="https://github.com/ReLive27/spring-security-oauth2-sample/blob/main/LICENSE"><img src="https://img.shields.io/github/license/ReLive27/spring-security-oauth2-sample.svg?style=flat-square"></a>
 </p>
-This module contains information on using Spring Security OAuth2
+该模块包含有关使用 Spring Security OAuth2 的信息
 
-### Relevant Articles:
+### 相关文章:
 
 - [将JWT与Spring Security OAuth2结合使用](https://relive27.github.io/2022/06/26/spring-security-oauth2-jwt/)
 - [自定义OAuth2授权同意页面](https://relive27.github.io/2022/06/28/custom-oauth2-consent-page/)
@@ -26,7 +27,7 @@ This module contains information on using Spring Security OAuth2
 - [（待更新）Spring Security OAuth2客户端模式获取token添加访问限制]()
 - [（待更新）Spring Security 实现OAuth2.0协议核心接口指南]()
 
-### Build and Deploy the Project:
+### 构建和部署项目:
 
 ```
 mvn clean install
@@ -34,7 +35,7 @@ mvn clean install
 
 这是一个 Spring Boot 项目，因此您只需使用主类即可部署它。
 
-### Version
+### 版本
 
 | spring boot 版本  | spring cloud 版本  | Spring Authorization Server 版本 |
 | ---------------- | ----------------- |----------------- |
