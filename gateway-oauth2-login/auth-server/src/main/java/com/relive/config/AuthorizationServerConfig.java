@@ -37,9 +37,10 @@ import org.springframework.security.web.authentication.LoginUrlAuthenticationEnt
 import org.springframework.security.web.util.matcher.RequestMatcher;
 
 import java.time.Duration;
-import java.util.UUID;
 
 /**
+ * OAuth2及OpenID Connect 配置
+ *
  * @author: ReLive
  * @date: 2022/6/23 2:03 下午
  */
@@ -71,9 +72,15 @@ public class AuthorizationServerConfig {
                 .build();
     }
 
+    /**
+     * 持久化OAuth2客户端
+     *
+     * @param jdbcTemplate
+     * @return
+     */
     @Bean
     public RegisteredClientRepository registeredClientRepository(JdbcTemplate jdbcTemplate) {
-        RegisteredClient registeredClient = RegisteredClient.withId(UUID.randomUUID().toString())
+        RegisteredClient registeredClient = RegisteredClient.withId("relive-messaging-oidc")
                 .clientId("relive-client")
                 .clientSecret("{noop}relive-client")
                 .clientAuthenticationMethods(s -> {
@@ -105,11 +112,25 @@ public class AuthorizationServerConfig {
         return registeredClientRepository;
     }
 
+    /**
+     * 负责在授权过程中持久化授权信息，例如code，access_token,refresh_token
+     *
+     * @param jdbcTemplate
+     * @param registeredClientRepository
+     * @return
+     */
     @Bean
     public OAuth2AuthorizationService authorizationService(JdbcTemplate jdbcTemplate, RegisteredClientRepository registeredClientRepository) {
         return new JdbcOAuth2AuthorizationService(jdbcTemplate, registeredClientRepository);
     }
 
+    /**
+     * 持久化用户同意"授权同意"信息
+     *
+     * @param jdbcTemplate
+     * @param registeredClientRepository
+     * @return
+     */
     @Bean
     public OAuth2AuthorizationConsentService authorizationConsentService(JdbcTemplate jdbcTemplate, RegisteredClientRepository registeredClientRepository) {
         return new JdbcOAuth2AuthorizationConsentService(jdbcTemplate, registeredClientRepository);

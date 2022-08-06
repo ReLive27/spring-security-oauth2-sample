@@ -19,6 +19,8 @@ import java.util.*;
 import java.util.function.Function;
 
 /**
+ * OAuth2客户端持久化扩展
+ *
  * @author: ReLive
  * @date: 2022/7/30 22:05
  */
@@ -28,7 +30,7 @@ public class JdbcClientRegistrationRepository implements ClientRegistrationRepos
     private static final String LOAD_CLIENT_REGISTERED_SQL = "SELECT " + COLUMN_NAMES + " FROM " + TABLE_NAME;
     private static final String LOAD_CLIENT_REGISTERED_QUERY_SQL = LOAD_CLIENT_REGISTERED_SQL + " WHERE ";
     private static final String INSERT_CLIENT_REGISTERED_SQL = "INSERT INTO " + TABLE_NAME + "(" + COLUMN_NAMES + ") VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-    private static final String UPDATE_CLIENT_REGISTERED_SQL = "UPDATE " + TABLE_NAME + " SET client_id = ?,client_secret = ?,client_authentication_method = ?,authorization_grant_type = ?,client_name = ?,redirect_uri = ?,scopes = ?,authorization_uri = ?,token_uri = ?,jwk_set_uri = ?,issuer_uri = ?,user_info_uri = ?,user_info_authentication_method = ?,user_name_attribute_name = ? WHERE registration_id = ?";
+    private static final String UPDATE_CLIENT_REGISTERED_SQL = "UPDATE " + TABLE_NAME + " SET client_id = ?,client_secret = ?,client_authentication_method = ?,authorization_grant_type = ?,client_name = ?,redirect_uri = ?,scopes = ?,authorization_uri = ?,token_uri = ?,jwk_set_uri = ?,issuer_uri = ?,user_info_uri = ?,user_info_authentication_method = ?,user_name_attribute_name = ?,configuration_metadata = ? WHERE registration_id = ?";
     private final JdbcOperations jdbcOperations;
     private RowMapper<ClientRegistration> clientRegistrationRowMapper;
     private Function<ClientRegistration, List<SqlParameterValue>> clientRegistrationListParametersMapper;
