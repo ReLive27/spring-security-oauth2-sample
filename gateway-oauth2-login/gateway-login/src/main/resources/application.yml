@@ -30,7 +30,6 @@ spring:
             scope:
               - openid
               - profile
-              - read
             client-name: messaging-gateway-oidc
         provider:
           gateway-client-provider:

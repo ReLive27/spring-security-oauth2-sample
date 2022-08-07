@@ -24,7 +24,7 @@ public class ArticleController {
         add("article2");
     }};
 
-    @PreAuthorize("hasAuthority('read')")
+    @PreAuthorize("hasAuthority('SCOPE_read')")
     @GetMapping("/resource/article/read")
     public Map<String, Object> read(@AuthenticationPrincipal Jwt jwt) {
         Map<String, Object> result = new HashMap<>(2);
@@ -33,7 +33,7 @@ public class ArticleController {
         return result;
     }
 
-    @PreAuthorize("hasAuthority('write')")
+    @PreAuthorize("hasAuthority('SCOPE_write')")
     @GetMapping("/resource/article/write")
     public String write(@RequestParam String name) {
         article.add(name);
