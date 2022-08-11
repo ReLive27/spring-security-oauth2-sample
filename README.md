@@ -21,12 +21,12 @@
 - [Spring Security和OpenID Connect](https://relive27.github.io/2022/08/01/springn-security-oidc/)
 - [（待更新）将Spring Cloud Gateway 与OAuth2模式一起使用]()
 - [（待更新）Spring Security OAuth2和动态客户端注册]()
-- [（待更新）配置Spring Security OAuth2配置资源服务器JWK缓存]()
+- [（待更新）Spring Security OAuth2配置资源服务器JWK缓存]()
 - [（待更新）将Spring Security OAuth2授权服务JWT密钥与Consul 配置中心结合使用]()
 - [（待更新）Spring Security OAuth2不透明令牌的简单使用指南]()
 - [（待更新）Spring Security OAuth2客户端模式获取token添加访问限制]()
 - [（待更新）Spring Security 实现OAuth2.0协议核心接口指南]()
-
+- ...
 ### 构建和部署项目:
 
 ```

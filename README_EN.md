@@ -20,12 +20,12 @@ This module contains information on using Spring Security OAuth2
 - [Spring Security and OpenID Connect](https://relive27.github.io/2022/08/01/springn-security-oidc/)
 - [（pending upgrade）Using Spring Cloud Gateway with OAuth2 Pattern]()
 - [（pending upgrade）Spring Security OAuth2 and dynamic client registration]()
-- [（pending upgrade）Configure Spring Security OAuth2 Configure Resource Server JWK Cache]()
+- [（pending upgrade）Spring Security OAuth2 configure resource server JWK cache]()
 - [（pending upgrade）Using Spring Security OAuth2 Authorization Service JWT Keys with Consul Configuration Center]()
 - [（pending upgrade）A Simple Guide to Using Spring Security OAuth2 Opaque Tokens]()
 - [（pending upgrade）Spring Security OAuth2 client mode to get token to add access restrictions]()
 - [（pending upgrade）Spring Security implements OAuth2.0 protocol core interface guide]()
-
+- ...
 ### Build and Deploy the Project:
 
 ```
