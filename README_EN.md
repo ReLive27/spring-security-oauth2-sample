@@ -18,7 +18,7 @@ This module contains information on using Spring Security OAuth2
 - [Spring Security OAuth2 Authorization Code Flow with Proof Key for Code Exchange (PKCE)](https://relive27.github.io/2022/07/17/oauth2-pkce/)
 - [Spring Security OAuth2 Login](https://relive27.github.io/2022/07/25/oauth2-login/)
 - [Spring Security and OpenID Connect](https://relive27.github.io/2022/08/01/springn-security-oidc/)
-- [（pending upgrade）Using Spring Cloud Gateway with OAuth2 Pattern]()
+- [Using Spring Cloud Gateway with OAuth2 Pattern](https://relive27.github.io/2022/08/13/spring-gateway-oauth2/)
 - [（pending upgrade）Spring Security OAuth2 and dynamic client registration]()
 - [（pending upgrade）Spring Security OAuth2 configure resource server JWK cache]()
 - [（pending upgrade）Using Spring Security OAuth2 Authorization Service JWT Keys with Consul Configuration Center]()
