@@ -10,6 +10,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>oauth2-jwk-redis</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>authorization-server</module>
+        <module>jwk-cache-resource-server</module>
+        <module>oauth2Client</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
