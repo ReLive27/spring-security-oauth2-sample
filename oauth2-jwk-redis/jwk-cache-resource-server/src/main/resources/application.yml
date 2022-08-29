@@ -1,0 +1,22 @@
+server:
+  port: 8090
+
+spring:
+  redis:
+    host: localhost
+    database: 0
+    port: 6379
+    password: 123456
+    timeout: 1800
+    lettuce:
+      pool:
+        max-active: 20
+        max-wait: -1
+        max-idle: 5
+        min-idle: 0
+      shutdown-timeout: 100
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://127.0.0.1:8080/oauth2/jwks
