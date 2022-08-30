@@ -32,7 +32,7 @@ public class AccessTokenCustomizerConfig {
         return (context) -> {
             if (OAuth2TokenType.ACCESS_TOKEN.equals(context.getTokenType())) {
                 context.getClaims().claims(claim -> {
-                    claim.put("scope", roleRepository.findByRoleCode(context.getPrincipal().getAuthorities().stream()
+                    claim.put("authorities", roleRepository.findByRoleCode(context.getPrincipal().getAuthorities().stream()
                             .map(GrantedAuthority::getAuthority).findFirst().orElse("ROLE_OPERATION"))
                             .getPermissions().stream().map(Permission::getPermissionCode).collect(Collectors.toSet()));
                 });
