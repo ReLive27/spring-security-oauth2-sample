@@ -14,7 +14,7 @@
     <modules>
         <module>authorization-server</module>
         <module>jwk-cache-resource-server</module>
-        <module>oauth2Client</module>
+        <module>oauthClient</module>
     </modules>
 
     <properties>
