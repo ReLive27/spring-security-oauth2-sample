@@ -16,6 +16,7 @@ import com.relive.jose.TimestampKeyIDStrategy;
 import lombok.Getter;
 import org.springframework.util.Assert;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -109,9 +110,9 @@ public final class RotateJwkSource<C extends SecurityContext> implements JWKSour
         this.jwkSetCache.put(updateJWKSet);
         if (jwkSet != null) {
             List<JWK> keys = jwkSet.getKeys();
-            List<JWK> updateJwks = keys.stream().collect(Collectors.toList());
+            List<JWK> updateJwks = new ArrayList<>(keys);
             updateJwks.add(jwk);
-            updateJWKSet = new JWKSet(keys);
+            updateJWKSet = new JWKSet(updateJwks);
         }
         return updateJWKSet;
     }

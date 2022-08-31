@@ -107,18 +107,12 @@ public class RedisJWKSetCache implements JWKSetCache {
         RedisConnection connection = this.getConnection();
         byte[] key = this.serializeKey(JWK_KEY);
         try {
-            connection.openPipeline();
-
             Long efficientCount = Optional.ofNullable(connection.zCard(key)).orElse(0L);
             if (efficientCount > 0) {
                 Set<byte[]> jwkBytes = connection.zRevRangeByScore(key, Range.range());
                 List<JWK> jwks = jwkBytes.stream().map(this::deserialize).map(this::parse).collect(Collectors.toList());
-
-                connection.closePipeline();
-
                 return new JWKSet(jwks);
             }
-            connection.closePipeline();
 
             return null;
         } finally {
@@ -139,10 +133,8 @@ public class RedisJWKSetCache implements JWKSetCache {
         RedisConnection connection = this.getConnection();
         byte[] key = this.serializeKey("jwks");
         try {
-            connection.openPipeline();
             Long efficientCount = Optional.ofNullable(connection.zCard(key)).orElse(0L);
             Set<Tuple> maximumScoreTuple = connection.zRevRangeByScoreWithScores(key, Range.range(), Limit.limit().count(1));
-            connection.closePipeline();
 
             long lastRefreshTime = 0L;
             if (!CollectionUtils.isEmpty(maximumScoreTuple)) {

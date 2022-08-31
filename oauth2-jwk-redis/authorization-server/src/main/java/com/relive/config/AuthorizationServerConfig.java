@@ -6,11 +6,13 @@ import com.nimbusds.jose.jwk.JWKMatcher;
 import com.nimbusds.jose.jwk.JWKSelector;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
+import com.relive.jose.jwk.source.RedisJWKSetCache;
 import com.relive.jose.jwk.source.RotateJwkSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.OAuth2AuthorizationServerConfiguration;
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
@@ -93,13 +95,16 @@ public class AuthorizationServerConfig {
 
 
     /**
-     * 定义 {@link RotateJwkSource} 轮询密钥 {@link JWKSource}
+     * 定义 {@link RotateJwkSource} 轮询密钥的 {@link JWKSource}
      *
      * @return
      */
     @Bean
-    public JWKSource<SecurityContext> jwkSource() {
-        return new RotateJwkSource();
+    public JWKSource<SecurityContext> jwkSource(RedisConnectionFactory connectionFactory) {
+        RedisJWKSetCache redisJWKSetCache = new RedisJWKSetCache(connectionFactory);
+        redisJWKSetCache.setPrefix("auth-server");
+
+        return new RotateJwkSource<>(redisJWKSetCache);
     }
 
     /**
@@ -121,7 +126,9 @@ public class AuthorizationServerConfig {
                 } catch (KeySourceException e) {
                     throw new IllegalStateException("Failed to select the JWK(s) -> " + e.getMessage(), e);
                 }
-                String kid = jwks.stream().map(JWK::getKeyID).max(String::compareTo).get();
+                String kid = jwks.stream().map(JWK::getKeyID)
+                        .max(String::compareTo)
+                        .orElseThrow(() -> new IllegalArgumentException("kid not found"));
                 context.getHeaders().keyId(kid);
             }
         };
