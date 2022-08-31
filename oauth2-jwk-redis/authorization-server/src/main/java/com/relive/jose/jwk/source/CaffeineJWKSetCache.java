@@ -8,10 +8,10 @@ import com.nimbusds.jose.jwk.source.JWKSetCache;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.springframework.util.CollectionUtils;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 
 /**
  * 基于caffeine的 {@link JWKSet} 存储实现
@@ -37,24 +37,26 @@ public class CaffeineJWKSetCache implements JWKSetCache {
         } else {
             this.timeUnit = timeUnit;
         }
-        cache = Caffeine.newBuilder()
-                .expireAfterWrite(this.lifespan, this.timeUnit)
-                .maximumSize(10)
-                .build();
+        Caffeine<Object, Object> caffeine = Caffeine.newBuilder().maximumSize(10);
+        if (lifespan > -1L) {
+            caffeine.expireAfterWrite(this.lifespan, this.timeUnit);
+        }
+        this.cache = caffeine.build();
+
     }
 
     @Override
     public void put(JWKSet jwkSet) {
         if (jwkSet != null) {
             if (!CollectionUtils.isEmpty(jwkSet.getKeys())) {
-                jwkSet.getKeys().stream().forEach(jwk -> cache.put(new Date().getTime(), jwk));
+                jwkSet.getKeys().forEach(jwk -> cache.put(new Date().getTime(), jwk));
             }
         }
     }
 
     @Override
     public JWKSet get() {
-        List<@NonNull JWK> jwks = cache.asMap().values().stream().collect(Collectors.toList());
+        List<@NonNull JWK> jwks = new ArrayList<>(cache.asMap().values());
         return CollectionUtils.isEmpty(jwks) ? null : new JWKSet(jwks);
     }
 
