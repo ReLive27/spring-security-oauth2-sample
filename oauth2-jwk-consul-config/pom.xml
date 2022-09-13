@@ -10,6 +10,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>oauth2-jwk-consul-config</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>authorization-server-with-consul</module>
+        <module>resource-server-with-consul</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>

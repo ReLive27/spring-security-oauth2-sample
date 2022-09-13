@@ -1,0 +1,28 @@
+server:
+  port: 9090
+
+spring:
+  application:
+    name: resource-server
+  cloud:
+    consul:
+      host: 127.0.0.1
+      port: 8500
+      discovery:
+        instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}
+        health-check-path: /actuator/health
+        prefer-agent-address: true
+        hostname: ${spring.application.name}
+        catalog-services-watch-timeout: 5
+        health-check-timeout: 15s
+        deregister: true
+        heartbeat:
+          enabled: true
+        health-check-critical-timeout: 10s
+      config:
+        enabled: true
+        format: YAML
+        name: apps
+        data-key: data
+        prefix: config
+        profileSeparator: "::"
