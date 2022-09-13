@@ -8,6 +8,7 @@ import java.util.UUID;
  * @author: ReLive
  * @date: 2022/8/23 13:12
  */
+@Deprecated
 public class UUIDKeyIDStrategy implements KeyIDStrategy {
 
     @Override
