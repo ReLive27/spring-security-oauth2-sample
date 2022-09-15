@@ -20,7 +20,7 @@
 - [Spring Security OAuth2登录](https://relive27.github.io/2022/07/25/oauth2-login/)
 - [Spring Security和OpenID Connect](https://relive27.github.io/2022/08/01/springn-security-oidc/)
 - [将Spring Cloud Gateway 与OAuth2模式一起使用](https://relive27.github.io/2022/08/13/spring-gateway-oauth2/)
-- [（待更新）Spring Security OAuth2配置资源服务器JWK缓存及简单的密钥轮换]()
+- [Spring Security OAuth2实现简单的密钥轮换及配置资源服务器JWK缓存](https://relive27.github.io/2022/09/12/jwk-cache-and-rotate-key/)
 - [（待更新）Spring Security OAuth2和动态客户端注册]()
 - [（待更新）将Spring Security OAuth2授权服务JWT密钥与Consul 配置中心结合使用]()
 - [（待更新）Spring Security OAuth2不透明令牌的简单使用指南]()

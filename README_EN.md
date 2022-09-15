@@ -19,7 +19,7 @@ This module contains information on using Spring Security OAuth2
 - [Spring Security OAuth2 Login](https://relive27.github.io/2022/07/25/oauth2-login/)
 - [Spring Security and OpenID Connect](https://relive27.github.io/2022/08/01/springn-security-oidc/)
 - [Using Spring Cloud Gateway with OAuth2 Pattern](https://relive27.github.io/2022/08/13/spring-gateway-oauth2/)
-- [（Coming soon）Spring Security OAuth2 configuration resource server JWK cache and simple key rotation]()
+- [Spring Security OAuth2 implements simple key rotation and configures resource server JWK cache](https://relive27.github.io/2022/09/12/jwk-cache-and-rotate-key/)
 - [（Coming soon）Spring Security OAuth2 and dynamic client registration]()
 - [（Coming soon）Using Spring Security OAuth2 Authorization Service JWT Keys with Consul Configuration Center]()
 - [（Coming soon）A Simple Guide to Using Spring Security OAuth2 Opaque Tokens]()
