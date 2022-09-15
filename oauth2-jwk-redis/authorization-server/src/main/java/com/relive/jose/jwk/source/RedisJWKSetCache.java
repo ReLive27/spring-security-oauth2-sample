@@ -11,6 +11,8 @@ import org.springframework.data.redis.connection.RedisZSetCommands.Range;
 import org.springframework.data.redis.connection.RedisZSetCommands.Tuple;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializer;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
+import org.springframework.security.oauth2.server.authorization.context.ProviderContextHolder;
 import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 import org.springframework.util.CollectionUtils;
@@ -36,14 +38,15 @@ public class RedisJWKSetCache implements JWKSetCache {
     private final RedisConnectionFactory connectionFactory;
     private final String JWK_KEY = "jwks";
     private String prefix = "";
-    private RedisSerializer<String> redisSerializer = new Jackson2JsonRedisSerializer<>(String.class);
+    private RedisSerializer<String> redisSerializeKey = new StringRedisSerializer();
+    private RedisSerializer<String> redisSerializerValue = new Jackson2JsonRedisSerializer<>(String.class);
     private Method redisConnectionSet_2_0;
     private final long lifespan;
     private final long refreshTime;
     private final TimeUnit timeUnit;
 
     public RedisJWKSetCache(RedisConnectionFactory connectionFactory) {
-        this(15L, 5L, TimeUnit.MINUTES, connectionFactory);
+        this(15L, 1L, TimeUnit.MINUTES, connectionFactory);
     }
 
     public RedisJWKSetCache(long lifespan, long refreshTime, TimeUnit timeUnit, RedisConnectionFactory connectionFactory) {
@@ -92,9 +95,11 @@ public class RedisJWKSetCache implements JWKSetCache {
                             connection.zAdd(key, new Date().getTime(), value);
                         }
                     }
-
-
                     connection.closePipeline();
+
+                    //TODO 考虑此类职责为授权服务密钥缓存，清除资源服务Redis中JWKS缓存可能并不适合放在这里
+                    //清除资源服务Redis中JWKS缓存,请确保资源服务redis key值与此处保持一致
+                    connection.del(this.redisSerializeKey.serialize("jwks::" + ProviderContextHolder.getProviderContext().getIssuer() + ProviderContextHolder.getProviderContext().getProviderSettings().getJwkSetEndpoint()));
                 } finally {
                     connection.close();
                 }
@@ -148,15 +153,15 @@ public class RedisJWKSetCache implements JWKSetCache {
     }
 
     private byte[] serializeKey(String key) {
-        return this.serialize(this.prefix + ":" + key);
+        return this.redisSerializeKey.serialize(this.prefix + key);
     }
 
     private byte[] serialize(String value) {
-        return this.redisSerializer.serialize(value);
+        return this.redisSerializerValue.serialize(value);
     }
 
     private String deserialize(byte[] bytes) {
-        return this.redisSerializer.deserialize(bytes);
+        return this.redisSerializerValue.deserialize(bytes);
     }
 
     private void loadRedisConnectionMethods_2_0() {
@@ -171,7 +176,11 @@ public class RedisJWKSetCache implements JWKSetCache {
         this.prefix = prefix;
     }
 
-    public void setRedisSerializer(RedisSerializer<String> redisSerializer) {
-        this.redisSerializer = redisSerializer;
+    public void setRedisSerializerKey(RedisSerializer<String> redisSerializer) {
+        this.redisSerializeKey = redisSerializer;
+    }
+
+    public void setRedisSerializerValue(RedisSerializer<String> redisSerializer) {
+        this.redisSerializerValue = redisSerializer;
     }
 }
