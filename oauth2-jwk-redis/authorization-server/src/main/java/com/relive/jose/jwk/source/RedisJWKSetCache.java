@@ -46,7 +46,7 @@ public class RedisJWKSetCache implements JWKSetCache {
     private final TimeUnit timeUnit;
 
     public RedisJWKSetCache(RedisConnectionFactory connectionFactory) {
-        this(15L, 1L, TimeUnit.MINUTES, connectionFactory);
+        this(15L, 5L, TimeUnit.MINUTES, connectionFactory);
     }
 
     public RedisJWKSetCache(long lifespan, long refreshTime, TimeUnit timeUnit, RedisConnectionFactory connectionFactory) {
