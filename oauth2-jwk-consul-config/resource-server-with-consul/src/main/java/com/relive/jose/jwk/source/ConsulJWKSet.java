@@ -1,12 +1,12 @@
 package com.relive.jose.jwk.source;
 
 import com.nimbusds.jose.KeySourceException;
-import com.nimbusds.jose.RemoteKeySourceException;
 import com.nimbusds.jose.jwk.JWK;
 import com.nimbusds.jose.jwk.JWKSelector;
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
+import com.relive.jose.ConsulKeySourceException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.StringUtils;
 
@@ -61,14 +61,14 @@ public class ConsulJWKSet<C extends SecurityContext> implements JWKSource<C> {
         }
     }
 
-    private List<JWK> failover(Exception exception, JWKSelector jwkSelector, C context) throws RemoteKeySourceException {
+    private List<JWK> failover(Exception exception, JWKSelector jwkSelector, C context) throws ConsulKeySourceException {
         if (this.getFailoverJWKSource() == null) {
             return null;
         } else {
             try {
                 return this.getFailoverJWKSource().get(jwkSelector, context);
-            } catch (KeySourceException var5) {
-                throw new RemoteKeySourceException(exception.getMessage() + "; Failover JWK source retrieval failed with: " + var5.getMessage(), var5);
+            } catch (KeySourceException e) {
+                throw new ConsulKeySourceException(exception.getMessage() + "; Failover JWK source retrieval failed with: " + e.getMessage(), e);
             }
         }
     }
