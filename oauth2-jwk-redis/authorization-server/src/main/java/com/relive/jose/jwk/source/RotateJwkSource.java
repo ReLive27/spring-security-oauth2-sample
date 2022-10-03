@@ -19,7 +19,6 @@ import org.springframework.util.Assert;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * 基于密钥轮换的 {@link JWKSource}
@@ -34,10 +33,6 @@ public final class RotateJwkSource<C extends SecurityContext> implements JWKSour
     private final JWKSetCache jwkSetCache;
     private final JWKGenerator<? extends JWK> jwkGenerator;
     private KeyIDStrategy keyIDStrategy;
-
-    public RotateJwkSource() {
-        this(new InMemoryJWKSetCache(), null, null, null);
-    }
 
     public RotateJwkSource(JWKSetCache jwkSetCache) {
         this(jwkSetCache, null, null, null);
