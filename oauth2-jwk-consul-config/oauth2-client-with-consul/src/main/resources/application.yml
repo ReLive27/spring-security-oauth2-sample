@@ -1,0 +1,51 @@
+server:
+  port: 8070
+  servlet:
+    session:
+      cookie:
+        name: CLIENT-SESSION
+
+spring:
+  config:
+    import: optional:consul:127.0.0.1:8500
+  application:
+    name: client-server
+  cloud:
+    consul:
+      host: 127.0.0.1
+      port: 8500
+      discovery:
+        instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}
+        health-check-path: /actuator/health
+        prefer-agent-address: true
+        hostname: ${spring.application.name}
+        catalog-services-watch-timeout: 5
+        health-check-timeout: 15s
+        deregister: true
+        heartbeat:
+          enabled: true
+        health-check-critical-timeout: 10s
+      config:
+        enabled: true
+        format: YAML
+        prefix: config
+        name: apps
+        data-key: data
+        profileSeparator: "::"
+
+  security:
+    oauth2:
+      client:
+        registration:
+          messaging-client-authorization-code:
+            provider: client-provider
+            client-id: relive-client
+            client-secret: relive-client
+            authorization-grant-type: authorization_code
+            redirect-uri: "http://127.0.0.1:8070/login/oauth2/code/{registrationId}"
+            scope: message.read
+            client-name: messaging-client-authorization-code
+        provider:
+          client-provider:
+            authorization-uri: http://127.0.0.1:8080/oauth2/authorize
+            token-uri: http://127.0.0.1:8080/oauth2/token
