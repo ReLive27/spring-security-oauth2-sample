@@ -1,4 +1,6 @@
 spring:
+  config:
+    import: optional:consul:127.0.0.1:8500
   application:
     name: authorization-server
   cloud:
