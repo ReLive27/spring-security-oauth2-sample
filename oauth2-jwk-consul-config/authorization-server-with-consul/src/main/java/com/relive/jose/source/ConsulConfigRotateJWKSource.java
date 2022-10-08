@@ -106,6 +106,7 @@ public class ConsulConfigRotateJWKSource<C extends SecurityContext> implements J
         } catch (JsonProcessingException e) {
             throw new ConsulConfigKeySourceException("JWK cannot convert JSON:" + e.getMessage(), e);
         }
+        jwkSetCache.put(result);
         return result;
     }
 
