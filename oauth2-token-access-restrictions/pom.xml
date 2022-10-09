@@ -10,6 +10,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>oauth2-token-access-restrictions</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>oauth2-service-with-token-access-restriction</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
