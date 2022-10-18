@@ -62,20 +62,18 @@ public class AuthorizationServerConfig {
                 })
                 .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
                 .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
-                .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
-                .authorizationGrantType(AuthorizationGrantType.PASSWORD)
                 .redirectUri("http://127.0.0.1:8070/login/oauth2/code/messaging-client-authorization-code")
                 .scope("message.read")
                 .clientSettings(ClientSettings.builder()
                         .requireAuthorizationConsent(true)//requireAuthorizationConsent：是否需要授权统同意
-                        .requireProofKey(false)
+                        .requireProofKey(false) //requireProofKey：是否仅支持PKCE
                         .build())
                 .tokenSettings(TokenSettings.builder()
-                        .accessTokenFormat(OAuth2TokenFormat.SELF_CONTAINED)
+                        .accessTokenFormat(OAuth2TokenFormat.SELF_CONTAINED) //自包含令牌，使用JWT格式
                         .idTokenSignatureAlgorithm(SignatureAlgorithm.RS256)
-                        .accessTokenTimeToLive(Duration.ofSeconds(30 * 60))
-                        .refreshTokenTimeToLive(Duration.ofSeconds(60 * 60))
-                        .reuseRefreshTokens(true)
+                        .accessTokenTimeToLive(Duration.ofSeconds(15 * 60))
+                        .refreshTokenTimeToLive(Duration.ofSeconds(30 * 60))
+                        .reuseRefreshTokens(false) //是否重用refreshToken
                         .build())
                 .build();
 
