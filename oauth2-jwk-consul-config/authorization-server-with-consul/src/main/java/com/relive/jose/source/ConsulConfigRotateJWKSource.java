@@ -20,6 +20,7 @@ import com.relive.jose.KeyIDStrategy;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author: ReLive
@@ -37,6 +38,10 @@ public class ConsulConfigRotateJWKSource<C extends SecurityContext> implements J
 
     public ConsulConfigRotateJWKSource(ConsulClient consulClient) {
         this(consulClient, null, null, null);
+    }
+
+    public ConsulConfigRotateJWKSource(ConsulClient consulClient, long lifespan, long refreshTime, TimeUnit timeUnit) {
+        this(consulClient, new DefaultJWKSetCache(lifespan, refreshTime, timeUnit), null, null);
     }
 
     public ConsulConfigRotateJWKSource(ConsulClient consulClient, JWKSetCache jwkSetCache, JWKGenerator<? extends JWK> jwkGenerator, JWKSource<C> failoverJWKSource) {
