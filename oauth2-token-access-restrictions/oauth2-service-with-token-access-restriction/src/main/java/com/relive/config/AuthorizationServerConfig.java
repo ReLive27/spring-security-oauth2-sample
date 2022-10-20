@@ -7,10 +7,13 @@ import com.nimbusds.jose.proc.SecurityContext;
 import com.relive.token.AccessTokenLimiter;
 import com.relive.token.AccessTokenRestrictionCustomizer;
 import com.relive.token.RedisAccessTokenLimiter;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.script.RedisScript;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.OAuth2AuthorizationServerConfiguration;
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
@@ -23,7 +26,7 @@ import org.springframework.security.oauth2.server.authorization.client.Registere
 import org.springframework.security.oauth2.server.authorization.config.ClientSettings;
 import org.springframework.security.oauth2.server.authorization.config.ProviderSettings;
 import org.springframework.security.oauth2.server.authorization.config.TokenSettings;
-import org.springframework.security.oauth2.server.authorization.token.OAuth2TokenContext;
+import org.springframework.security.oauth2.server.authorization.token.JwtEncodingContext;
 import org.springframework.security.oauth2.server.authorization.token.OAuth2TokenCustomizer;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
@@ -72,6 +75,8 @@ public class AuthorizationServerConfig {
                         .accessTokenTimeToLive(Duration.ofSeconds(30 * 60))
                         .refreshTokenTimeToLive(Duration.ofSeconds(60 * 60))
                         .reuseRefreshTokens(true)
+                        .setting("accessTokenLimitTimeSeconds", 5 * 60)
+                        .setting("accessTokenLimitRate", 3)
                         .build())
                 .build();
 
@@ -80,12 +85,14 @@ public class AuthorizationServerConfig {
 
 
     @Bean
-    public AccessTokenLimiter tokenLimiter() {
-        return new RedisAccessTokenLimiter();
+    @ConditionalOnClass(RedisTemplate.class)
+    public AccessTokenLimiter tokenLimiter(RedisTemplate redisTemplate, RedisScript script) {
+        return new RedisAccessTokenLimiter(redisTemplate, script);
     }
 
     @Bean
-    public OAuth2TokenCustomizer<OAuth2TokenContext> oAuth2TokenCustomizer(AccessTokenLimiter tokenLimiter) {
+    @ConditionalOnClass(AccessTokenLimiter.class)
+    public OAuth2TokenCustomizer<JwtEncodingContext> tokenCustomizer(AccessTokenLimiter tokenLimiter) {
         return new AccessTokenRestrictionCustomizer(tokenLimiter);
     }
 
