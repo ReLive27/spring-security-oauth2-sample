@@ -32,7 +32,20 @@ public class OAuth2TokenAccessRestrictionTest {
     MockMvc mockMvc;
 
     @Test
-    public void accessTokenRestrictionTest() throws Exception {
+    public void authorizationWhenObtainingTheAccessTokenSucceeds() throws Exception {
+        MultiValueMap<String, String> parameters = new LinkedMultiValueMap<>();
+        parameters.set(OAuth2ParameterNames.GRANT_TYPE, AuthorizationGrantType.CLIENT_CREDENTIALS.getValue());
+        parameters.set(OAuth2ParameterNames.CLIENT_ID, "relive-client");
+        parameters.set(OAuth2ParameterNames.CLIENT_SECRET, "relive-client");
+        this.mockMvc.perform(post("/oauth2/token")
+                .params(parameters))
+                .andExpect(status().is2xxSuccessful());
+
+
+    }
+
+    @Test
+    public void authorizationWhenTokenAccessRestrictionIsTriggeredThrowOAuth2AuthenticationException() throws Exception {
         MultiValueMap<String, String> parameters = new LinkedMultiValueMap<>();
         parameters.set(OAuth2ParameterNames.GRANT_TYPE, AuthorizationGrantType.CLIENT_CREDENTIALS.getValue());
         parameters.set(OAuth2ParameterNames.CLIENT_ID, "relive-client");
