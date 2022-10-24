@@ -23,7 +23,7 @@ This module contains information on using Spring Security OAuth2
 - [（Coming soon）Spring Security OAuth2 and dynamic client registration]()
 - [Using Spring Security OAuth2 Authorization Service JWK with Consul Configuration Center](https://relive27.github.io/blog/oauth2-jwk-consul-config)
 - [（Coming soon）A Simple Guide to Using Spring Security OAuth2 Opaque Tokens]()
-- [（Coming soon）Spring Security OAuth2 client mode to get token to add access restrictions]()
+- [Spring Security OAuth 2.0 authorization server combined with Redis implements access to accessToken rate limits](https://relive27.github.io/blog/oauth2-token-access-restrictions)
 - [（Coming soon）Spring Security implements OAuth2.0 protocol core interface guide]()
 - ...
 ### Build and Deploy the Project:

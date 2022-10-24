@@ -24,7 +24,7 @@
 - [（待更新）Spring Security OAuth2和动态客户端注册]()
 - [将Spring Security OAuth2授权服务JWK与Consul 配置中心结合使用](https://relive27.github.io/blog/oauth2-jwk-consul-config)
 - [（待更新）Spring Security OAuth2不透明令牌的简单使用指南]()
-- [（待更新）Spring Security OAuth2客户端模式获取token添加访问限制]()
+- [Spring Security OAuth 2.0授权服务器结合Redis实现获取accessToken速率限制](https://relive27.github.io/blog/oauth2-token-access-restrictions)
 - [（待更新）Spring Security 实现OAuth2.0协议核心接口指南]()
 - ...
 ### 构建和部署项目:
