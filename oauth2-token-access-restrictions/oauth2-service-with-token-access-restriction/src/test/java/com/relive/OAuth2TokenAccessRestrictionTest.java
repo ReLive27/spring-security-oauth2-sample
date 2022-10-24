@@ -54,7 +54,5 @@ public class OAuth2TokenAccessRestrictionTest {
                 .params(parameters))
                 .andExpect(status().isBadRequest())
                 .andExpect(result -> assertEquals("{\"error_description\":\"The token generation fails, and the same client is prohibited from repeatedly obtaining the token within a short period of time.\",\"error\":\"access_denied\"}", result.getResponse().getContentAsString()));
-
-
     }
 }
