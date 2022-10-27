@@ -1,0 +1,10 @@
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        opaquetoken:
+          client-id: relive-client
+          client-secret: relive-client
+          introspection-uri: http://127.0.0.1:8080/oauth2/introspect
+server:
+  port: 8090

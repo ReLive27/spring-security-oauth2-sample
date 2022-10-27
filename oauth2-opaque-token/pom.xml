@@ -10,6 +10,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>oauth2-opaque-token</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>oauth2-server-with-opaque-token</module>
+        <module>oauth2-client-with-opaque-token</module>
+        <module>resourceserver-with-opaque-token</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
