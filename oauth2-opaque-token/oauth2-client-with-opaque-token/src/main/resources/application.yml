@@ -1,6 +1,9 @@
 server:
   port: 8070
-
+  servlet:
+    session:
+      cookie:
+        name: CLINET-SESSION
 spring:
   security:
     oauth2:
