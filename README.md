@@ -1,6 +1,5 @@
 ## <font size="6p">spring-oauth2-sample</font> <font size="3p">  | [English Documentation](README_EN.md)</font>
 
-
 <p align="left">
 	<a href="https://github.com/ReLive27/spring-security-oauth2-sample/stargazers"><img src="https://img.shields.io/github/stars/ReLive27/spring-security-oauth2-sample?style=flat-square&logo=GitHub"></a>
 	<a href="https://github.com/ReLive27/spring-security-oauth2-sample/network/members"><img src="https://img.shields.io/github/forks/ReLive27/spring-security-oauth2-sample?style=flat-square&logo=GitHub"></a>
@@ -21,12 +20,14 @@
 - [Spring Security和OpenID Connect](https://relive27.github.io/blog/springn-security-oidc)
 - [将Spring Cloud Gateway 与OAuth2模式一起使用](https://relive27.github.io/blog/spring-gateway-oauth2)
 - [Spring Security OAuth2实现简单的密钥轮换及配置资源服务器JWK缓存](https://relive27.github.io/blog/jwk-cache-and-rotate-key)
-- [（待更新）Spring Security OAuth2和动态客户端注册]()
 - [将Spring Security OAuth2授权服务JWK与Consul 配置中心结合使用](https://relive27.github.io/blog/oauth2-jwk-consul-config)
-- [（待更新）Spring Security OAuth2不透明令牌的简单使用指南]()
+- [（待更新）Spring Security OAuth2和动态客户端注册]()
+- [（待更新）Spring Security OAuth2 Opaque 令牌的简单使用指南]()
+- [（待更新）Spring Security OAuth2 内省协议与 JWT 结合使用指南]()
 - [Spring Security OAuth 2.0授权服务器结合Redis实现获取accessToken速率限制](https://relive27.github.io/blog/oauth2-token-access-restrictions)
 - [（待更新）Spring Security 实现OAuth2.0协议核心接口指南]()
 - ...
+
 ### 构建和部署项目:
 
 ```
