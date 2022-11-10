@@ -22,6 +22,7 @@
         <module>oauth2-jwk-consul-config</module>
         <module>oauth2-opaque-token</module>
         <module>oauth2-token-access-restrictions</module>
+        <module>oauth2-introspection-with-jwt</module>
     </modules>
 
     <parent>
