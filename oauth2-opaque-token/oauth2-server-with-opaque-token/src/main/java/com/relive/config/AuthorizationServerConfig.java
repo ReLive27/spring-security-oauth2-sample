@@ -60,7 +60,7 @@ public class AuthorizationServerConfig {
                 .scope("message.read")
                 .clientSettings(ClientSettings.builder()
                         .requireAuthorizationConsent(true)//requireAuthorizationConsent：是否需要授权统同意
-                        .requireProofKey(false)//当参数为true时，改客户端仅支持PCKE
+                        .requireProofKey(false)//当参数为true时，该客户端仅支持PCKE
                         .build())
                 .tokenSettings(TokenSettings.builder()
                         .accessTokenFormat(OAuth2TokenFormat.REFERENCE) // 生成透明令牌
