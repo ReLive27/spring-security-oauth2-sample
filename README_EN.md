@@ -1,4 +1,4 @@
-## <font size="6p">spring-oauth2-sample</font> <font size="3p">  | [中文文档](README.md)</font>
+# <font size="6p">spring-oauth2-sample</font> <font size="5p">  | [中文文档](README.md)</font>
 
 <p align="left">
 	<a href="https://github.com/ReLive27/spring-security-oauth2-sample/stargazers"><img src="https://img.shields.io/github/stars/ReLive27/spring-security-oauth2-sample?style=flat-square&logo=GitHub"></a>
@@ -9,7 +9,7 @@
 </p>
 This module contains information on using Spring Security OAuth2
 
-### Relevant Articles:
+## Relevant Articles:
 
 - [Using JWT with Spring Security OAuth2](https://relive27.github.io/blog/spring-security-oauth2-jwt)
 - [Custom OAuth2 Authorization Consent Page](https://relive27.github.io/blog/custom-oauth2-consent-page)
@@ -27,17 +27,36 @@ This module contains information on using Spring Security OAuth2
 - [Spring Security OAuth 2.0 authorization server combined with Redis implements access to accessToken rate limits](https://relive27.github.io/blog/oauth2-token-access-restrictions)
 - [（Coming soon）Spring Security implements OAuth2.0 protocol core interface guide]()
 - ...
-### Build and Deploy the Project:
 
-```
-mvn clean install
-```
-
-This is a Spring Boot project, so you can deploy it with just the main class.
-
-### Version
+## Version
 
 | spring boot   | spring cloud  | Spring Authorization Server  |
 | ---------------- | ----------------- |----------------- |
 | 2.6.7            | 2021.0.2          | 0.3.1            |
 
+## Building from Source
+spring-oauth2-sample uses a [Maven](https://maven.apache.org/) based build system.
+
+### Prerequisites
+[Git](https://help.github.com/set-up-git-redirect) and the [JDK8 build](https://www.oracle.com/technetwork/java/javase/downloads).
+
+Be sure that your `JAVA_HOME` environment variable points to the `jdk1.8.0` folder extracted from the JDK download.
+
+### Check out sources
+
+```
+git clone git@github.com:ReLive27/spring-security-oauth2-sample.git
+```
+
+### Build and Install the Project:
+
+```
+./mvn clean install -Dmaven.test.skip=true
+```
+
+## Contributing
+[Pull requests](https://help.github.com/articles/creating-a-pull-request) are welcome.
+
+## License
+spring-oauth2-sample is Open Source software released under the
+[Apache 2.0 license](https://www.apache.org/licenses/LICENSE-2.0.html).
