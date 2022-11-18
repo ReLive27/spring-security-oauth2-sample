@@ -35,10 +35,13 @@ This module contains information on using Spring Security OAuth2
 | 2.6.7            | 2021.0.2          | 0.3.1            |
 
 ## Building from Source
+
 spring-oauth2-sample uses a [Maven](https://maven.apache.org/) based build system.
 
 ### Prerequisites
-[Git](https://help.github.com/set-up-git-redirect) and the [JDK8 build](https://www.oracle.com/technetwork/java/javase/downloads).
+
+[Git](https://help.github.com/set-up-git-redirect) and
+the [JDK8 build](https://www.oracle.com/technetwork/java/javase/downloads).
 
 Be sure that your `JAVA_HOME` environment variable points to the `jdk1.8.0` folder extracted from the JDK download.
 
@@ -55,8 +58,10 @@ git clone git@github.com:ReLive27/spring-security-oauth2-sample.git
 ```
 
 ## Contributing
+
 [Pull requests](https://help.github.com/articles/creating-a-pull-request) are welcome.
 
 ## License
+
 spring-oauth2-sample is Open Source software released under the
 [Apache 2.0 license](https://www.apache.org/licenses/LICENSE-2.0.html).

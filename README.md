@@ -1,4 +1,4 @@
-## <font size="6p">spring-oauth2-sample</font> <font size="3p">  | [English Documentation](README_EN.md)</font>
+# <font size="6p">spring-oauth2-sample</font> <font size="5p">  | [English Documentation](README_EN.md)</font>
 
 <p align="left">
 	<a href="https://github.com/ReLive27/spring-security-oauth2-sample/stargazers"><img src="https://img.shields.io/github/stars/ReLive27/spring-security-oauth2-sample?style=flat-square&logo=GitHub"></a>
@@ -9,7 +9,7 @@
 </p>
 该模块包含有关使用 Spring Security OAuth2 的信息
 
-### 相关文章:
+## 相关文章:
 
 - [将JWT与Spring Security OAuth2结合使用](https://relive27.github.io/blog/spring-security-oauth2-jwt)
 - [自定义OAuth2授权同意页面](https://relive27.github.io/blog/custom-oauth2-consent-page)
@@ -28,17 +28,39 @@
 - [（待更新）Spring Security 实现OAuth2.0协议核心接口指南]()
 - ...
 
-### 构建和部署项目:
-
-```
-mvn clean install
-```
-
-这是一个 Spring Boot 项目，因此您只需使用主类即可部署它。
-
-### 版本
+## 版本
 
 | spring boot 版本  | spring cloud 版本  | Spring Authorization Server 版本 |
 | ---------------- | ----------------- |----------------- |
 | 2.6.7            | 2021.0.2          | 0.3.1            |
 
+## 构建项目
+
+spring-oauth2-sample 使用基于 [Maven](https://maven.apache.org/) 的构建系统。
+
+### 先决条件
+
+[Git](https://help.github.com/set-up-git-redirect) 和 [JDK8](https://www.oracle.com/technetwork/java/javase/downloads)
+构建.
+
+确保您的JAVA_HOME环境变量指向jdk1.8.0从 JDK 下载中提取的文件夹。
+
+### 检查来源
+
+```
+git clone git@github.com:ReLive27/spring-security-oauth2-sample.git
+```
+
+### 构建并安装项目：
+
+```
+./mvn clean install -Dmaven.test.skip=true
+```
+
+## 贡献
+
+非常欢迎[提出请求](https://help.github.com/articles/creating-a-pull-request) 。
+
+## 许可
+
+spring-oauth2-sample 是在 [Apache 2.0 许可](https://www.apache.org/licenses/LICENSE-2.0.html) 下发布的开源软件 。
