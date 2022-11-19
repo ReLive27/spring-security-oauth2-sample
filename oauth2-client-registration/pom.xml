@@ -10,6 +10,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>oauth2-client-registration</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>cr-authorizationserver</module>
+        <module>client-registration</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
