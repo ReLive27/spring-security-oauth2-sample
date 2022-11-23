@@ -1,10 +1,13 @@
 package com.relive.authentication;
 
+import com.relive.introspection.OAuth2Introspection;
+import com.relive.introspection.OAuth2IntrospectionService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.log.LogMessage;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationManagerResolver;
 import org.springframework.security.oauth2.server.resource.authentication.OpaqueTokenAuthenticationProvider;
+import org.springframework.util.Assert;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -18,19 +21,18 @@ public class IntrospectiveIssuerJwtAuthenticationManagerResolver implements Auth
 
     private final Map<String, AuthenticationManager> authenticationManagers = new ConcurrentHashMap<>();
 
+    private final OAuth2IntrospectionService introspectionService;
+
+    public IntrospectiveIssuerJwtAuthenticationManagerResolver(OAuth2IntrospectionService introspectionService) {
+        Assert.notNull(introspectionService, "introspectionService can be not null");
+        this.introspectionService = introspectionService;
+    }
+
     @Override
     public AuthenticationManager resolve(String issuer) {
-        //TODO 内存或数据库存储类
+        OAuth2Introspection oAuth2Introspection = this.introspectionService.loadIntrospection(issuer);
 
-        //TODO 通过issusr查询clientid 和clientsecret，为空则返回null
-
-        //TODO 定义CachingOpaqueTokenIntrospector，里面封装Cache和OpaqueTokenIntrospector
-
-        //TODO 通过clientID和ClientSecret实例化CachingOpaqueTokenIntrospector
-
-        //TODO 创建OpaqueTokenAuthenticationProvider
-
-        if (true) {
+        if (oAuth2Introspection != null) {
             AuthenticationManager authenticationManager = this.authenticationManagers.computeIfAbsent(issuer,
                     (k) -> {
                         log.debug("Constructing AuthenticationManager");
