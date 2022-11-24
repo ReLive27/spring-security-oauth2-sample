@@ -1,11 +1,10 @@
 package com.relive.introspection;
 
-import lombok.SneakyThrows;
 import org.springframework.cache.Cache;
 import org.springframework.security.oauth2.core.OAuth2AuthenticatedPrincipal;
+import org.springframework.security.oauth2.server.resource.introspection.BadOpaqueTokenException;
+import org.springframework.security.oauth2.server.resource.introspection.OAuth2IntrospectionException;
 import org.springframework.security.oauth2.server.resource.introspection.OpaqueTokenIntrospector;
-
-import java.io.IOException;
 
 /**
  * @author: ReLive
@@ -21,20 +20,20 @@ public class CachingOpaqueTokenIntrospector implements OpaqueTokenIntrospector {
         this.introspector = introspector;
     }
 
-    @SneakyThrows
     @Override
     public OAuth2AuthenticatedPrincipal introspect(String token) {
         try {
             return this.cache.get(token,
                     () -> this.introspector.introspect(token));
         } catch (Cache.ValueRetrievalException ex) {
-            Throwable thrownByValueLoader = ex.getCause();
-            if (thrownByValueLoader instanceof IOException) {
-                throw (IOException) thrownByValueLoader;
+            throw new OAuth2IntrospectionException("Did not validate token from cache.");
+        } catch (OAuth2IntrospectionException e) {
+            if (e instanceof BadOpaqueTokenException) {
+                throw (BadOpaqueTokenException) e;
             }
-            throw new IOException(thrownByValueLoader);
+            throw new OAuth2IntrospectionException(e.getMessage());
         } catch (Exception ex) {
-            throw new IOException(ex);
+            throw new OAuth2IntrospectionException("Token introspection failed.");
         }
     }
 }
