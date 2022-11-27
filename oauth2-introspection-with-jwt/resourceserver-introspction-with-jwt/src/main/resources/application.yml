@@ -2,10 +2,12 @@ server:
   port: 8090
 
 spring:
-  security:
-    oauth2:
-      resourceserver:
-        opaquetoken:
-          client-id: relive-client
-          client-secret: relive-client
-          introspection-uri: http://127.0.0.1:8080/oauth2/introspect
+  application:
+    name: auth-server
+  datasource:
+    druid:
+      db-type: mysql
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/resourceserver-introspection?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+      username: <<username>> # update user
+      password: <<password>> # update password
