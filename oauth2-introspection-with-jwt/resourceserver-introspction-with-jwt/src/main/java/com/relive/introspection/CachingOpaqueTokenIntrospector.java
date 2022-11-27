@@ -1,5 +1,6 @@
 package com.relive.introspection;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.Cache;
 import org.springframework.security.oauth2.core.OAuth2AuthenticatedPrincipal;
 import org.springframework.security.oauth2.server.resource.introspection.BadOpaqueTokenException;
@@ -10,6 +11,7 @@ import org.springframework.security.oauth2.server.resource.introspection.OpaqueT
  * @author: ReLive
  * @date: 2022/11/20 21:05
  */
+@Slf4j
 public class CachingOpaqueTokenIntrospector implements OpaqueTokenIntrospector {
     private final Cache cache;
 
@@ -33,6 +35,7 @@ public class CachingOpaqueTokenIntrospector implements OpaqueTokenIntrospector {
             }
             throw new OAuth2IntrospectionException(e.getMessage());
         } catch (Exception ex) {
+            log.error("Token introspection failed.", ex);
             throw new OAuth2IntrospectionException("Token introspection failed.");
         }
     }
