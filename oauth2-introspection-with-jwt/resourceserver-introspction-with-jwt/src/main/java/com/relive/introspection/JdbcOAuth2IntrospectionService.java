@@ -1,16 +1,13 @@
 package com.relive.introspection;
 
-import com.fasterxml.jackson.databind.Module;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.*;
-import org.springframework.security.jackson2.SecurityJackson2Modules;
 import org.springframework.util.Assert;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
@@ -28,7 +25,7 @@ public class JdbcOAuth2IntrospectionService implements OAuth2IntrospectionServic
 
     private static final String PK_FILTER = "issuer_uri = ?";
 
-    private static final String LOAD_OAUTH2_INTROSPECTION_SQL = "SELECT " + COLUMN_NAMES + " FROM " + TABLE_NAME;
+    private static final String LOAD_OAUTH2_INTROSPECTION_SQL = "SELECT " + COLUMN_NAMES + " FROM " + TABLE_NAME + " WHERE ";
 
     private static final String REMOVE_OAUTH2_INTROSPECTION_SQL = "DELETE FROM " + TABLE_NAME + " WHERE " + PK_FILTER;
 
@@ -56,7 +53,7 @@ public class JdbcOAuth2IntrospectionService implements OAuth2IntrospectionServic
         SqlParameterValue[] parameters = new SqlParameterValue[]{
                 new SqlParameterValue(Types.VARCHAR, issuer)};
         PreparedStatementSetter pss = new ArgumentPreparedStatementSetter(parameters);
-        List<OAuth2Introspection> result = this.jdbcOperations.query(LOAD_OAUTH2_INTROSPECTION_SQL, pss,
+        List<OAuth2Introspection> result = this.jdbcOperations.query(LOAD_OAUTH2_INTROSPECTION_SQL + PK_FILTER, pss,
                 this.oAuth2IntrospectionRowMapper);
         return !result.isEmpty() ? result.get(0) : null;
     }
@@ -64,8 +61,8 @@ public class JdbcOAuth2IntrospectionService implements OAuth2IntrospectionServic
     @Override
     public void saveOAuth2Introspection(OAuth2Introspection oAuth2Introspection) {
         Assert.notNull(oAuth2Introspection, "oAuth2Introspection cannot be null");
-        boolean existsAuthorizedClient = null != this.loadIntrospection(
-                oAuth2Introspection.getIssuer());
+        boolean existsAuthorizedClient = null != this.findById(
+                oAuth2Introspection.getId());
         if (existsAuthorizedClient) {
             updateOAuth2Introspection(oAuth2Introspection);
         } else {
@@ -77,9 +74,21 @@ public class JdbcOAuth2IntrospectionService implements OAuth2IntrospectionServic
         }
     }
 
+    public OAuth2Introspection findById(String id) {
+        Assert.hasText(id, "id cannot be empty");
+        SqlParameterValue[] parameters = new SqlParameterValue[]{
+                new SqlParameterValue(Types.VARCHAR, id)};
+        PreparedStatementSetter pss = new ArgumentPreparedStatementSetter(parameters);
+        List<OAuth2Introspection> result = this.jdbcOperations.query(LOAD_OAUTH2_INTROSPECTION_SQL + "id = ?", pss,
+                this.oAuth2IntrospectionRowMapper);
+        return !result.isEmpty() ? result.get(0) : null;
+    }
+
     private void updateOAuth2Introspection(OAuth2Introspection oAuth2Introspection) {
         List<SqlParameterValue> parameters = this.oAuth2IntrospectionListParametersMapper
                 .apply(oAuth2Introspection);
+        SqlParameterValue idParameter = parameters.remove(0);
+        parameters.add(idParameter);
         PreparedStatementSetter statementSetter = new ArgumentPreparedStatementSetter(parameters.toArray());
         this.jdbcOperations.update(UPDATE_OAUTH2_INTROSPECTION_SQL, statementSetter);
 
@@ -117,13 +126,6 @@ public class JdbcOAuth2IntrospectionService implements OAuth2IntrospectionServic
      * {@code java.sql.ResultSet} to {@link OAuth2Introspection}.
      */
     public static class OAuth2IntrospectionRowMapper implements RowMapper<OAuth2Introspection> {
-        private ObjectMapper objectMapper = new ObjectMapper();
-
-        public OAuth2IntrospectionRowMapper() {
-            ClassLoader classLoader = JdbcOAuth2IntrospectionService.class.getClassLoader();
-            List<Module> securityModules = SecurityJackson2Modules.getModules(classLoader);
-            this.objectMapper.registerModules(securityModules);
-        }
 
         @Override
         public OAuth2Introspection mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -145,7 +147,13 @@ public class JdbcOAuth2IntrospectionService implements OAuth2IntrospectionServic
 
         @Override
         public List<SqlParameterValue> apply(OAuth2Introspection oAuth2Introspection) {
-            return Arrays.asList(new SqlParameterValue(12, oAuth2Introspection.getId()), new SqlParameterValue(12, oAuth2Introspection.getClientId()), new SqlParameterValue(12, oAuth2Introspection.getClientSecret()), new SqlParameterValue(12, oAuth2Introspection.getIssuer()), new SqlParameterValue(12, oAuth2Introspection.getIntrospectionUri()));
+            List<SqlParameterValue> parameters = new ArrayList<>();
+            parameters.add(new SqlParameterValue(12, oAuth2Introspection.getId()));
+            parameters.add(new SqlParameterValue(12, oAuth2Introspection.getClientId()));
+            parameters.add(new SqlParameterValue(12, oAuth2Introspection.getClientSecret()));
+            parameters.add(new SqlParameterValue(12, oAuth2Introspection.getIssuer()));
+            parameters.add(new SqlParameterValue(12, oAuth2Introspection.getIntrospectionUri()));
+            return parameters;
         }
     }
 }
