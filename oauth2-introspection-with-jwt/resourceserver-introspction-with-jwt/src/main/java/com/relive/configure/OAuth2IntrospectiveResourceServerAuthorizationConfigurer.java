@@ -115,6 +115,9 @@ public class OAuth2IntrospectiveResourceServerAuthorizationConfigurer extends Ab
                 CacheOpaqueTokenIntrospectorSupport opaqueTokenIntrospectorSupport = new CacheOpaqueTokenIntrospectorSupport();
                 if (context.getBeanNamesForType(CacheManager.class).length > 0) {
                     this.cache = context.getBean(CacheManager.class).getCache("oauth2:introspective");
+                    if (this.cache == null) {
+                        throw new IllegalStateException("The CacheManager should be set to allow lazy creation of cache instances");
+                    }
                 }
                 Optional.ofNullable(this.cache).ifPresent(opaqueTokenIntrospectorSupport::setCache);
                 Optional.ofNullable(this.restOperations).ifPresent(opaqueTokenIntrospectorSupport::setRestOperations);
