@@ -30,9 +30,9 @@ This module contains information on using Spring Security OAuth2
 
 ## Version
 
-| spring boot   | spring cloud  | Spring Authorization Server  |
-| ---------------- | ----------------- |----------------- |
-| 2.6.7            | 2021.0.2          | 0.3.1            |
+| Spring Boot   | Spring Cloud  | Spring Authorization Server  |  Spring Security  |
+| ---------------- | ----------------- |----------------- |  -------- |
+| 2.6.7            | 2021.0.2          | 0.3.1            |   5.6.3  |
 
 ## Building from Source
 

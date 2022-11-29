@@ -30,9 +30,9 @@
 
 ## 版本
 
-| spring boot 版本  | spring cloud 版本  | Spring Authorization Server 版本 |
-| ---------------- | ----------------- |----------------- |
-| 2.6.7            | 2021.0.2          | 0.3.1            |
+| Spring Boot 版本  | Spring Cloud 版本  | Spring Authorization Server 版本 | Spring Security 版本  |
+| ---------------- | ----------------- |----------------- | --------- | 
+| 2.6.7            | 2021.0.2          | 0.3.1            |    5.6.3       |
 
 ## 构建项目
 
