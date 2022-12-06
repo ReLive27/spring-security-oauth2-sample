@@ -22,7 +22,7 @@ This module contains information on using Spring Security OAuth2
 - [Spring Security OAuth2 implements simple key rotation and configures resource server JWK cache](https://relive27.github.io/blog/jwk-cache-and-rotate-key)
 - [Using Spring Security OAuth2 Authorization Service JWK with Consul Configuration Center](https://relive27.github.io/blog/oauth2-jwk-consul-config)
 - [A Simple Guide to Using Spring Security OAuth2 Opaque Tokens](https://relive27.github.io/blog/oauth2-opaque-token)
-- [（Coming soon）Spring Security OAuth2 Introspection Protocol in conjunction with JWT Guide]()
+- [Spring Security OAuth2 Introspection Protocol in conjunction with JWT Guide](https://relive27.github.io/blog/oauth2-introspection-with-jwt)
 - [Spring Security OAuth 2.0 authorization server combined with Redis implements access to accessToken rate limits](https://relive27.github.io/blog/oauth2-token-access-restrictions)
 - [（Coming soon）Spring Security OAuth2 and dynamic client registration]()
 - [（Coming soon）Spring Security implements OAuth2.0 protocol core interface guide]()

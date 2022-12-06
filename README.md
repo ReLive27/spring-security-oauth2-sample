@@ -22,7 +22,7 @@
 - [Spring Security OAuth2实现简单的密钥轮换及配置资源服务器JWK缓存](https://relive27.github.io/blog/jwk-cache-and-rotate-key)
 - [将Spring Security OAuth2授权服务JWK与Consul 配置中心结合使用](https://relive27.github.io/blog/oauth2-jwk-consul-config)
 - [Spring Security OAuth2 Opaque 令牌的简单使用指南](https://relive27.github.io/blog/oauth2-opaque-token)
-- [（待更新）Spring Security OAuth2 内省协议与 JWT 结合使用指南]()
+- [Spring Security OAuth2 内省协议与 JWT 结合使用指南](https://relive27.github.io/blog/oauth2-introspection-with-jwt)
 - [Spring Security OAuth 2.0授权服务器结合Redis实现获取accessToken速率限制](https://relive27.github.io/blog/oauth2-token-access-restrictions)
 - [（待更新）Spring Security OAuth2和动态客户端注册]()
 - [（待更新）Spring Security 实现OAuth2.0协议核心接口指南]()
