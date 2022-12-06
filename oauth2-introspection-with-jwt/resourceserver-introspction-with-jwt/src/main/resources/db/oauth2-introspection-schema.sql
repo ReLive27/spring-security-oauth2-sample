@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS `oauth2_introspection`;
 CREATE TABLE `oauth2_introspection`
 (
     `id`                varchar(100) NOT NULL,

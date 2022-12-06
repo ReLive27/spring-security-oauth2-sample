@@ -11,3 +11,7 @@ spring:
       url: jdbc:mysql://localhost:3306/resourceserver-introspection?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
       username: <<username>> # update user
       password: <<password>> # update password
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:db/oauth2-introspection-schema.sql
