@@ -24,9 +24,11 @@ This module contains information on using Spring Security OAuth2
 - [A Simple Guide to Using Spring Security OAuth2 Opaque Tokens](https://relive27.github.io/blog/oauth2-opaque-token)
 - [Spring Security OAuth2 Introspection Protocol in conjunction with JWT Guide](https://relive27.github.io/blog/oauth2-introspection-with-jwt)
 - [Spring Security OAuth 2.0 authorization server combined with Redis implements access to accessToken rate limits](https://relive27.github.io/blog/oauth2-token-access-restrictions)
-- [（Coming soon）Spring Security OAuth2 and dynamic client registration]()
-- [（Coming soon）Spring Security implements OAuth2.0 protocol core interface guide]()
 - ...
+  
+  [comment]: <> (- [（Coming soon）Spring Security OAuth2 and dynamic client registration]&#40;&#41;)
+  
+  [comment]: <> (- [（Coming soon）Spring Security implements OAuth2.0 protocol core interface guide]&#40;&#41;)
 
 ## Version
 
