@@ -7,7 +7,7 @@
 	<a href="https://github.com/ReLive27/spring-security-oauth2-sample/issues"><img src="https://img.shields.io/github/issues/ReLive27/spring-security-oauth2-sample.svg?style=flat-square&logo=GitHub"></a>
 	<a href="https://github.com/ReLive27/spring-security-oauth2-sample/blob/main/LICENSE"><img src="https://img.shields.io/github/license/ReLive27/spring-security-oauth2-sample.svg?style=flat-square"></a>
 </p>
-该模块包含有关使用 Spring Security OAuth2 的信息
+该模块包含有关使用 Spring Security OAuth2 的信息。
 
 ## 相关文章:
 
@@ -43,9 +43,9 @@ spring-oauth2-sample 使用基于 [Maven](https://maven.apache.org/) 的构建�
 ### 先决条件
 
 [Git](https://help.github.com/set-up-git-redirect) 和 [JDK8](https://www.oracle.com/technetwork/java/javase/downloads)
-构建.
+构建。
 
-确保您的JAVA_HOME环境变量指向jdk1.8.0从 JDK 下载中提取的文件夹。
+确保您的`JAVA_HOME`环境变量指向 `jdk1.8.0` 从 JDK 下载中提取的文件夹。
 
 ### 检查来源
 
