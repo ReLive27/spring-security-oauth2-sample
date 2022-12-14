@@ -1,6 +1,5 @@
-## Gateway Combined With Spring Security OAuth2
 
-### Relevant information:
+### 相关信息：
 
 1.`auth-server`是一个使用[Spring Authorization Server](https://spring.io/projects/spring-authorization-server) 构建的授权服务器。
 
@@ -19,8 +18,12 @@
 
 6.`resourceserver`是一个简单的Spring Boot资源服务。
 
-### Related database table structure:
+### 涉及数据库表结构：
 
 以下提供了`auth-server`数据库表结构，相关SQL语句从[这里](https://github.com/ReLive27/spring-security-oauth2-sample/tree/main/gateway-oauth2-login/auth-server/src/main/resources/db/migration) 获取
 
 ![](./images/drawSQL-gateway-oauth2.png)
+
+
+### 相关文章：
+- [将Spring Cloud Gateway 与OAuth2模式一起使用](https://relive27.github.io/blog/spring-gateway-oauth2)
