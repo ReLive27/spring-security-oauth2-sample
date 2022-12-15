@@ -1,6 +1,5 @@
-## Spring Security OAuth2 Login
 
-### Relevant information:
+### 相关信息:
 1.`authorizationserver`作为授权服务器，提供自定义/userInfo用户信息端点。
 <br><br>
 2.`authorizationserver`注册了一个客户端：
@@ -29,3 +28,6 @@
 
 <br><br>
 7.启动服务，访问http://127.0.0.1:8070/home ,首先使用Form表单登录，其次退出登录，使用OAuth2登录，您将看到不同的展示信息。
+
+### 相关文章:
+- [Spring Security OAuth2登录](https://relive27.github.io/blog/oauth2-login)

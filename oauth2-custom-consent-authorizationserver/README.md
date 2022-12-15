@@ -1,7 +1,5 @@
-## Spring OAuth2 Custom Consent Page
 
----
-### Relevant information:
+### 相关信息:
 1.`oauth2-custom-consent-authorizationserver`注册了一个客户端：
 
 - clientId: relive-client
@@ -13,3 +11,6 @@
 <br><br>
 4.登录成功后，会看到以下自定义授权页面：<br>
 ![](./image/custom-page.png)
+
+### 相关文章:
+- [自定义OAuth2授权同意页面](https://relive27.github.io/blog/custom-oauth2-consent-page)

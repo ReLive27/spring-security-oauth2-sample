@@ -1,6 +1,5 @@
-## Spring Security OIDC Login
 
-### Relevant information:
+### 相关信息:
 1.`idp`使用[Spring Authorization Server](https://spring.io/projects/spring-authorization-server) 构建的身份提供方服务。
 
 2.`idp`默认注册了一个客户端:
@@ -37,7 +36,11 @@
 
 
 
-### Related database table structure
+### 涉及数据库表结构
 以下是`rp`服务相关数据库表结构：
 
 ![](./images/oauth2_sql_model.png)
+
+
+### 相关文章:
+- [Spring Security和OpenID Connect](https://relive27.github.io/blog/springn-security-oidc)
