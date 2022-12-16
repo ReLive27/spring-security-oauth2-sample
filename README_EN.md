@@ -7,7 +7,10 @@
 	<a href="https://github.com/ReLive27/spring-security-oauth2-sample/issues"><img src="https://img.shields.io/github/issues/ReLive27/spring-security-oauth2-sample.svg?style=flat-square&logo=GitHub"></a>
 	<a href="https://github.com/ReLive27/spring-security-oauth2-sample/blob/main/LICENSE"><img src="https://img.shields.io/github/license/ReLive27/spring-security-oauth2-sample.svg?style=flat-square"></a>
 </p>
-This module contains information on using Spring Security OAuth2.
+
+This project is a collection of [Spring Authorization Server](https://spring.io/projects/spring-authorization-server)
+example tutorials. It builds on Spring On top of Security 5, the modules here also cover many other aspects of Spring
+Authorization Server.
 
 ## Relevant Articles:
 
@@ -25,9 +28,9 @@ This module contains information on using Spring Security OAuth2.
 - [Spring Security OAuth2 Introspection Protocol in conjunction with JWT Guide](https://relive27.github.io/blog/oauth2-introspection-with-jwt)
 - [Spring Security OAuth 2.0 authorization server combined with Redis implements access to accessToken rate limits](https://relive27.github.io/blog/oauth2-token-access-restrictions)
 - ...
-  
+
   [comment]: <> (- [（Coming soon）Spring Security OAuth2 and dynamic client registration]&#40;&#41;)
-  
+
   [comment]: <> (- [（Coming soon）Spring Security implements OAuth2.0 protocol core interface guide]&#40;&#41;)
 
 ## Version

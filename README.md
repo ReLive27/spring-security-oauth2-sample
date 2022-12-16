@@ -7,7 +7,9 @@
 	<a href="https://github.com/ReLive27/spring-security-oauth2-sample/issues"><img src="https://img.shields.io/github/issues/ReLive27/spring-security-oauth2-sample.svg?style=flat-square&logo=GitHub"></a>
 	<a href="https://github.com/ReLive27/spring-security-oauth2-sample/blob/main/LICENSE"><img src="https://img.shields.io/github/license/ReLive27/spring-security-oauth2-sample.svg?style=flat-square"></a>
 </p>
-该模块包含有关使用 Spring Security OAuth2 的信息。
+
+这个项目是一个 [Spring Authorization Server](https://spring.io/projects/spring-authorization-server) 示例教程的集合。它建立在 Spring
+Security 5 之上， 这里的模块还涵盖了 Spring Authorization Server 的许多其他方面。
 
 ## 相关文章:
 
