@@ -9,7 +9,7 @@
 </p>
 
 This project is a collection of [Spring Authorization Server](https://spring.io/projects/spring-authorization-server)
-example tutorials. It builds on Spring On top of Security 5, the modules here also cover many other aspects of Spring
+example tutorials. It builds on Spring On top of Security 5, the modules here cover many other aspects of Spring
 Authorization Server.
 
 ## Relevant Articles:
@@ -33,7 +33,7 @@ Authorization Server.
 
   [comment]: <> (- [（Coming soon）Spring Security implements OAuth2.0 protocol core interface guide]&#40;&#41;)
 
-## Version
+## Spring framework version
 
 | Spring Boot   | Spring Cloud  | Spring Authorization Server  |  Spring Security  |
 | ---------------- | ----------------- |----------------- |  -------- |

@@ -9,7 +9,7 @@
 </p>
 
 这个项目是一个 [Spring Authorization Server](https://spring.io/projects/spring-authorization-server) 示例教程的集合。它建立在 Spring
-Security 5 之上， 这里的模块还涵盖了 Spring Authorization Server 的许多其他方面。
+Security 5 之上， 这里的模块涵盖了 Spring Authorization Server 的许多其他方面。
 
 ## 相关文章:
 
@@ -32,7 +32,7 @@ Security 5 之上， 这里的模块还涵盖了 Spring Authorization Server 的
 
   [comment]: <> (- [（待更新）Spring Security 实现OAuth2.0协议核心接口指南]&#40;&#41;)
 
-## 版本
+## Spring 框架版本
 
 | Spring Boot 版本  | Spring Cloud 版本  | Spring Authorization Server 版本 | Spring Security 版本  |
 | ---------------- | ----------------- |----------------- | --------- | 
