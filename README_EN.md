@@ -27,6 +27,7 @@ Authorization Server.
 - [A Simple Guide to Using Spring Security OAuth2 Opaque Tokens](https://relive27.github.io/blog/oauth2-opaque-token)
 - [Spring Security OAuth2 Introspection Protocol in conjunction with JWT Guide](https://relive27.github.io/blog/oauth2-introspection-with-jwt)
 - [Spring Security OAuth 2.0 authorization server combined with Redis implements access to accessToken rate limits](https://relive27.github.io/blog/oauth2-token-access-restrictions)
+- [(Coming soon)OAuth2.0 Security Practices for Single Page Applications (SPA)]()
 - ...
 
   [comment]: <> (- [（Coming soon）Spring Security OAuth2 and dynamic client registration]&#40;&#41;)
