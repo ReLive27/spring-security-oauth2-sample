@@ -9,8 +9,8 @@
 </p>
 
 This project is a collection of [Spring Authorization Server](https://spring.io/projects/spring-authorization-server)
-example tutorials. It builds on Spring On top of Security 5, the modules here cover many other aspects of Spring
-Authorization Server.
+example tutorials. It builds on Spring On top of Security 5, the modules here cover many aspects of Spring Authorization
+Server.
 
 ## Relevant Articles:
 

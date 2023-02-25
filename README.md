@@ -9,7 +9,7 @@
 </p>
 
 这个项目是一个 [Spring Authorization Server](https://spring.io/projects/spring-authorization-server) 示例教程的集合。它建立在 Spring
-Security 5 之上， 这里的模块涵盖了 Spring Authorization Server 的许多其他方面。
+Security 5 之上， 这里的模块涵盖了 Spring Authorization Server 的许多方面。
 
 ## 相关文章:
 
