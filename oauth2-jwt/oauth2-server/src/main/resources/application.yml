@@ -2,12 +2,10 @@ spring:
   application:
     name: auth-server
   datasource:
-    druid:
-      db-type: mysql
-      driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://localhost:3306/integrated_oauth?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
-      username: <<username>> # 修改用户名
-      password: <<password>> # 修改密码
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/integrated_oauth?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: <<username>> # 修改用户名
+    password: <<password>> # 修改密码
   flyway:
     baseline-on-migrate: true
     baseline-description: <<Flyway Baseline>>
