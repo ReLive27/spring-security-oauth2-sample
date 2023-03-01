@@ -88,8 +88,8 @@ public class DefaultSecurityConfig {
     ClientRegistrationRepository clientRegistrationRepository(JdbcTemplate jdbcTemplate) {
         JdbcClientRegistrationRepository jdbcClientRegistrationRepository = new JdbcClientRegistrationRepository(jdbcTemplate);
         ClientRegistration clientRegistration = ClientRegistration.withRegistrationId("github")
-                .clientId("")
-                .clientSecret("")
+                .clientId("123456")
+                .clientSecret("123456")
                 .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
                 .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
                 .redirectUri("{baseUrl}/{action}/oauth2/code/{registrationId}")
