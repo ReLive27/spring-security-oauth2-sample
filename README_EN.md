@@ -12,6 +12,8 @@ This project is a collection of [Spring Authorization Server](https://spring.io/
 example tutorials. It builds on Spring On top of Security 5, the modules here cover many aspects of Spring Authorization
 Server.
 
+> 💡 Note: Don’t forget to give a star🌟 to the project if you like it!
+
 ## Relevant Articles:
 
 - [Using JWT with Spring Security OAuth2](https://relive27.github.io/blog/spring-security-oauth2-jwt)
