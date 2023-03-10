@@ -1,4 +1,4 @@
-# <font size="6p">spring-oauth2-sample</font> <font size="5p">  | [English Documentation](README_EN.md)</font>
+# <font size="6p">spring-oauth2-sample</font> <font size="5p">  | [中文文档](README_CN.md)</font>
 
 <p align="left">
 	<a href="https://github.com/ReLive27/spring-security-oauth2-sample/stargazers"><img src="https://img.shields.io/github/stars/ReLive27/spring-security-oauth2-sample?style=flat-square&logo=GitHub"></a>
@@ -8,66 +8,68 @@
 	<a href="https://github.com/ReLive27/spring-security-oauth2-sample/blob/main/LICENSE"><img src="https://img.shields.io/github/license/ReLive27/spring-security-oauth2-sample.svg?style=flat-square"></a>
 </p>
 
-这个项目是一个 [Spring Authorization Server](https://spring.io/projects/spring-authorization-server) 示例教程的集合。它建立在 Spring
-Security 5 之上， 这里的模块涵盖了 Spring Authorization Server 的许多方面。
+This project is a collection of [Spring Authorization Server](https://spring.io/projects/spring-authorization-server)
+example tutorials. It builds on Spring On top of Security 5, the modules here cover many aspects of Spring Authorization
+Server.
 
->💡注意：喜欢的话别忘了给项目一个star🌟哦！
+> 💡 Note: Don’t forget to give a star🌟 to the project if you like it!
 
-## 相关文章:
+## Relevant Articles:
 
-- [将JWT与Spring Security OAuth2结合使用](https://relive27.github.io/blog/spring-security-oauth2-jwt)
-- [自定义OAuth2授权同意页面](https://relive27.github.io/blog/custom-oauth2-consent-page)
-- [Spring Security 持久化OAuth2客户端](https://relive27.github.io/blog/persisrence-oauth2-client)
-- [Spring Security OAuth2客户端凭据授权](https://relive27.github.io/blog/oauth2-client-model)
-- [Spring Security OAuth2 带有用于代码交换的证明密钥 (PKCE) 的授权码流](https://relive27.github.io/blog/oauth2-pkce)
-- [Spring Security OAuth2登录](https://relive27.github.io/blog/oauth2-login)
-- [Spring Security和OpenID Connect](https://relive27.github.io/blog/springn-security-oidc)
-- [将Spring Cloud Gateway 与OAuth2模式一起使用](https://relive27.github.io/blog/spring-gateway-oauth2)
-- [Spring Security OAuth2实现简单的密钥轮换及配置资源服务器JWK缓存](https://relive27.github.io/blog/jwk-cache-and-rotate-key)
-- [将Spring Security OAuth2授权服务JWK与Consul 配置中心结合使用](https://relive27.github.io/blog/oauth2-jwk-consul-config)
-- [Spring Security OAuth2 Opaque 令牌的简单使用指南](https://relive27.github.io/blog/oauth2-opaque-token)
-- [Spring Security OAuth2 内省协议与 JWT 结合使用指南](https://relive27.github.io/blog/oauth2-introspection-with-jwt)
-- [Spring Security OAuth 2.0授权服务器结合Redis实现获取accessToken速率限制](https://relive27.github.io/blog/oauth2-token-access-restrictions)
-- [(待更新) 单页应用程序（SPA）的 OAuth2.0 安全实践]()
+- [Using JWT with Spring Security OAuth2](https://relive27.github.io/blog/spring-security-oauth2-jwt)
+- [Custom OAuth2 Authorization Consent Page](https://relive27.github.io/blog/custom-oauth2-consent-page)
+- [Spring Security persistent OAuth2 client](https://relive27.github.io/blog/persisrence-oauth2-client)
+- [Spring Security OAuth2 Client Credentials Authorization](https://relive27.github.io/blog/oauth2-client-model)
+- [Spring Security OAuth2 Authorization Code Flow with Proof Key for Code Exchange (PKCE)](https://relive27.github.io/blog/oauth2-pkce)
+- [Spring Security OAuth2 Login](https://relive27.github.io/blog/oauth2-login)
+- [Spring Security and OpenID Connect](https://relive27.github.io/blog/springn-security-oidc)
+- [Using Spring Cloud Gateway with OAuth2 Pattern](https://relive27.github.io/blog/spring-gateway-oauth2)
+- [Spring Security OAuth2 implements simple key rotation and configures resource server JWK cache](https://relive27.github.io/blog/jwk-cache-and-rotate-key)
+- [Using Spring Security OAuth2 Authorization Service JWK with Consul Configuration Center](https://relive27.github.io/blog/oauth2-jwk-consul-config)
+- [A Simple Guide to Using Spring Security OAuth2 Opaque Tokens](https://relive27.github.io/blog/oauth2-opaque-token)
+- [Spring Security OAuth2 Introspection Protocol in conjunction with JWT Guide](https://relive27.github.io/blog/oauth2-introspection-with-jwt)
+- [Spring Security OAuth 2.0 authorization server combined with Redis implements access to accessToken rate limits](https://relive27.github.io/blog/oauth2-token-access-restrictions)
+- [(Coming soon)OAuth2.0 Security Practices for Single Page Applications (SPA)]()
 - ...
 
-  [comment]: <> (- [（待更新）Spring Security OAuth2和动态客户端注册]&#40;&#41;)
+  [comment]: <> (- [（Coming soon）Spring Security OAuth2 and dynamic client registration]&#40;&#41;)
 
-  [comment]: <> (- [（待更新）Spring Security 实现OAuth2.0协议核心接口指南]&#40;&#41;)
+  [comment]: <> (- [（Coming soon）Spring Security implements OAuth2.0 protocol core interface guide]&#40;&#41;)
 
-## Spring 框架版本
+## Spring framework version
 
-| Spring Boot 版本  | Spring Cloud 版本  | Spring Authorization Server 版本 | Spring Security 版本  |
-| ---------------- | ----------------- |----------------- | --------- | 
-| 2.6.7            | 2021.0.2          | 0.3.1            |    5.6.3       |
+| Spring Boot   | Spring Cloud  | Spring Authorization Server  |  Spring Security  |
+| ---------------- | ----------------- |----------------- |  -------- |
+| 2.6.7            | 2021.0.2          | 0.3.1            |   5.6.3  |
 
-## 构建项目
+## Building from Source
 
-spring-oauth2-sample 使用基于 [Maven](https://maven.apache.org/) 的构建系统。
+spring-oauth2-sample uses a [Maven](https://maven.apache.org/) based build system.
 
-### 先决条件
+### Prerequisites
 
-[Git](https://help.github.com/set-up-git-redirect) 和 [JDK8](https://www.oracle.com/technetwork/java/javase/downloads)
-构建。
+[Git](https://help.github.com/set-up-git-redirect) and
+the [JDK8 build](https://www.oracle.com/technetwork/java/javase/downloads).
 
-确保您的`JAVA_HOME`环境变量指向 `jdk1.8.0` 从 JDK 下载中提取的文件夹。
+Be sure that your `JAVA_HOME` environment variable points to the `jdk1.8.0` folder extracted from the JDK download.
 
-### 检查来源
+### Check out sources
 
 ```
 git clone git@github.com:ReLive27/spring-security-oauth2-sample.git
 ```
 
-### 构建并安装项目：
+### Build and Install the Project:
 
 ```
 ./mvn clean install -Dmaven.test.skip=true
 ```
 
-## 贡献
+## Contributing
 
-非常欢迎[提出请求](https://help.github.com/articles/creating-a-pull-request) 。
+[Pull requests](https://help.github.com/articles/creating-a-pull-request) are welcome.
 
-## 许可
+## License
 
-spring-oauth2-sample 是在 [Apache 2.0 许可](https://www.apache.org/licenses/LICENSE-2.0.html) 下发布的开源软件 。
+spring-oauth2-sample is Open Source software released under the
+[Apache 2.0 license](https://www.apache.org/licenses/LICENSE-2.0.html).
