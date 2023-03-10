@@ -14,7 +14,7 @@ import java.util.Arrays;
 import java.util.function.Consumer;
 
 /**
- * 持久化OAuth2登录用户到用户信息表
+ * Persist OAuth2 Login User to User Information Table
  *
  * @author: ReLive
  * @date: 2022/8/4 19:51

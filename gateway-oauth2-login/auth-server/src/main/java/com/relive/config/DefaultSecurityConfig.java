@@ -28,7 +28,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import static org.springframework.security.config.Customizer.withDefaults;
 
 /**
- * 默认Spring web 安全配置
+ * Default Spring Web Security Configuration
  *
  * @author: ReLive
  * @date: 2022/6/23 7:26 下午
@@ -57,7 +57,7 @@ public class DefaultSecurityConfig {
 
 
     /**
-     * 用户信息容器类，用于Form认证时获取用户信息
+     * User information container class, used to obtain user information during Form authentication.
      *
      * @param userRepository
      * @return
@@ -68,7 +68,7 @@ public class DefaultSecurityConfig {
     }
 
     /**
-     * 扩展OAuth2登录映射权限信息
+     * Extended OAuth2 login mapping permission information.
      *
      * @param oAuth2ClientRoleRepository
      * @return
@@ -79,7 +79,7 @@ public class DefaultSecurityConfig {
     }
 
     /**
-     * 持久化GitHub客户端
+     * Persistent GitHub Client.
      *
      * @param jdbcTemplate
      * @return
@@ -105,7 +105,7 @@ public class DefaultSecurityConfig {
     }
 
     /**
-     * 负责OAuth2AuthorizedClient在 Web 请求之间进行持久化。
+     * Responsible for OAuth2AuthorizedClient persistence between web requests.
      *
      * @param jdbcTemplate
      * @param clientRegistrationRepository
@@ -119,7 +119,7 @@ public class DefaultSecurityConfig {
     }
 
     /**
-     * 用于在请求之间保存和持久化授权客户端
+     * Used to save and persist authorized clients between requests.
      *
      * @param authorizedClientService
      * @return

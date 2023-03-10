@@ -15,7 +15,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- * 用户服务，用于Form认证时获取用户信息
+ * User service, used to obtain user information during Form authentication
  *
  * @author: ReLive
  * @date: 2022/8/4 19:27

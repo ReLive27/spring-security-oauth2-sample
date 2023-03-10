@@ -13,9 +13,9 @@ import org.springframework.security.oauth2.server.authorization.token.OAuth2Toke
 import java.util.stream.Collectors;
 
 /**
- * 自定义访问令牌
+ * Custom Access Token
  * <p>
- * 本示例以RBAC0权限模型，根据获取安全上下文中角色信息查询该角色对应权限，将权限添加到访问令牌，替换scope中原有值。
+ * This example uses the RBAC0 permission model to query the corresponding permissions of the role based on the obtained role information in the security context, add the permission to the access token, and replace the original value in the scope.
  * </p>
  *
  * @author: ReLive

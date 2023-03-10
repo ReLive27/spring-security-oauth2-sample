@@ -58,8 +58,8 @@ CREATE TABLE `role_mtm_permission`
 INSERT INTO `user` (`id`, `username`, `password`, `phone`, `email`) VALUES (1, 'admin', '{noop}password', '13523456789', '123456@163.com');
 INSERT INTO `role` (`id`, `role_code`) VALUES (1, 'ROLE_ADMIN');
 INSERT INTO `role` (`id`, `role_code`) VALUES (2, 'ROLE_OPERATION');
-INSERT INTO `permission` (`id`, `permission_name`, `permission_code`) VALUES (1, '读文章', 'read');
-INSERT INTO `permission` (`id`, `permission_name`, `permission_code`) VALUES (2, '写文章', 'write');
+INSERT INTO `permission` (`id`, `permission_name`, `permission_code`) VALUES (1, 'read the article', 'read');
+INSERT INTO `permission` (`id`, `permission_name`, `permission_code`) VALUES (2, 'write the article', 'write');
 INSERT INTO `user_mtm_role` (`id`, `user_id`, `role_id`) VALUES (1, 1, 1);
 INSERT INTO `role_mtm_permission` (`id`, `role_id`, `permission_id`) VALUES (1, 1, 1);
 INSERT INTO `role_mtm_permission` (`id`, `role_id`, `permission_id`) VALUES (2, 1, 2);

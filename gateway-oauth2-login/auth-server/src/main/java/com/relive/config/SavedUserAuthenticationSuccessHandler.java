@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.function.Consumer;
 
 /**
- * OAuth2登录成功处理器
+ * OAuth2 Login Success Handler
  *
  * @author: ReLive
  * @date: 2022/8/4 19:59

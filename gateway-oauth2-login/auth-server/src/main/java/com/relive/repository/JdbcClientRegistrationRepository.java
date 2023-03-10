@@ -19,7 +19,7 @@ import java.util.*;
 import java.util.function.Function;
 
 /**
- * OAuth2客户端持久化扩展
+ * OAuth2 Client Persistence Extension
  *
  * @author: ReLive
  * @date: 2022/7/30 22:05

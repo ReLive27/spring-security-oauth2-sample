@@ -39,7 +39,7 @@ import org.springframework.security.web.util.matcher.RequestMatcher;
 import java.time.Duration;
 
 /**
- * OAuth2及OpenID Connect 配置
+ * OAuth2 and OpenID Connect Configuration
  *
  * @author: ReLive
  * @date: 2022/6/23 2:03 下午
@@ -52,7 +52,7 @@ public class AuthorizationServerConfig {
     public SecurityFilterChain authorizationServerSecurityFilterChain(HttpSecurity http) throws Exception {
         OAuth2AuthorizationServerConfigurer<HttpSecurity> authorizationServerConfigurer =
                 new OAuth2AuthorizationServerConfigurer<>();
-        //配置OIDC
+        //Configure OIDC
         authorizationServerConfigurer.oidc(Customizer.withDefaults());
 
         RequestMatcher endpointsMatcher = authorizationServerConfigurer.getEndpointsMatcher();
@@ -73,7 +73,7 @@ public class AuthorizationServerConfig {
     }
 
     /**
-     * 持久化OAuth2客户端
+     * Persistent OAuth2 Client
      *
      * @param jdbcTemplate
      * @return
@@ -95,15 +95,15 @@ public class AuthorizationServerConfig {
                 .scope(OidcScopes.EMAIL)
                 .scope("read")
                 .clientSettings(ClientSettings.builder()
-                        .requireAuthorizationConsent(false) //不需要授权同意
+                        .requireAuthorizationConsent(false) //No authorization required
                         .requireProofKey(false)
                         .build())
                 .tokenSettings(TokenSettings.builder()
-                        .accessTokenFormat(OAuth2TokenFormat.SELF_CONTAINED) // 生成JWT令牌
-                        .idTokenSignatureAlgorithm(SignatureAlgorithm.RS256)//idTokenSignatureAlgorithm：签名算法
-                        .accessTokenTimeToLive(Duration.ofSeconds(30 * 60))//accessTokenTimeToLive：access_token有效期
-                        .refreshTokenTimeToLive(Duration.ofSeconds(60 * 60))//refreshTokenTimeToLive：refresh_token有效期
-                        .reuseRefreshTokens(true)//reuseRefreshTokens：是否重用刷新令牌
+                        .accessTokenFormat(OAuth2TokenFormat.SELF_CONTAINED) // Generate JWT token
+                        .idTokenSignatureAlgorithm(SignatureAlgorithm.RS256)//idTokenSignatureAlgorithm：signature algorithm
+                        .accessTokenTimeToLive(Duration.ofSeconds(30 * 60))//accessTokenTimeToLive：access_token validity period
+                        .refreshTokenTimeToLive(Duration.ofSeconds(60 * 60))//refreshTokenTimeToLive：refresh_token validity period
+                        .reuseRefreshTokens(true)//reuseRefreshTokens：Whether to reuse refresh tokens
                         .build())
                 .build();
 
@@ -113,7 +113,7 @@ public class AuthorizationServerConfig {
     }
 
     /**
-     * 负责在授权过程中持久化授权信息，例如code，access_token,refresh_token
+     * Responsible for persisting authorization information during the authorization process, such as code, access_token, refresh_token
      *
      * @param jdbcTemplate
      * @param registeredClientRepository
@@ -125,7 +125,7 @@ public class AuthorizationServerConfig {
     }
 
     /**
-     * 持久化用户同意"授权同意"信息
+     * Persistent user consent "authorization consent" information
      *
      * @param jdbcTemplate
      * @param registeredClientRepository
