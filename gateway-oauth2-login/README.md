@@ -1,29 +1,33 @@
+## Relevant Information:
 
-### 相关信息：
+1. `auth-server` is an authorization server built
+   with [Spring Authorization Server](https://spring.io/projects/spring-authorization-server).
 
-1.`auth-server`是一个使用[Spring Authorization Server](https://spring.io/projects/spring-authorization-server) 构建的授权服务器。
+2. `auth-server` registers an OAuth2 client by default:
+    - **clientId**: relive-client
+    - **clientSecret**: relive-client
+    - **redirectUri**: http://127.0.0.1:8070/login/oauth2/code/messaging-gateway-oidc
+    - **scope**: openid profile email read
 
-2.`auth-server`默认注册了一个OAuth2客户端：
- - **clientId**: relive-client
- - **clientSecret**: relive-client
- - **redirectUri**: http://127.0.0.1:8070/login/oauth2/code/messaging-gateway-oidc
- - **scope**: openid profile email read
+3. The default authentication method of `auth-server` uses Form authentication, and the username and password are *
+   admin/password*.
 
+4. At the beginning of `auth-server` startup, the MySQL database username and password need to be modified, and the
+   database table initialization uses the [Flyway](https://flywaydb.org/) database version control component.
 
-3.`auth-server`默认认证方式使用Form表单认证，用户名密码为admin/password。
+5. `gateway-login` is an API gateway built by [Spring Cloud Gateway](https://spring.io/projects/spring-cloud-gateway).
+   Before starting, you need to modify the **redis** configuration in `application.yml`.
 
-4.`auth-server`启动之初需要修改MySQL数据库用户名密码，数据库表初始化使用[Flyway](https://flywaydb.org/) 数据库版本控制组件。
+6. `resourceserver` is a simple Spring Boot resource server.
 
-5.`gateway-login`由[Spring Cloud Gateway](https://spring.io/projects/spring-cloud-gateway) 构建的API网关，启动前需要修改`application.yml`中**redis**配置。
+## Involving Database Table Structure:
 
-6.`resourceserver`是一个简单的Spring Boot资源服务。
-
-### 涉及数据库表结构：
-
-以下提供了`auth-server`数据库表结构，相关SQL语句从[这里](https://github.com/ReLive27/spring-security-oauth2-sample/tree/main/gateway-oauth2-login/auth-server/src/main/resources/db/migration) 获取
+The `auth-server` database table structure is provided below, and related SQL statements are obtained
+from [here](https://github.com/ReLive27/spring-security-oauth2-sample/tree/main/gateway-oauth2-login/auth-server/src/main/resources/db/migration)
+.
 
 ![](./images/drawSQL-gateway-oauth2.png)
 
+## Relevant Articles:
 
-### 相关文章：
-- [将Spring Cloud Gateway 与OAuth2模式一起使用](https://relive27.github.io/blog/spring-gateway-oauth2)
+- [Spring Cloud Gateway Combined with the Security Practice of OAuth2.0 Protocol](https://relive27.github.io/blog/spring-gateway-oauth2)
