@@ -1,10 +1,12 @@
-### 相关信息：
+## Relevant Information:
 
-1.`client-model-oauth2-server`是一个使用 Spring Authorization Server 构建的授权服务器。<br>
-2.`client-model-resource-server`由 Spring Security 保护的 SpringBoot 资源服务，提供resource/article受保护API。<br>
-3.`oauth2client`由 Spring Security 创建的 OAuth2.0 客户端服务。<br>
-4.启动服务后，`oauth2client`由*ArticleJob*定时任务调用资源服务resource/article受保护API。
+1. `client-model-oauth2-server` is an authorization server built with Spring Authorization Server.<br>
+2. `client-model-resource-server` is served by SpringBoot resources protected by Spring Security, providing
+   resource/article protected API.<br>
+3. `oauth2client` is an OAuth2.0 client service created by Spring Security.<br>
+4. After starting the service, `oauth2client` calls the resource service resource/article protected API from *
+   ArticleJob* scheduled task.
 
-### 相关文章：
+## Relevant Articles:
 
-- [Spring Security OAuth2客户端凭据授权](https://relive27.github.io/blog/oauth2-client-model)
+- [Spring Security OAuth2 Client Credentials Authorization](https://relive27.github.io/blog/oauth2-client-model)
