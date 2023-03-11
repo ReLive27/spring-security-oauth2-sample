@@ -1,46 +1,48 @@
+## Relevant Information:
 
-### 相关信息:
-1.`idp`使用[Spring Authorization Server](https://spring.io/projects/spring-authorization-server) 构建的身份提供方服务。
+1. `idp` uses the identity provider service built
+   with [Spring Authorization Server](https://spring.io/projects/spring-authorization-server).
 
-2.`idp`默认注册了一个客户端:
- - **clientId**: relive-client
- - **clientSecret**: relive-client
- - **redirectUri**: http://127.0.0.1:8070/login/oauth2/code/messaging-client-oidc
- - **scope**: openid profile email
+2. `idp` registers a client by default:
+    - **clientId**: relive-client
+    - **clientSecret**: relive-client
+    - **redirectUri**: http://127.0.0.1:8070/login/oauth2/code/messaging-client-oidc
+    - **scope**: openid profile email
 
+3. `idp` uses Form authentication, username and password are admin/password.
 
-3.`idp`使用Form表单认证，用户名密码为admin/password
+4. `rp` Relying Party Services built
+   with [Spring Security](https://docs.spring.io/spring-security/reference/servlet/oauth2/login/index.html). It includes
+   Form authentication and OIDC authentication supported by itself.
 
+5. `rp`uses the Form form to log in to the user (admin/password) and assigns the ROLE_SYSTEM role. Users with this role
+   log in successfully and jump to the home page to see the following:
 
-4.`rp`使用[Spring Security](https://docs.spring.io/spring-security/reference/servlet/oauth2/login/index.html) 构建的依赖方服务，
-它包含自身支持的Form表单认证和OIDC认证
+   **Article List**
 
+    - Java
+    - Python
+    - C++
 
-5.`rp`使用Form表单登录用户（admin/password）赋予ROLE_SYSTEM角色，拥有该角色的用户登录成功跳转到首页看到以下内容：
+6. `rp` will also support OAuth2 login. Use OidcRoleMappingUserService role mapping to map the `idp` service **
+   ROLE_ADMIN** role to the rp service **ROLE_OPERATION** role. Users with **ROLE_OPERATION** will see the following
+   content on the homepage after successful login:
 
-**Article List**
-- Java
-- Python
-- C++
+   **Article List**
 
+    - Java
 
-6.`rp`还将支持OAuth2登录，使用*OidcRoleMappingUserService*角色映射，将`idp`服务角色*ROLE_ADMIN*映射为`rp`服务*ROLE_OPERATION*角色，
-登录成功后拥有*ROLE_OPERATION*角色的用户将在首页看到以下内容：
+7. The `rp` service database table is created using the [Flyway](https://flywaydb.org/) database version control
+   component, just change the database username and password to start the program.
 
-**Article List**
-- Java
+8. After the test starts the service, visit [http://127.0.0.1:8070/login](http://127.0.0.1:8070/login).
 
-7.`rp`服务数据库表创建使用[Flyway](https://flywaydb.org/) 数据库版本控制组件，只需更改数据库用户名密码启动程序。
+## Involving database table structure
 
-8.测试启动服务后，访问 http://127.0.0.1:8070/login
-
-
-
-### 涉及数据库表结构
-以下是`rp`服务相关数据库表结构：
+The following is the database table structure related to the `rp` service:
 
 ![](./images/oauth2_sql_model.png)
 
+## Relevant Articles:
 
-### 相关文章:
-- [Spring Security和OpenID Connect](https://relive27.github.io/blog/springn-security-oidc)
+- [Spring Security and OpenID Connect](https://relive27.github.io/blog/springn-security-oidc)
