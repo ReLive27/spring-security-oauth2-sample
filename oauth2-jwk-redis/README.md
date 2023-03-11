@@ -1,10 +1,13 @@
-### 相关信息:
+## Relevant Information:
 
-该模块提供支持密钥轮换策略的`JWKSource`。 RotateJwkSource 是一种JWKSource利用 JWKSetCache 来支持密钥轮换实现。
+This module provides a `JWKSource` that supports key rotation strategies. RotateJwkSource is a JWKSource implementation
+that utilizes JWKSetCache to support key rotation.
 
-除了工程中默认 Redis 实现方式，还支持本地内存和Caffeine实现方式。
+In addition to the default Redis implementation in the project, it also supports local memory and Caffeine
+implementations.
 
-以下代码显示了如何配置本地内存密钥轮换策略的`RotateJwkSource`提供支持的示例：
+The following code shows an example of how to configure the `RotateJwkSource` of the local in-memory key rotation
+strategy to provide support:
 
 ```
     @Bean
@@ -13,7 +16,7 @@
     }
 ```
 
-`RotateJwkSource`还支持使用Caffeine的密钥轮换策略，可以按如下方式配置：
+`RotateJwkSource` also supports using Caffeine's key rotation strategy, which can be configured as follows:
 
 ```
     @Bean
@@ -22,6 +25,6 @@
     }
 ```
 
-### 相关文章:
+## Relevant Articles:
 
-- [Spring Security OAuth2实现简单的密钥轮换及配置资源服务器JWK缓存](https://relive27.github.io/blog/jwk-cache-and-rotate-key)
+- [Spring Security OAuth2 implements simple key rotation and configures resource server JWK cache](https://relive27.github.io/blog/jwk-cache-and-rotate-key)

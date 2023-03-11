@@ -1,9 +1,10 @@
-### 相关信息:
+## Relevant Information:
 
-该模块演示了如何让我们的 Spring Authorization Server 实现使用 JSON Web 令牌。在启动工程前，你需要更改`oauth2-server`中`application.yml`文件 MySQL
-的用户名和密码，SQL表的创建使用 [Flyway](https://flywaydb.org) 数据库版本控制组件。
+This module demonstrates how to get our Spring Authorization Server implementation to use JSON Web Token. Before
+starting the project, you need to change the username and password of MySQL in the `application.yml` file
+in `oauth2-server`. SQL tables are created using the [Flyway](https://flywaydb.org) database versioning component.
 
-你可以使用 Docker 快速启动一个MySQL数据库：
+You can use Docker to quickly start a MySQL database:
 
 ```
 docker run -p 3306:3306 --name mysql \
@@ -14,8 +15,9 @@ docker run -p 3306:3306 --name mysql \
 -d mysql:5.6
 ```
 
-启动服务后，浏览器访问 [http://127.0.0.1:8070/client/test](http://127.0.0.1:8070/client/test) ,通过输入 admin/password 认证成功后，最终将返回资源信息。
+After starting the service, the browser visits [http://127.0.0.1:8070/client/test](http://127.0.0.1:8070/client/test).
+After successful authentication by entering admin/password, the resource information will eventually be returned.
 
-### 相关文章:
+## Relevant Articles:
 
-- [将JWT与Spring Security OAuth2结合使用](https://relive27.github.io/blog/spring-security-oauth2-jwt)
+- [Using JWT with Spring Security OAuth2](https://relive27.github.io/blog/spring-security-oauth2-jwt)

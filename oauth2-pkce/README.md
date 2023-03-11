@@ -1,10 +1,13 @@
-### 相关信息:
+## Relevant Information:
 
-该模块演示了代码交换证明密钥（PKCE）的授权码流，值得注意的是我们在授权服务注册客户端时`ClientAuthenticationMethod`选择的是`none`方式。我们将
-服务启动完成后，浏览器访问 [http://127.0.0.1:8070/client/test](http://127.0.0.1:8070/client/test) 测试完整流程。
+This module demonstrates the authorization code flow of the code exchange proof key (PKCE). It is worth noting that when
+we register the client with the authorization service, the `ClientAuthenticationMethod` selects the `none` method. After
+we start the service, the browser visits [http://127.0.0.1:8070/client/test](http://127.0.0.1:8070/client/test) to test
+the complete process.
 
-> 记得认证所使用的用户名密码为 admin/password
 
-### 相关文章:
+> Remember that the username and password used for authentication are admin/password
 
-- [Spring Security OAuth2 带有用于代码交换的证明密钥 (PKCE) 的授权码流](https://relive27.github.io/blog/oauth2-pkce)
+## Relevant Articles:
+
+- [Authorization Code Flow with Proof Key for Code Exchange (PKCE)](https://relive27.github.io/blog/oauth2-pkce)

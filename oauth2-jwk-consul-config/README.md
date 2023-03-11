@@ -1,8 +1,11 @@
-### 相关信息:
+## Relevant Information:
 
-该模块演示了 OAuth2.0 授权服务通过 Consul 实现密钥轮换，如果您并不了解 Consul，请利用一些时间阅读 [Consul](https://www.consul.io/) 官网提供的信息。 Consul KV Store
-提供了一个分层的KV存储， 能够存储分布式键值，我们将利用 Consul KV Store 使资源服务器发现授权服务器的公钥信息， 授权服务器轮换密钥后将公钥通过HTTP API更新到 KV Store。
+This module demonstrates that the OAuth2.0 authorization service implements key rotation through Consul. If you don't
+know Consul, please take some time to read the information provided by [Consul]((https://www.consul.io/) )'s official
+website. Consul KV Store provides a hierarchical KV store that can store distributed key values. We will use Consul KV
+Store to enable the resource server to discover the public key information of the authorization server. After the
+authorization server rotates the key, the public key will be updated to KV Store.
 
-### 相关文章:
+## Relevant Articles:
 
-- [将Spring Security OAuth2授权服务JWK与Consul 配置中心结合使用](https://relive27.github.io/blog/oauth2-jwk-consul-config)
+- [Using Spring Security OAuth2 Authorization Service JWK with Consul Configuration Center](https://relive27.github.io/blog/oauth2-jwk-consul-config)

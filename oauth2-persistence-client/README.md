@@ -1,7 +1,8 @@
-### 相关信息:
+## Relevant Information:
 
-本例`persistence-client`服务中我们通过实现 ClientRegistrationRepository 接口自定义持久化存储库 *JdbcClientRegistrationRepository*
-。在我们启动服务测试之前，你需要拥有一个MySQL数据库。 你可以使用 Docker 快速启动一个MySQL数据库：
+In this example `persistence-client` service, we implement the custom persistence repository
+JdbcClientRegistrationRepository. Before we start the service test, you need to have a MySQL database. You can quickly
+start a MySQL database using Docker:
 
 ```
 docker run -p 3306:3306 --name mysql \
@@ -12,9 +13,10 @@ docker run -p 3306:3306 --name mysql \
 -d mysql:5.6
 ```
 
-在你将`application.yml`中数据库用户名密码修改后，使用浏览器访问 [http://127.0.0.1:8070/client/test](http://127.0.0.1:8070/client/test)
-，其中登录所需用户名密码为 admin/password 。
+After you modify the database username and password in `application.yml`, use a browser to
+visit [http://127.0.0.1:8070/client/test](http://127.0.0.1:8070/client/test). The username and password required for
+login are admin/password.
 
-### 相关文章:
+## Relevant Articles:
 
-- [Spring Security 持久化OAuth2客户端](https://relive27.github.io/blog/persisrence-oauth2-client)
+- [Spring Security Persistent OAuth2 Client](https://relive27.github.io/blog/persisrence-oauth2-client)

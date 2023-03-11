@@ -1,33 +1,38 @@
+## Relevant Information:
 
-### 相关信息:
-1.`authorizationserver`作为授权服务器，提供自定义/userInfo用户信息端点。
-<br><br>
-2.`authorizationserver`注册了一个客户端：
-- clientId: relive-client
-- clientSecret: relive-client
-- redirectUri: http://127.0.0.1:8070/login/oauth2/code/messaging-client-authorization-code
-- scope: profile
+1. `authorizationserver` acts as an authorization server and provides a custom /userInfo user information endpoint.
 
-3.`authorizationserver`使用Form表单认证，用户名密码：admin/password。
-<br><br>
-4.`oauth2-login-client`是一个OAuth2客户端，它包含Form表单登录和OAuth2登录。
-<br><br>
-5.`oauth2-login-client`Form登录用户（admin/password）赋予*ROLE_SYSTEM*角色，拥有该角色的用户登录成功将在页面看到以下内容：
+2. The `authorizationserver` registers a client:
+    - clientId: relive-client
+    - clientSecret: relive-client
+    - redirectUri: http://127.0.0.1:8070/login/oauth2/code/messaging-client-authorization-code
+    - scope: profile
 
-**Article List**
-- Java
-- Python
-- C++
+3. `authorizationserver` uses *Form authentication*, username and password: admin/password.
 
-<br><br>
-6.`oauth2-login-client`还将支持OAuth2登录，使用*GrantedAuthoritiesMapper*将`authorizationserver`授权服务角色*ROLE_ADMIN*映射为客户端服务*ROLE_OPERATION*角色，
-登录成功后拥有*ROLE_OPERATION*角色的用户将在页面看到以下内容：
-  
-**Article List**
-- Java
+4. `oauth2-login-client` is an OAuth2 client, which includes *Form login* and OAuth2 login.
+ 
+5. The `oauth2-login-client` *Form* *login* user (admin/password) is assigned the ROLE_SYSTEM role, and users with this
+   role will see the following content on the page after successful login:
 
-<br><br>
-7.启动服务，访问http://127.0.0.1:8070/home ,首先使用Form表单登录，其次退出登录，使用OAuth2登录，您将看到不同的展示信息。
+   **Article List**
+   
+   - Java
+   - Python
+   - C++
 
-### 相关文章:
-- [Spring Security OAuth2登录](https://relive27.github.io/blog/oauth2-login)
+6. `oauth2-login-client` will also support OAuth2 login. Make GrantedAuthoritiesMapper map the `authorizationserver`
+   authorization service role **ROLE_ADMIN** to the client service **ROLE_OPERATION** role. Users with the **
+   ROLE_OPERATION** role will see the following content on the page after successful login:
+
+   **Article List**
+   
+   - Java
+
+
+7. Start the service, visit [http://127.0.0.1:8070/home](http://127.0.0.1:8070/home). First use the username to log in,
+   then log out, and use OAuth2 to log in, you will see different display information.
+
+## Relevant Articles:
+
+- [Spring Security OAuth2 Login](https://relive27.github.io/blog/oauth2-login)

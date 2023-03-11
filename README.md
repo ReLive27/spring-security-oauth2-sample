@@ -18,9 +18,9 @@ Server.
 
 - [Using JWT with Spring Security OAuth2](https://relive27.github.io/blog/spring-security-oauth2-jwt)
 - [Custom OAuth2 Authorization Consent Page](https://relive27.github.io/blog/custom-oauth2-consent-page)
-- [Spring Security persistent OAuth2 client](https://relive27.github.io/blog/persisrence-oauth2-client)
+- [Spring Security Persistent OAuth2 Client](https://relive27.github.io/blog/persisrence-oauth2-client)
 - [Spring Security OAuth2 Client Credentials Authorization](https://relive27.github.io/blog/oauth2-client-model)
-- [Spring Security OAuth2 Authorization Code Flow with Proof Key for Code Exchange (PKCE)](https://relive27.github.io/blog/oauth2-pkce)
+- [Authorization Code Flow with Proof Key for Code Exchange (PKCE)](https://relive27.github.io/blog/oauth2-pkce)
 - [Spring Security OAuth2 Login](https://relive27.github.io/blog/oauth2-login)
 - [Spring Security and OpenID Connect](https://relive27.github.io/blog/springn-security-oidc)
 - [Spring Cloud Gateway Combined with the Security Practice of OAuth2.0 Protocol](https://relive27.github.io/blog/spring-gateway-oauth2)
@@ -28,7 +28,7 @@ Server.
 - [Using Spring Security OAuth2 Authorization Service JWK with Consul Configuration Center](https://relive27.github.io/blog/oauth2-jwk-consul-config)
 - [A Simple Guide to Using Spring Security OAuth2 Opaque Tokens](https://relive27.github.io/blog/oauth2-opaque-token)
 - [Spring Security OAuth2 Introspection Protocol in conjunction with JWT Guide](https://relive27.github.io/blog/oauth2-introspection-with-jwt)
-- [Spring Security OAuth 2.0 authorization server combined with Redis implements access to accessToken rate limits](https://relive27.github.io/blog/oauth2-token-access-restrictions)
+- [Spring Security OAuth 2.0 Authorization Server Combined with Redis implements Access to AccessToken Rate Limits](https://relive27.github.io/blog/oauth2-token-access-restrictions)
 - [(Coming soon)OAuth2.0 Security Practices for Single Page Applications (SPA)]()
 - ...
 
