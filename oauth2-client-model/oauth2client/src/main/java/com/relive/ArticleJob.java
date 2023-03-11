@@ -23,7 +23,7 @@ public class ArticleJob {
     private WebClient webClient;
 
     /**
-     * 调用资源服务器任务，间隔2秒执行
+     * Call the resource server task and execute it every 2 seconds
      */
     @Scheduled(cron = "0/2 * * * * ? ")
     public void exchange() {
@@ -34,6 +34,6 @@ public class ArticleJob {
                 .retrieve()
                 .bodyToMono(List.class)
                 .block();
-        log.info("调用资源服务器执行结果：" + list);
+        log.info("Call resource server execution result: " + list);
     }
 }

@@ -22,7 +22,7 @@ public class SecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests(authorizeRequests ->
-                        //便于测试，将权限开放
+                        //Easy to test, open permissions
                         authorizeRequests.anyRequest().permitAll()
                 )
                 .oauth2Client(withDefaults());
@@ -39,8 +39,8 @@ public class SecurityConfig {
 
     /**
      * <p>
-     * {@DefaultOAuth2AuthorizedClientManager } 旨在用于 HttpServletRequest 的上下文中。
-     * 在 HttpServletRequest 上下文之外操作时，请改用 {@AuthorizedClientServiceOAuth2AuthorizedClientManager}
+     * {@DefaultOAuth2AuthorizedClientManager } is intended to be used in the context of an HttpServletRequest.
+     * When operating outside the context of an HttpServletRequest, use {@AuthorizedClientServiceOAuth2AuthorizedClientManager} instead
      * </p>
      *
      * @param clientRegistrationRepository

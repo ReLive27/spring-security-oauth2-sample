@@ -101,9 +101,9 @@ public class AuthorizationServerConfig {
                 .tokenSettings(TokenSettings.builder()
                         .accessTokenFormat(OAuth2TokenFormat.SELF_CONTAINED) // Generate JWT token
                         .idTokenSignatureAlgorithm(SignatureAlgorithm.RS256)//idTokenSignatureAlgorithm：signature algorithm
-                        .accessTokenTimeToLive(Duration.ofSeconds(30 * 60))//accessTokenTimeToLive：access_token validity period
-                        .refreshTokenTimeToLive(Duration.ofSeconds(60 * 60))//refreshTokenTimeToLive：refresh_token validity period
-                        .reuseRefreshTokens(true)//reuseRefreshTokens：Whether to reuse refresh tokens
+                        .accessTokenTimeToLive(Duration.ofSeconds(30 * 60))//accessTokenTimeToLive: access_token validity period
+                        .refreshTokenTimeToLive(Duration.ofSeconds(60 * 60))//refreshTokenTimeToLive: refresh_token validity period
+                        .reuseRefreshTokens(true)//reuseRefreshTokens: Whether to reuse refresh tokens
                         .build())
                 .build();
 

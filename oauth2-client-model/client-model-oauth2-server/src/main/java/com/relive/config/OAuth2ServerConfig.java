@@ -58,15 +58,15 @@ public class OAuth2ServerConfig {
                 .redirectUri("http://127.0.0.1:8070/login/oauth2/code/messaging-client-model")
                 .scope("message.read")
                 .clientSettings(ClientSettings.builder()
-                        .requireAuthorizationConsent(true)//requireAuthorizationConsent：是否需要授权统同意
-                        .requireProofKey(false)//requireProofKey：是否需要证明密钥
+                        .requireAuthorizationConsent(true) //requireAuthorizationConsent：is authorization and consent required
+                        .requireProofKey(false)
                         .build())
                 .tokenSettings(TokenSettings.builder()
-                        .accessTokenFormat(OAuth2TokenFormat.SELF_CONTAINED) // 生成JWT令牌
-                        .idTokenSignatureAlgorithm(SignatureAlgorithm.RS256)//idTokenSignatureAlgorithm：签名算法
-                        .accessTokenTimeToLive(Duration.ofSeconds(30 * 60))//accessTokenTimeToLive：access_token有效期
-                        .refreshTokenTimeToLive(Duration.ofSeconds(60 * 60))//refreshTokenTimeToLive：refresh_token有效期
-                        .reuseRefreshTokens(true)//reuseRefreshTokens：是否重用刷新令牌
+                        .accessTokenFormat(OAuth2TokenFormat.SELF_CONTAINED) // Generate JWT token
+                        .idTokenSignatureAlgorithm(SignatureAlgorithm.RS256)//idTokenSignatureAlgorithm: signature algorithm
+                        .accessTokenTimeToLive(Duration.ofSeconds(30 * 60))//accessTokenTimeToLive：access_token validity period
+                        .refreshTokenTimeToLive(Duration.ofSeconds(60 * 60))//refreshTokenTimeToLive：refresh_token validity period
+                        .reuseRefreshTokens(true)//reuseRefreshTokens: Whether to reuse refresh tokens
                         .build())
                 .build();
 
