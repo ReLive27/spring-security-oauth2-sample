@@ -14,7 +14,7 @@ import java.net.URI;
 import java.util.Collections;
 
 /**
- * 转换UserInfo 端点的请求，并将token存放在Header
+ * Convert the request of the UserInfo endpoint and store the token in the Header.
  *
  * @author: ReLive
  * @date: 2022/7/19 11:09 上午

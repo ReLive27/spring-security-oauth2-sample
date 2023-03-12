@@ -45,7 +45,7 @@ public class SecurityConfig {
 
     @Bean
     GrantedAuthoritiesMapper userAuthoritiesMapper() {
-        //角色映射关系，授权服务器ADMIN角色对应客户端OPERATION角色
+        //Role mapping relationship, authorization server ADMIN role corresponds to client OPERATION role.
         Map<String, String> roleMapping = new HashMap<>();
         roleMapping.put("ROLE_ADMIN", "ROLE_OPERATION");
         return (authorities) -> {

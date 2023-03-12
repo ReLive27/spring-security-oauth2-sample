@@ -21,7 +21,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * 基于密钥轮换的 {@link JWKSource}
+ * {@link JWKSource} based on key rotation.
  *
  * @author: ReLive
  * @date: 2022/8/18 13:23

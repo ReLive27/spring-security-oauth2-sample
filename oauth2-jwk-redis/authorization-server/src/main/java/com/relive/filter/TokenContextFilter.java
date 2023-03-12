@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * 将 {@link TokenContext} 与 {@link TokenContextHolder} 相关联的 {@code Filter}
+ * A {@code Filter} that associates a {@link TokenContext} with a {@link TokenContextHolder}
  *
  * @author: ReLive
  * @date: 2022/8/21 19:50

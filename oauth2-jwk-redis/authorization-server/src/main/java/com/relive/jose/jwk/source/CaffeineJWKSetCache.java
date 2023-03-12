@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 基于caffeine的 {@link JWKSet} 存储实现
+ * {@link JWKSet} storage implementation based on caffeine.
  *
  * @author: ReLive
  * @date: 2022/8/23 19:40

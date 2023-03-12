@@ -72,7 +72,7 @@ public class DefaultJsonOAuth2UserService implements OAuth2UserService<OAuth2Use
         ResponseEntity<JsonNode> response = getResponse(userRequest, request);
         JsonNode responseBody = response.getBody();
 
-        //提取多层用户信息属性
+        //extract multi-layer user information attributes
         Map<String, Object> userAttributes = new HashMap<>();
         if (userNameAttributeName.contains(".")) {
             String firstNodePath = userNameAttributeName.substring(0, userNameAttributeName.lastIndexOf("."));

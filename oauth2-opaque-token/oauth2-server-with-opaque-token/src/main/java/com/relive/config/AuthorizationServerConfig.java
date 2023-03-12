@@ -50,14 +50,14 @@ public class AuthorizationServerConfig {
                 .redirectUri("http://127.0.0.1:8070/login/oauth2/code/messaging-client-authorization-code")
                 .scope("message.read")
                 .clientSettings(ClientSettings.builder()
-                        .requireAuthorizationConsent(true)//requireAuthorizationConsent：是否需要授权统同意
-                        .requireProofKey(false)//当参数为true时，该客户端仅支持PCKE
+                        .requireAuthorizationConsent(true)
+                        .requireProofKey(false)
                         .build())
                 .tokenSettings(TokenSettings.builder()
-                        .accessTokenFormat(OAuth2TokenFormat.REFERENCE) // 生成透明令牌
-                        .accessTokenTimeToLive(Duration.ofSeconds(30 * 60))//access_token有效期
-                        .refreshTokenTimeToLive(Duration.ofSeconds(60 * 60))//refresh_token有效期
-                        .reuseRefreshTokens(false)//是否重用刷新令牌，当参数为true时，刷新令牌后不会重新生成新的refreshToken
+                        .accessTokenFormat(OAuth2TokenFormat.REFERENCE)
+                        .accessTokenTimeToLive(Duration.ofSeconds(30 * 60))
+                        .refreshTokenTimeToLive(Duration.ofSeconds(60 * 60))
+                        .reuseRefreshTokens(false) //Whether to reuse the refresh token, when the parameter is true, a new refreshToken will not be regenerated after the refresh token.
                         .build())
                 .build();
 

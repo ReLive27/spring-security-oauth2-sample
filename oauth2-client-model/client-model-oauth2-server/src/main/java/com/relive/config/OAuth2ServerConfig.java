@@ -58,7 +58,7 @@ public class OAuth2ServerConfig {
                 .redirectUri("http://127.0.0.1:8070/login/oauth2/code/messaging-client-model")
                 .scope("message.read")
                 .clientSettings(ClientSettings.builder()
-                        .requireAuthorizationConsent(true) //requireAuthorizationConsent：is authorization and consent required
+                        .requireAuthorizationConsent(true)
                         .requireProofKey(false)
                         .build())
                 .tokenSettings(TokenSettings.builder()
@@ -66,7 +66,7 @@ public class OAuth2ServerConfig {
                         .idTokenSignatureAlgorithm(SignatureAlgorithm.RS256)//idTokenSignatureAlgorithm: signature algorithm
                         .accessTokenTimeToLive(Duration.ofSeconds(30 * 60))//accessTokenTimeToLive：access_token validity period
                         .refreshTokenTimeToLive(Duration.ofSeconds(60 * 60))//refreshTokenTimeToLive：refresh_token validity period
-                        .reuseRefreshTokens(true)//reuseRefreshTokens: Whether to reuse refresh tokens
+                        .reuseRefreshTokens(true)//reuseRefreshTokens: whether to reuse refresh tokens
                         .build())
                 .build();
 

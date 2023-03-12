@@ -12,7 +12,7 @@ import java.util.Collections;
 import java.util.Set;
 
 /**
- * 用户信息映射器
+ * User Information Mapper.
  *
  * @author: ReLive
  * @date: 2022/6/24 3:56 下午

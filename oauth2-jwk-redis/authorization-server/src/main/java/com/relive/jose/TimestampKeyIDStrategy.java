@@ -1,7 +1,7 @@
 package com.relive.jose;
 
 /**
- * 生成时间戳的 {@link KeyIDStrategy}
+ * The {@link KeyIDStrategy} that generates the timestamp.
  *
  * @author: ReLive
  * @date: 2022/8/23 19:28

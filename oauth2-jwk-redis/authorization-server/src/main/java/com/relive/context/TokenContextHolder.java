@@ -1,7 +1,7 @@
 package com.relive.context;
 
 /**
- * {@link TokenContext} 的持有者使用 {@code ThreadLocal} 将其与当前线程相关联
+ * A holder of the {@link TokenContext} that associates it with the current thread using a {@code ThreadLocal}.
  *
  * @author: ReLive
  * @date: 2022/8/21 19:43
@@ -13,7 +13,7 @@ public class TokenContextHolder {
     }
 
     /**
-     * 返回当前线程绑定的 {@link TokenContext}
+     * Returns the {@link TokenContext} bound to the current thread.
      *
      * @return
      */
@@ -22,7 +22,7 @@ public class TokenContextHolder {
     }
 
     /**
-     * 将给定的 {@link TokenContext} 绑定到当前线程
+     * Bind the given {@link TokenContext} to the current thread.
      *
      * @param tokenContext
      */
@@ -35,7 +35,7 @@ public class TokenContextHolder {
     }
 
     /**
-     * 重置绑定到当前线程的 {@link TokenContext}
+     * Reset the {@link TokenContext} bound to the current thread.
      */
     public static void resetTokenContext() {
         holder.remove();

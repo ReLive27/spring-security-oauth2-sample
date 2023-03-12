@@ -32,7 +32,7 @@ public class SecurityConfig {
     }
 
     /**
-     * 资源服务器设置 60 秒的连接和读取超时来与授权服务器进行协调
+     * The resource server sets a connection and read timeout of 60 seconds to coordinate with the authorization server.
      *
      * @param builder
      * @param properties

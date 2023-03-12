@@ -28,7 +28,7 @@ public class SecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests(authorizeRequests ->
-                        //测试使用，将权限开放
+                        //test use, open permissions
                         authorizeRequests.anyRequest().permitAll()
                 )
                 .oauth2Client(withDefaults());

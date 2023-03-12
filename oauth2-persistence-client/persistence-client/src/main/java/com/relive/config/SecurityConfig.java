@@ -53,7 +53,7 @@ public class SecurityConfig {
     }
 
     /**
-     * 定义JDBC 客户端注册存储库
+     * Define the JDBC client registration repository.
      *
      * @param jdbcTemplate
      * @return
@@ -88,7 +88,6 @@ public class SecurityConfig {
     OAuth2AuthorizedClientManager authorizedClientManager(ClientRegistrationRepository clientRegistrationRepository,
                                                           OAuth2AuthorizedClientRepository authorizedClientRepository) {
 
-        //可以扩展其他模式
         OAuth2AuthorizedClientProvider authorizedClientProvider = OAuth2AuthorizedClientProviderBuilder
                 .builder()
                 .authorizationCode()

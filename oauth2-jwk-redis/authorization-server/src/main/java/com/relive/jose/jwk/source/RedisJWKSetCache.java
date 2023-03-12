@@ -28,7 +28,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 /**
- * 基于redis的 {@link JWKSet} 存储实现
+ * {@link JWKSet} storage implementation based on redis.
  *
  * @author: ReLive
  * @date: 2022/8/24 09:07
@@ -97,8 +97,8 @@ public class RedisJWKSetCache implements JWKSetCache {
                     }
                     connection.closePipeline();
 
-                    //TODO 考虑此类职责为授权服务密钥缓存，清除资源服务Redis中JWKS缓存可能并不适合放在这里
-                    //清除资源服务Redis中JWKS缓存,请确保资源服务redis key值与此处保持一致
+                    //TODO Considering that such responsibility is the authorization service key cache, clearing the JWKS cache in resource service Redis may not be suitable here
+                    //Clear the JWKS cache in the resource service Redis, please ensure that the resource service redis key value is consistent with this.
                     connection.del(this.redisSerializeKey.serialize("jwks::" + ProviderContextHolder.getProviderContext().getIssuer() + ProviderContextHolder.getProviderContext().getProviderSettings().getJwkSetEndpoint()));
                 } finally {
                     connection.close();

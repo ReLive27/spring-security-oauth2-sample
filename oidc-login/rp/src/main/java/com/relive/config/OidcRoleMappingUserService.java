@@ -30,7 +30,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- * Oidc 角色映射器
+ * Oidc role mapper
  *
  * @author: ReLive
  * @date: 2022/7/12 6:31 下午
@@ -46,7 +46,7 @@ public class OidcRoleMappingUserService implements OAuth2UserService<OidcUserReq
         defaultOAuth2UserService.setRequestEntityConverter(new Converter<OAuth2UserRequest, RequestEntity<?>>() {
             @Override
             public RequestEntity<?> convert(OAuth2UserRequest userRequest) {
-                //指定POST和GET请求方式token都存放在Header中
+                //Specifies that both POST and GET request tokens are stored in the Header.
                 ClientRegistration clientRegistration = userRequest.getClientRegistration();
                 HttpMethod httpMethod = AuthenticationMethod.FORM.equals(clientRegistration.getProviderDetails().getUserInfoEndpoint().getAuthenticationMethod()) ? HttpMethod.POST : HttpMethod.GET;
                 HttpHeaders headers = new HttpHeaders();

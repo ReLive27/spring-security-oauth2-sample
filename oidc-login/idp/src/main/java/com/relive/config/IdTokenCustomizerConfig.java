@@ -10,7 +10,7 @@ import org.springframework.security.oauth2.server.authorization.token.OAuth2Toke
 import java.util.stream.Collectors;
 
 /**
- * 自定义ID令牌
+ * Custom IdToken
  *
  * @author: ReLive
  * @date: 2022/6/24 4:08 下午
@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 public class IdTokenCustomizerConfig {
 
     /**
-     * IdToken 添加role claim
+     * IdToken add role claim
      *
      * @return
      */

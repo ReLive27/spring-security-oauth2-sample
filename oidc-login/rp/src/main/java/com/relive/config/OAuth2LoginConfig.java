@@ -9,6 +9,7 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.oauth2.client.JdbcOAuth2AuthorizedClientService;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserRequest;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
@@ -40,7 +41,7 @@ public class OAuth2LoginConfig {
     }
 
     /**
-     * OIDC 用户信息服务扩展，实现角色映射
+     * OIDC user information service extension to implement role mapping.
      *
      * @return
      */
@@ -50,7 +51,7 @@ public class OAuth2LoginConfig {
     }
 
     /**
-     * 定义JDBC 客户端注册存储库
+     * Define the JDBC client registration repository.
      *
      * @param jdbcTemplate
      * @return
@@ -61,7 +62,7 @@ public class OAuth2LoginConfig {
     }
 
     /**
-     * 负责{@link org.springframework.security.oauth2.client.OAuth2AuthorizedClient}在 Web 请求之间进行持久化
+     * Responsible for {@link OAuth2AuthorizedClient} persistence between web requests
      *
      * @param jdbcTemplate
      * @param clientRegistrationRepository
@@ -75,7 +76,7 @@ public class OAuth2LoginConfig {
     }
 
     /**
-     * OAuth2AuthorizedClientRepository 是一个容器类，用于在请求之间保存和持久化授权客户端
+     * OAuth2AuthorizedClientRepository is a container class for saving and persisting authorized clients between requests.
      *
      * @param authorizedClientService
      * @return
@@ -87,7 +88,7 @@ public class OAuth2LoginConfig {
     }
 
     /**
-     * 加载用户数据接口的JDBC实现
+     * JDBC implementation of loading user data interface.
      *
      * @return
      * @see org.springframework.security.authentication.dao.DaoAuthenticationProvider

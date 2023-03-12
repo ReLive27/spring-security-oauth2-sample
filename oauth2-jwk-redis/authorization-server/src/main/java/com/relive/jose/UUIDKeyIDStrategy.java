@@ -3,7 +3,7 @@ package com.relive.jose;
 import java.util.UUID;
 
 /**
- * 生成 {@link UUID} 的 {@link KeyIDStrategy}
+ * The {@link KeyIDStrategy} that generates the {@link UUID}.
  *
  * @author: ReLive
  * @date: 2022/8/23 13:12

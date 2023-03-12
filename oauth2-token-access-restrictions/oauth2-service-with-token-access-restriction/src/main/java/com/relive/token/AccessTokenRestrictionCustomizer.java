@@ -24,7 +24,7 @@ public class AccessTokenRestrictionCustomizer implements OAuth2TokenCustomizer<J
     }
 
     /**
-     * 通过{@link AccessTokenLimiter} 为OAuth2 客户端模式访问令牌添加访问限制
+     * Add access restrictions for OAuth2 client mode access tokens via {@link AccessTokenLimiter}
      *
      * @param context
      */

@@ -29,7 +29,7 @@ public class SecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests(authorizeRequests ->
-                        //便于测试，将权限开放
+                        //during the test period, open the permissions
                         authorizeRequests.anyRequest().permitAll()
                 )
                 .oauth2Client(withDefaults());
@@ -48,7 +48,6 @@ public class SecurityConfig {
     OAuth2AuthorizedClientManager authorizedClientManager(ClientRegistrationRepository clientRegistrationRepository,
                                                           OAuth2AuthorizedClientRepository authorizedClientRepository) {
 
-        //可以扩展其他模式
         OAuth2AuthorizedClientProvider authorizedClientProvider = OAuth2AuthorizedClientProviderBuilder
                 .builder()
                 .authorizationCode()

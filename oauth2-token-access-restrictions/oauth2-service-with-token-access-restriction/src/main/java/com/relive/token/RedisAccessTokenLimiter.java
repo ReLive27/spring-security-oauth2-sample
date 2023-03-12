@@ -49,8 +49,8 @@ public class RedisAccessTokenLimiter implements AccessTokenLimiter {
             return redisTemplate.execute(this.script, keys, accessTokenLimitTimeSeconds, accessTokenLimitRate);
         } catch (Exception e) {
             /*
-             * 我们不希望硬依赖 Redis 来允许访问。 确保设置
-             * 一个警报，知道发生了许多次。
+             * We don't want to hard rely on Redis to allow access.
+             * Make sure to set an alarm knowing it happened many times.
              */
             log.error("Error determining if user allowed from redis", e);
         }
@@ -58,8 +58,8 @@ public class RedisAccessTokenLimiter implements AccessTokenLimiter {
     }
 
     static List<String> getKeys(String id) {
-        // 在key周围使用 `{}` 以使用 Redis Key hash tag
-        // 这允许使用 redis 集群
+        // Use `{}` around the key to use the Redis Key hash tag.
+        // This allows to use redis cluster.
         String prefix = "access_token_rate_limiter.{" + id;
 
         String key = prefix + "}.client";

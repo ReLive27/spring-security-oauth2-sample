@@ -10,7 +10,7 @@ import org.springframework.security.oauth2.server.authorization.token.OAuth2Toke
 import java.util.stream.Collectors;
 
 /**
- * 自定义访问令牌,添加用户角色信息
+ * Customize the access token and add user role information
  *
  * @author: ReLive
  * @date: 2022/7/7 8:24 下午

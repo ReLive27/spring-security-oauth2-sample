@@ -18,7 +18,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 
 /**
- * 基于内存的 {@link JWKSet} 存储实现
+ * Memory-based {@link JWKSet} storage implementation.
  *
  * @author: ReLive
  * @date: 2022/8/22 21:36

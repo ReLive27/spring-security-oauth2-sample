@@ -65,15 +65,15 @@ public class AuthorizationServerConfig {
                 .redirectUri("http://127.0.0.1:8070/login/oauth2/code/messaging-client-authorization-code")
                 .scope("message.read")
                 .clientSettings(ClientSettings.builder()
-                        .requireAuthorizationConsent(true)//requireAuthorizationConsent：是否需要授权统同意
-                        .requireProofKey(false) //requireProofKey：是否仅支持PKCE
+                        .requireAuthorizationConsent(true)
+                        .requireProofKey(false)
                         .build())
                 .tokenSettings(TokenSettings.builder()
-                        .accessTokenFormat(OAuth2TokenFormat.SELF_CONTAINED) //自包含令牌，使用JWT格式
+                        .accessTokenFormat(OAuth2TokenFormat.SELF_CONTAINED) //Self-contained token, using JWT format
                         .idTokenSignatureAlgorithm(SignatureAlgorithm.RS256)
                         .accessTokenTimeToLive(Duration.ofSeconds(15 * 60))
                         .refreshTokenTimeToLive(Duration.ofSeconds(30 * 60))
-                        .reuseRefreshTokens(false) //是否重用refreshToken
+                        .reuseRefreshTokens(false)
                         .build())
                 .build();
 
@@ -90,7 +90,7 @@ public class AuthorizationServerConfig {
 
 
     /**
-     * 基于Consul Config的密钥轮换
+     * Key rotation based on Consul Config
      *
      * @param consulClient
      * @return
@@ -101,7 +101,7 @@ public class AuthorizationServerConfig {
     }
 
     /**
-     * 设置kid，通过 {@link JWKSource} 获取最大值kid
+     * Set kid and get the maximum kid through {@link JWKSource}
      *
      * @param jwkSource
      * @return

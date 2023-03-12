@@ -35,11 +35,11 @@ public class RedisConfig {
         om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
         jackson2JsonRedisSerializer.setObjectMapper(om);
         template.setConnectionFactory(factory);
-        //key序列化方式
+        //key serialization method
         template.setKeySerializer(redisSerializer);
-        //value序列化
+        //value serialization method
         template.setValueSerializer(jackson2JsonRedisSerializer);
-        //value hashmap序列化
+        //value hashmap serialization method
         template.setHashValueSerializer(jackson2JsonRedisSerializer);
         return template;
     }
@@ -48,12 +48,11 @@ public class RedisConfig {
     public CacheManager cacheManager(RedisConnectionFactory factory) {
         RedisSerializer<String> redisSerializer = new StringRedisSerializer();
         Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
-        //解决查询缓存转换异常的问题
         ObjectMapper om = new ObjectMapper();
         om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
         om.activateDefaultTyping(LaissezFaireSubTypeValidator.instance, ObjectMapper.DefaultTyping.NON_FINAL);
         jackson2JsonRedisSerializer.setObjectMapper(om);
-        // 配置序列化（解决乱码的问题）,过期时间5分钟
+        // Configuration serialization (to solve the problem of garbled characters), the expiration time is 5 minutes
         RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig()
                 .entryTtl(Duration.ofSeconds(5 * 60))
                 .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(redisSerializer))

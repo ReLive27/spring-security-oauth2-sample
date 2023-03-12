@@ -39,7 +39,7 @@ public class SecurityConfig {
 
 
     /**
-     * 带有Redis缓存的 {@link JwtDecoder}
+     * {@link JwtDecoder} with Redis cache
      *
      * @param properties
      * @param restOperations
@@ -55,7 +55,7 @@ public class SecurityConfig {
                     algorithms.add(RS256);
                 }).build();
 
-        //自定义时间戳验证
+        //custom timestamp validation
         OAuth2TokenValidator<Jwt> withClockSkew = new DelegatingOAuth2TokenValidator<>(
                 new JwtTimestampValidator(Duration.ofSeconds(60)));
 
@@ -65,9 +65,9 @@ public class SecurityConfig {
     }
 
     /**
-     * RestOperations 设置连接超时60s,读取超时60s
+     * RestOperations set connection timeout 60s, read timeout 60s
      * <p>
-     * 在某些情况下你可以设置@LoadBalanced
+     * In some cases you can set @LoadBalanced
      *
      * @param builder
      * @return
