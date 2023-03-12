@@ -9,8 +9,8 @@
     - **redirectUri**: http://127.0.0.1:8070/login/oauth2/code/messaging-gateway-oidc
     - **scope**: openid profile email read
 
-3. The default authentication method of `auth-server` uses Form authentication, and the username and password are *
-   admin/password*.
+3. `auth-server` uses Form authentication by default, and the username and password are
+   *admin/password*.
 
 4. At the beginning of `auth-server` startup, the MySQL database username and password need to be modified, and the
    database table initialization uses the [Flyway](https://flywaydb.org/) database version control component.
@@ -23,8 +23,7 @@
 ## Involving Database Table Structure:
 
 The `auth-server` database table structure is provided below, and related SQL statements are obtained
-from [here](https://github.com/ReLive27/spring-security-oauth2-sample/tree/main/gateway-oauth2-login/auth-server/src/main/resources/db/migration)
-.
+from [here](https://github.com/ReLive27/spring-security-oauth2-sample/tree/main/gateway-oauth2-login/auth-server/src/main/resources/db/migration).
 
 ![](./images/drawSQL-gateway-oauth2.png)
 
