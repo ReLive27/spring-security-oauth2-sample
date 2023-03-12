@@ -15,7 +15,7 @@
    with [Spring Security](https://docs.spring.io/spring-security/reference/servlet/oauth2/login/index.html). It includes
    Form authentication and OIDC authentication supported by itself.
 
-5. `rp`uses the Form form to log in to the user (admin/password) and assigns the ROLE_SYSTEM role. Users with this role
+5. `rp`uses the *Form Authentication* in to the user (admin/password) and assigns the ROLE_SYSTEM role. Users with this role
    log in successfully and jump to the home page to see the following:
 
    **Article List**
@@ -24,8 +24,8 @@
     - Python
     - C++
 
-6. `rp` will also support OAuth2 login. Use OidcRoleMappingUserService role mapping to map the `idp` service **
-   ROLE_ADMIN** role to the rp service **ROLE_OPERATION** role. Users with **ROLE_OPERATION** will see the following
+6. `rp` will also support OIDC login. Use OidcRoleMappingUserService role mapping to map the `idp` service
+   **ROLE_ADMIN** role to the rp service **ROLE_OPERATION** role. Users with **ROLE_OPERATION** will see the following
    content on the homepage after successful login:
 
    **Article List**
