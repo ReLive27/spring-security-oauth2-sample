@@ -22,8 +22,8 @@
    - C++
 
 6. `oauth2-login-client` will also support OAuth2 login. Make GrantedAuthoritiesMapper map the `authorizationserver`
-   authorization service role **ROLE_ADMIN** to the client service **ROLE_OPERATION** role. Users with the **
-   ROLE_OPERATION** role will see the following content on the page after successful login:
+   authorization service role **ROLE_ADMIN** to the client service **ROLE_OPERATION** role. Users with the 
+   **ROLE_OPERATION** role will see the following content on the page after successful login:
 
    **Article List**
    
