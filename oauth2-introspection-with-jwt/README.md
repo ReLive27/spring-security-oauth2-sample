@@ -1,7 +1,6 @@
 ## Relevant Information:
 
-1. `oauth2-server-introspction-with-jwt` is an authorization server built with *
-   spring-security-oauth2-authorization-server*.
+1. `oauth2-server-introspction-with-jwt` is an authorization server built with Spring Authorization Server.
 2. `oauth2-server-introspction-with-jwt` registered an OAuth2.0 client:
     - clientId: relive-client
     - clientSecret: relive-client
