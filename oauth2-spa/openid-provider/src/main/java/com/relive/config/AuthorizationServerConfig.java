@@ -50,6 +50,7 @@ import java.util.function.Function;
  */
 @Configuration(proxyBeanMethods = false)
 public class AuthorizationServerConfig {
+    private static final String CUSTOM_CONSENT_PAGE_URI = "/oauth2/consent";
 
     @Bean
     @Order(Ordered.HIGHEST_PRECEDENCE)
@@ -68,6 +69,10 @@ public class AuthorizationServerConfig {
         authorizationServerConfigurer.oidc((oidc) -> {
             oidc.userInfoEndpoint((userInfo) -> userInfo.userInfoMapper(userInfoMapper));
         });
+
+        //define authorization consent page
+        authorizationServerConfigurer.authorizationEndpoint(authorizationEndpoint ->
+                authorizationEndpoint.consentPage(CUSTOM_CONSENT_PAGE_URI));
 
         RequestMatcher endpointsMatcher = authorizationServerConfigurer.getEndpointsMatcher();
 
