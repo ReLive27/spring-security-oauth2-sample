@@ -5,12 +5,17 @@ import org.springframework.security.oauth2.core.endpoint.OAuth2ParameterNames;
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClient;
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClientRepository;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
 import java.security.Principal;
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * @author: ReLive
@@ -18,6 +23,7 @@ import java.util.*;
  */
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin
 public class AuthorizationConsentController {
     private final RegisteredClientRepository registeredClientRepository;
 
@@ -43,6 +49,9 @@ public class AuthorizationConsentController {
         data.put("principalName", principal.getName());
         data.put("redirectUri", registeredClient.getRedirectUris().iterator().next());
 
-        return Collections.singletonMap("data", data);
+        Map<String, Object> result = new HashMap<>();
+        result.put("code", HttpServletResponse.SC_OK);
+        result.put("data", data);
+        return result;
     }
 }

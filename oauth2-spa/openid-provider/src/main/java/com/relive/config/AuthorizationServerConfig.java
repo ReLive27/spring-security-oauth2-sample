@@ -50,7 +50,7 @@ import java.util.function.Function;
  */
 @Configuration(proxyBeanMethods = false)
 public class AuthorizationServerConfig {
-    private static final String CUSTOM_CONSENT_PAGE_URI = "/oauth2/consent";
+    private static final String CUSTOM_CONSENT_PAGE_URI = "http://localhost:9528/dev-api/oauth2/consent";
 
     @Bean
     @Order(Ordered.HIGHEST_PRECEDENCE)
