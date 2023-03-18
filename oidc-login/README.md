@@ -35,7 +35,7 @@
 7. The `rp` service database table is created using the [Flyway](https://flywaydb.org/) database version control
    component, just change the database username and password to start the program.
 
-8. After the test starts the service, visit [http://127.0.0.1:8070/login](http://127.0.0.1:8070/login).
+8. After the test starts the service, visit [http://127.0.0.1:8070/home](http://127.0.0.1:8070/home).
 
 ## Involving database table structure
 
