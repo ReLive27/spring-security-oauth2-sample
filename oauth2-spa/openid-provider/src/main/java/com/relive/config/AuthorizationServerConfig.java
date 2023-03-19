@@ -5,6 +5,7 @@ import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
 import com.relive.authentication.Http401UnauthorizedEntryPoint;
+import com.relive.authentication.OAuth2AuthorizationAuthenticationSuccessHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
@@ -50,7 +51,7 @@ import java.util.function.Function;
  */
 @Configuration(proxyBeanMethods = false)
 public class AuthorizationServerConfig {
-    private static final String CUSTOM_CONSENT_PAGE_URI = "http://localhost:9528/dev-api/oauth2/consent";
+    private static final String CUSTOM_CONSENT_PAGE_URI = "http://127.0.0.1:9528/dev-api/oauth2/consent";
 
     @Bean
     @Order(Ordered.HIGHEST_PRECEDENCE)
@@ -72,7 +73,8 @@ public class AuthorizationServerConfig {
 
         //define authorization consent page
         authorizationServerConfigurer.authorizationEndpoint(authorizationEndpoint ->
-                authorizationEndpoint.consentPage(CUSTOM_CONSENT_PAGE_URI));
+                authorizationEndpoint.consentPage(CUSTOM_CONSENT_PAGE_URI)
+                        .authorizationResponseHandler(new OAuth2AuthorizationAuthenticationSuccessHandler()));
 
         RequestMatcher endpointsMatcher = authorizationServerConfigurer.getEndpointsMatcher();
 
