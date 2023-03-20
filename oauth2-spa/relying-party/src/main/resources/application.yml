@@ -19,9 +19,9 @@ spring:
             client-name: messaging-client-oidc
         provider:
           client-provider:
-            authorization-uri: http://127.0.0.1:9528/oauth2/authorize
-            token-uri: http://127.0.0.1:8080/oauth2/token
-            user-info-uri: http://127.0.0.1:8080/userinfo
-            jwk-set-uri: http://127.0.0.1:8080/oauth2/jwks
+            authorization-uri: http://localhost:9528/oauth2/authorize
+            token-uri: http://localhost:9528/dev-api/oauth2/token
+            user-info-uri: http://localhost:9528/dev-api/userinfo
+            jwk-set-uri: http://localhost:9528/dev-api/oauth2/jwks
             user-info-authentication-method: header
             user-name-attribute: sub
