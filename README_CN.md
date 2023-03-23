@@ -11,7 +11,7 @@
 这个项目是一个 [Spring Authorization Server](https://spring.io/projects/spring-authorization-server) 示例教程的集合。它建立在 Spring
 Security 5 之上， 这里的模块涵盖了 Spring Authorization Server 的许多方面。
 
->💡注意：喜欢的话别忘了给项目一个star🌟哦！
+> 💡注意：喜欢的话别忘了给项目一个star🌟哦！
 
 ## 相关文章:
 
@@ -28,12 +28,8 @@ Security 5 之上， 这里的模块涵盖了 Spring Authorization Server 的许
 - [Spring Security OAuth2 Opaque 令牌的简单使用指南](https://relive27.github.io/blog/oauth2-opaque-token)
 - [Spring Security OAuth2 内省协议与 JWT 结合使用指南](https://relive27.github.io/blog/oauth2-introspection-with-jwt)
 - [Spring Security OAuth 2.0授权服务器结合Redis实现获取accessToken速率限制](https://relive27.github.io/blog/oauth2-token-access-restrictions)
-- [(待更新) 使用 Vue.js 构建 OAuth2.0 授权同意页面]()
+- [使用 Vue.js 构建 OAuth2.0 授权同意页面]()
 - ...
-
-  [comment]: <> (- [（待更新）Spring Security OAuth2和动态客户端注册]&#40;&#41;)
-
-  [comment]: <> (- [（待更新）Spring Security 实现OAuth2.0协议核心接口指南]&#40;&#41;)
 
 ## Spring 框架版本
 
