@@ -23,7 +23,7 @@
         <module>oauth2-opaque-token</module>
         <module>oauth2-token-access-restrictions</module>
         <module>oauth2-introspection-with-jwt</module>
-        <module>oauth2-spa</module>
+        <module>oauth2-custom-consent-page-with-vue</module>
     </modules>
 
     <parent>

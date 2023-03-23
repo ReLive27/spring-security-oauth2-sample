@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>oauth2-spa</artifactId>
+    <artifactId>oauth2-custom-consent-page-with-vue</artifactId>
     <packaging>pom</packaging>
     <modules>
         <module>openid-provider</module>
