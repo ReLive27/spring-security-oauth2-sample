@@ -32,7 +32,7 @@ Server.
 - [Building an OAuth2 Authorization Consent Page with Vue.js]()
 - ...
 
-## Spring framework version
+## Spring Framework Version
 
 | Spring Boot   | Spring Cloud  | Spring Authorization Server  |  Spring Security  |
 | ---------------- | ----------------- |----------------- |  -------- |
