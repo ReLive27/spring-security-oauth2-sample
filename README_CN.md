@@ -35,7 +35,7 @@ Security 5 之上， 这里的模块涵盖了 Spring Authorization Server 的许
 
 | Spring Boot 版本  | Spring Cloud 版本  | Spring Authorization Server 版本 | Spring Security 版本  |
 | ---------------- | ----------------- |----------------- | --------- | 
-| 2.6.7            | 2021.0.2          | 0.3.1            |    5.6.3       |
+| 2.7.9           | 2021.0.6          | 0.4.1            |    5.7.7       |
 
 ## 构建项目
 

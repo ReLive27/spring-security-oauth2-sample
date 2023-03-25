@@ -36,7 +36,7 @@ Server.
 
 | Spring Boot   | Spring Cloud  | Spring Authorization Server  |  Spring Security  |
 | ---------------- | ----------------- |----------------- |  -------- |
-| 2.6.7            | 2021.0.2          | 0.3.1            |   5.6.3  |
+| 2.7.9           | 2021.0.6        | 0.4.1            |   5.7.7  |
 
 ## Building from Source
 
