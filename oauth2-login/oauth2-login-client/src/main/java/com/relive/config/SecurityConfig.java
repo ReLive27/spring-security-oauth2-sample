@@ -67,9 +67,8 @@ public class SecurityConfig {
 
     @Bean
     public UserDetailsService users() {
-        UserDetails user = User.withDefaultPasswordEncoder()
-                .username("admin")
-                .password("password")
+        UserDetails user = User.withUsername("admin")
+                .password("{noop}password")
                 .roles("SYSTEM")
                 .build();
         return new InMemoryUserDetailsManager(user);

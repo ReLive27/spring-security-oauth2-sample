@@ -1,6 +1,6 @@
 package com.relive.service;
 
-import com.nimbusds.jose.shaded.json.JSONObject;
+import com.nimbusds.jose.shaded.gson.JsonObject;
 import org.springframework.security.oauth2.core.oidc.OidcScopes;
 import org.springframework.security.oauth2.core.oidc.OidcUserInfo;
 import org.springframework.stereotype.Service;
@@ -8,7 +8,6 @@ import org.springframework.util.CollectionUtils;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Collections;
 import java.util.Set;
 
 /**
@@ -43,9 +42,11 @@ public class OidcUserInfoService {
                 builder.email(name + "@163.com").emailVerified(true);
             }
             if (scopes.contains(OidcScopes.ADDRESS)) {
-                JSONObject address = new JSONObject();
-                address.put("address", Collections.singletonMap("formatted", "Champ de Mars\n5 Av. Anatole France\n75007 Paris\nFrance"));
-                builder.address(address.toJSONString());
+                JsonObject formatted = new JsonObject();
+                formatted.addProperty("formatted", "Champ de Mars\n5 Av. Anatole France\n75007 Paris\nFrance");
+                JsonObject address = new JsonObject();
+                address.add("address", formatted);
+                builder.address(address.toString());
             }
             if (scopes.contains(OidcScopes.PHONE)) {
                 builder.phoneNumber("13728903134").phoneNumberVerified("false");

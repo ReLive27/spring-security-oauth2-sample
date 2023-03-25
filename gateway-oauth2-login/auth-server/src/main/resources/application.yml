@@ -11,6 +11,6 @@ spring:
     baseline-on-migrate: true
     baseline-description: <<Flyway Baseline>>
     enabled: true
-    check-location: true
     locations: classpath:db/migration
     validate-on-migrate: true
+    fail-on-missing-locations: true

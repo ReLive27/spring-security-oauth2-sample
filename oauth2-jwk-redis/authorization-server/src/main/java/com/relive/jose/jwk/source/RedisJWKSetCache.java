@@ -12,7 +12,7 @@ import org.springframework.data.redis.connection.RedisZSetCommands.Tuple;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
-import org.springframework.security.oauth2.server.authorization.context.ProviderContextHolder;
+import org.springframework.security.oauth2.server.authorization.context.AuthorizationServerContextHolder;
 import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 import org.springframework.util.CollectionUtils;
@@ -99,7 +99,7 @@ public class RedisJWKSetCache implements JWKSetCache {
 
                     //TODO Considering that such responsibility is the authorization service key cache, clearing the JWKS cache in resource service Redis may not be suitable here
                     //Clear the JWKS cache in the resource service Redis, please ensure that the resource service redis key value is consistent with this.
-                    connection.del(this.redisSerializeKey.serialize("jwks::" + ProviderContextHolder.getProviderContext().getIssuer() + ProviderContextHolder.getProviderContext().getProviderSettings().getJwkSetEndpoint()));
+                    connection.del(this.redisSerializeKey.serialize("jwks::" + AuthorizationServerContextHolder.getContext().getIssuer() + AuthorizationServerContextHolder.getContext().getAuthorizationServerSettings().getJwkSetEndpoint()));
                 } finally {
                     connection.close();
                 }
