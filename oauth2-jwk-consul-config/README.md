@@ -6,6 +6,9 @@ website. Consul KV Store provides a hierarchical KV store that can store distrib
 Store to enable the resource server to discover the public key information of the authorization server. After the
 authorization server rotates the key, the public key will be updated to KV Store.
 
+Let's test it out by visiting [http://127.0.0.1:8070/client/article](http://127.0.0.1:8070/client/article) in your browser!
+
+
 ## Relevant Articles:
 
 - [Using Spring Security OAuth2 Authorization Service JWK with Consul Configuration Center](https://relive27.github.io/blog/oauth2-jwk-consul-config)
