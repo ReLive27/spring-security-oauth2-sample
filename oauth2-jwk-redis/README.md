@@ -25,6 +25,9 @@ strategy to provide support:
     }
 ```
 
+Let's test it out by visiting [http://127.0.0.1:8070/client/article](http://127.0.0.1:8070/client/article) in your
+browser!
+
 ## Relevant Articles:
 
 - [Spring Security OAuth2 implements simple key rotation and configures resource server JWK cache](https://relive27.github.io/blog/jwk-cache-and-rotate-key)
