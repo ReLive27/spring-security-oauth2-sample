@@ -2,7 +2,7 @@ package com.relive;
 
 import com.relive.config.AuthorizationServerConfig;
 import com.relive.config.RedisConfig;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
