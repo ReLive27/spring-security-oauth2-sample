@@ -30,7 +30,7 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests((authorize) -> authorize
-                .antMatchers("/resource/article").hasAuthority("SCOPE_message.read")
+                .requestMatchers("/resource/article").hasAuthority("SCOPE_message.read")
                 .anyRequest().authenticated())
                 .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt);
 

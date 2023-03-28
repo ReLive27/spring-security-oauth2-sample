@@ -7,7 +7,7 @@
     <groupId>com.relive</groupId>
     <artifactId>spring-oauth2-sample</artifactId>
     <packaging>pom</packaging>
-    <version>0.4.1-SNAPSHOT</version>
+    <version>1.0.1-SNAPSHOT</version>
     <modules>
         <module>oauth2-custom-consent-authorizationserver</module>
         <module>gateway-oauth2-login</module>
@@ -29,12 +29,12 @@
     <parent>
         <artifactId>spring-boot-starter-parent</artifactId>
         <groupId>org.springframework.boot</groupId>
-        <version>2.7.9</version>
+        <version>3.0.5</version>
     </parent>
 
     <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
     </properties>
 
     <dependencyManagement>
@@ -42,7 +42,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>2021.0.6</version>
+                <version>2022.0.1</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -50,7 +50,7 @@
             <dependency>
                 <groupId>org.springframework.security</groupId>
                 <artifactId>spring-security-oauth2-authorization-server</artifactId>
-                <version>0.4.1</version>
+                <version>1.0.1</version>
             </dependency>
 
             <dependency>
@@ -67,8 +67,8 @@
 
             <dependency>
                 <groupId>org.flywaydb</groupId>
-                <artifactId>flyway-core</artifactId>
-                <version>5.2.4</version>
+                <artifactId>flyway-mysql</artifactId>
+                <version>9.16.1</version>
             </dependency>
 
             <dependency>

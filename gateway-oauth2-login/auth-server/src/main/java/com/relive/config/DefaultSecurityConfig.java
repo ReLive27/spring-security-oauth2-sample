@@ -87,6 +87,7 @@ public class DefaultSecurityConfig {
     @Bean
     ClientRegistrationRepository clientRegistrationRepository(JdbcTemplate jdbcTemplate) {
         JdbcClientRegistrationRepository jdbcClientRegistrationRepository = new JdbcClientRegistrationRepository(jdbcTemplate);
+        //Please apply for the correct clientId and clientSecret on github
         ClientRegistration clientRegistration = ClientRegistration.withRegistrationId("github")
                 .clientId("123456")
                 .clientSecret("123456")

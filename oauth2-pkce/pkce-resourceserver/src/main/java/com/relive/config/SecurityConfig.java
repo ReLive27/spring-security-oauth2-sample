@@ -15,14 +15,11 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain defaultSecurityFilter(HttpSecurity http) throws Exception {
-        http.requestMatchers()
-                .antMatchers("/resource/article")
-                .and()
-                .authorizeHttpRequests((authorize) -> authorize
-                        .antMatchers("/resource/article")
-                        .hasAuthority("SCOPE_message.read")
-                        .mvcMatchers()
-                )
+        http.authorizeHttpRequests((authorize) -> authorize
+                .requestMatchers("/resource/article")
+                .hasAuthority("SCOPE_message.read")
+                .anyRequest().authenticated()
+        )
                 .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt);
         return http.build();
     }

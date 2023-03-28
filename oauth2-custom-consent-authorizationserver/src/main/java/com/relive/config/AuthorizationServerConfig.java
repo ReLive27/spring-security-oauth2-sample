@@ -50,8 +50,8 @@ public class AuthorizationServerConfig {
         RequestMatcher endpointsMatcher = authorizationServerConfigurer
                 .getEndpointsMatcher();
 
-        http.requestMatcher(endpointsMatcher)
-                .authorizeRequests(authorizeRequests ->
+        http.securityMatcher(endpointsMatcher)
+                .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests.anyRequest().authenticated()
                 )
                 .csrf(csrf -> csrf.ignoringRequestMatchers(endpointsMatcher))

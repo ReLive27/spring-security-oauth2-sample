@@ -14,13 +14,8 @@ public class ResourceServerConfig {
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.requestMatchers()
-                .antMatchers("/resource/test/**")
-                .and()
-                .authorizeRequests()
-                .mvcMatchers("/resource/test/**")
-                .access("hasAuthority('SCOPE_message.read')")
-                .and()
+        http.authorizeHttpRequests(authorize -> authorize
+                .requestMatchers("/resource/test/**").hasAuthority("SCOPE_message.read"))
                 .oauth2ResourceServer()
                 .jwt();
         return http.build();

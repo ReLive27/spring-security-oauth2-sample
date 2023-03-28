@@ -47,7 +47,7 @@ public class OidcUserInfoService {
                 builder.address(address.toString());
             }
             if (scopes.contains(OidcScopes.PHONE)) {
-                builder.phoneNumber("13728903134").phoneNumberVerified("false");
+                builder.phoneNumber("13728903134").phoneNumberVerified(false);
             }
         }
         return builder.build();

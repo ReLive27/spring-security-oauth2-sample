@@ -45,11 +45,11 @@ spring:
     redis:
       flush-mode: on_save # session refresh mode
       namespace: gateway:session # namespace for keys used to store sessions
-  redis:
-    host: localhost
-    port: 6379
-    password: 123456
-
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password: 123456
 logging:
   level:
     root: INFO

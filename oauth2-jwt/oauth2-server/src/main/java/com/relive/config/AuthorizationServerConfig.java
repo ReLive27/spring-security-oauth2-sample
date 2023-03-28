@@ -49,7 +49,7 @@ public class AuthorizationServerConfig {
 
     @Bean
     public RegisteredClientRepository registeredClientRepository(JdbcTemplate jdbcTemplate) {
-        RegisteredClient registeredClient = RegisteredClient.withId(UUID.randomUUID().toString())
+        RegisteredClient registeredClient = RegisteredClient.withId("1")
                 .clientId("relive-client")
                 .clientSecret("{noop}relive-client")
                 .clientAuthenticationMethods(s -> {

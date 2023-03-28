@@ -36,7 +36,7 @@ Server.
 
 | Spring Boot   | Spring Cloud  | Spring Authorization Server  |  Spring Security  |
 | ---------------- | ----------------- |----------------- |  -------- |
-| 2.7.9           | 2021.0.6        | 0.4.1            |   5.7.7  |
+| 3.0.5           | 2022.0.1       | 1.0.1            |   6.0.2  |
 
 ## Building from Source
 
@@ -45,9 +45,9 @@ spring-oauth2-sample uses a [Maven](https://maven.apache.org/) based build syste
 ### Prerequisites
 
 [Git](https://help.github.com/set-up-git-redirect) and
-the [JDK8 build](https://www.oracle.com/technetwork/java/javase/downloads).
+the [JDK17 build](https://www.oracle.com/technetwork/java/javase/downloads).
 
-Be sure that your `JAVA_HOME` environment variable points to the `jdk1.8.0` folder extracted from the JDK download.
+Be sure that your `JAVA_HOME` environment variable points to the `jdk-17.0.5` folder extracted from the JDK download.
 
 ### Check out sources
 

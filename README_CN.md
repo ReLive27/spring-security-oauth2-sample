@@ -35,7 +35,7 @@ Security 5 之上， 这里的模块涵盖了 Spring Authorization Server 的许
 
 | Spring Boot 版本  | Spring Cloud 版本  | Spring Authorization Server 版本 | Spring Security 版本  |
 | ---------------- | ----------------- |----------------- | --------- | 
-| 2.7.9           | 2021.0.6          | 0.4.1            |    5.7.7       |
+| 3.0.5          | 2022.0.1         | 1.0.1            |    6.0.2      |
 
 ## 构建项目
 
@@ -43,10 +43,10 @@ spring-oauth2-sample 使用基于 [Maven](https://maven.apache.org/) 的构建�
 
 ### 先决条件
 
-[Git](https://help.github.com/set-up-git-redirect) 和 [JDK8](https://www.oracle.com/technetwork/java/javase/downloads)
+[Git](https://help.github.com/set-up-git-redirect) 和 [JDK17](https://www.oracle.com/technetwork/java/javase/downloads)
 构建。
 
-确保您的`JAVA_HOME`环境变量指向 `jdk1.8.0` 从 JDK 下载中提取的文件夹。
+确保您的 `JAVA_HOME` 环境变量指向 `jdk-17.0.5` 从 JDK 下载中提取的文件夹。
 
 ### 检查来源
 

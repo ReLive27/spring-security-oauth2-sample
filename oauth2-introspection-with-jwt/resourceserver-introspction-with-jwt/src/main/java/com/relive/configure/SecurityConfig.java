@@ -16,7 +16,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authorizeRequests -> authorizeRequests
-                        .mvcMatchers("/resource/article").hasAuthority("SCOPE_message.read")
+                        .requestMatchers("/resource/article").hasAuthority("SCOPE_message.read")
                         .anyRequest().authenticated()
                 )
                 .apply(new OAuth2IntrospectiveResourceServerAuthorizationConfigurer())

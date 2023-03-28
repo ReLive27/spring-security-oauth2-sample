@@ -3,12 +3,12 @@ package com.relive.jose.jwk.source;
 import com.nimbusds.jose.jwk.JWK;
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.source.JWKSetCache;
-import org.springframework.data.redis.connection.DefaultTuple;
+import org.springframework.data.domain.Range;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.RedisZSetCommands.Limit;
-import org.springframework.data.redis.connection.RedisZSetCommands.Range;
-import org.springframework.data.redis.connection.RedisZSetCommands.Tuple;
+import org.springframework.data.redis.connection.zset.DefaultTuple;
+import org.springframework.data.redis.connection.zset.Tuple;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
@@ -77,7 +77,7 @@ public class RedisJWKSetCache implements JWKSetCache {
 
                 if (this.lifespan > -1) {
                     long max = new Date().getTime() - TimeUnit.MILLISECONDS.convert(this.lifespan, this.timeUnit);
-                    connection.zRemRangeByScore(key, Range.range().lte(max));
+                    connection.zRemRangeByScore(key, Range.leftOpen(0, max));
                 }
 
                 List<JWK> keys = jwkSet.getKeys();
@@ -114,7 +114,7 @@ public class RedisJWKSetCache implements JWKSetCache {
         try {
             Long efficientCount = Optional.ofNullable(connection.zCard(key)).orElse(0L);
             if (efficientCount > 0) {
-                Set<byte[]> jwkBytes = connection.zRevRangeByScore(key, Range.range());
+                Set<byte[]> jwkBytes = connection.zRevRangeByScore(key, Range.unbounded());
                 List<JWK> jwks = jwkBytes.stream().map(this::deserialize).map(this::parse).collect(Collectors.toList());
                 return new JWKSet(jwks);
             }
@@ -139,7 +139,7 @@ public class RedisJWKSetCache implements JWKSetCache {
         byte[] key = this.serializeKey("jwks");
         try {
             Long efficientCount = Optional.ofNullable(connection.zCard(key)).orElse(0L);
-            Set<Tuple> maximumScoreTuple = connection.zRevRangeByScoreWithScores(key, Range.range(), Limit.limit().count(1));
+            Set<Tuple> maximumScoreTuple = connection.zRevRangeByScoreWithScores(key, Range.unbounded(), Limit.limit().count(1));
 
             long lastRefreshTime = 0L;
             if (!CollectionUtils.isEmpty(maximumScoreTuple)) {

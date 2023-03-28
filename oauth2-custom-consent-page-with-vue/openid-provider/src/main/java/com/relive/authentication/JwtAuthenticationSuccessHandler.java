@@ -2,6 +2,9 @@ package com.relive.authentication;
 
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.http.server.ServletServerHttpResponse;
@@ -11,9 +14,6 @@ import org.springframework.security.oauth2.jwt.*;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.util.Assert;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;

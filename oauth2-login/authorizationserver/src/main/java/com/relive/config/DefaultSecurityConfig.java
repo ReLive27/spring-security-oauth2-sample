@@ -24,13 +24,9 @@ public class DefaultSecurityConfig {
 
     @Bean
     public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/userInfo")
-                .access("hasAnyAuthority('SCOPE_profile')")
-                .mvcMatchers("/userInfo")
-                .access("hasAuthority('SCOPE_profile')")
-                .anyRequest().authenticated()
-                .and()
+        http.authorizeHttpRequests(authorize -> authorize
+                .requestMatchers("/userInfo").hasAuthority("SCOPE_profile")
+                .anyRequest().authenticated())
                 .formLogin(Customizer.withDefaults())
                 .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt);
         return http.build();
