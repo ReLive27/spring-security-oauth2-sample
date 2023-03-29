@@ -31,11 +31,13 @@ Security 5 之上， 这里的模块涵盖了 Spring Authorization Server 的许
 - [使用 Vue.js 构建 OAuth2.0 授权同意页面]()
 - ...
 
-## Spring 框架版本
+## 适用版本说明
 
-| Spring Boot 版本  | Spring Cloud 版本  | Spring Authorization Server 版本 | Spring Security 版本  |
-| ---------------- | ----------------- |----------------- | --------- | 
-| 3.0.5          | 2022.0.1         | 1.0.1            |    6.0.2      |
+| Project Branch  | Spring Security  | Spring Authorization Server  |  
+| -----  |----------------- |  -------  |
+| 1.0.1  |  6.0.2  |  1.0.1    |
+| 0.4.1  |  5.7.7  |    0.4.1  |
+| 0.3.1  | 5.6.3   |  0.3.1    |
 
 ## 构建项目
 

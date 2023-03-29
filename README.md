@@ -32,11 +32,13 @@ Server.
 - [Building an OAuth2 Authorization Consent Page with Vue.js]()
 - ...
 
-## Spring Framework Version
+## Description of applicable version
 
-| Spring Boot   | Spring Cloud  | Spring Authorization Server  |  Spring Security  |
-| ---------------- | ----------------- |----------------- |  -------- |
-| 3.0.5           | 2022.0.1       | 1.0.1            |   6.0.2  |
+| Project Branch  | Spring Security  | Spring Authorization Server  |  
+| -----  |----------------- |  -------  |
+| 1.0.1  |  6.0.2  |  1.0.1    |
+| 0.4.1  |  5.7.7  |    0.4.1  |
+| 0.3.1  | 5.6.3   |  0.3.1    |
 
 ## Building from Source
 
