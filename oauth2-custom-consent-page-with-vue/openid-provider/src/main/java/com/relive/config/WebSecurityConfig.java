@@ -38,7 +38,7 @@ public class WebSecurityConfig {
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests(authorizeRequests ->
+                .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests.anyRequest().authenticated()
                 )
                 .formLogin().successHandler(new JwtAuthenticationSuccessHandler(jwkSource)).failureHandler(new AuthenticationEntryPointFailureHandler(new Http401UnauthorizedEntryPoint()))
