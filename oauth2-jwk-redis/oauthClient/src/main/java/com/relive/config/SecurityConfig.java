@@ -27,7 +27,7 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests(authorizeRequests ->
+                .authorizeHttpRequests(authorizeRequests ->
                         //during the test period, open the permissions
                         authorizeRequests.anyRequest().permitAll()
                 )

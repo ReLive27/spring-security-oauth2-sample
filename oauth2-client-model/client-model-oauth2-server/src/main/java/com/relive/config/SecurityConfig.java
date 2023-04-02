@@ -22,7 +22,7 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests(authorizeRequests ->
+                .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests.anyRequest().authenticated()
                 )
                 .formLogin(withDefaults());
