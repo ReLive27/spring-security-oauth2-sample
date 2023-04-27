@@ -28,10 +28,10 @@ spring:
       config:
         enabled: true
         format: YAML
-        prefix: config
         name: apps
         data-key: data
         profileSeparator: "::"
+        prefixes: config
 
   security:
     oauth2:

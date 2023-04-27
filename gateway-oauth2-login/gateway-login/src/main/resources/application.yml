@@ -41,7 +41,6 @@ spring:
             user-name-attribute: sub
 
   session:
-    store-type: redis # session storage type
     redis:
       flush-mode: on_save # session refresh mode
       namespace: gateway:session # namespace for keys used to store sessions
