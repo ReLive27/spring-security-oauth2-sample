@@ -70,7 +70,7 @@ public class AuthorizationServerConfig {
         return http.securityMatcher(endpointsMatcher).authorizeHttpRequests((authorizeRequests) ->
                 authorizeRequests.anyRequest().authenticated()
         ).csrf((csrf) -> {
-            csrf.ignoringRequestMatchers(new RequestMatcher[]{endpointsMatcher});
+            csrf.ignoringRequestMatchers(endpointsMatcher);
         }).apply(authorizationServerConfigurer)
                 .and()
                 .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)

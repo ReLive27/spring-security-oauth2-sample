@@ -32,7 +32,7 @@ import org.springframework.security.oauth2.server.authorization.settings.OAuth2T
 import org.springframework.security.oauth2.server.authorization.settings.TokenSettings;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationProvider;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
-import org.springframework.security.oauth2.server.resource.web.BearerTokenAuthenticationFilter;
+import org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.preauth.AbstractPreAuthenticatedProcessingFilter;
 import org.springframework.security.web.util.matcher.RequestMatcher;
@@ -82,7 +82,7 @@ public class AuthorizationServerConfig {
         return http.securityMatcher(endpointsMatcher).authorizeHttpRequests((authorizeRequests) ->
                 authorizeRequests.anyRequest().authenticated()
         ).csrf((csrf) -> {
-            csrf.ignoringRequestMatchers(new RequestMatcher[]{endpointsMatcher});
+            csrf.ignoringRequestMatchers(endpointsMatcher);
         }).apply(authorizationServerConfigurer)
                 .and()
                 .addFilterBefore(new BearerTokenAuthenticationFilter(
