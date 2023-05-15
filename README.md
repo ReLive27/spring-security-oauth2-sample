@@ -24,7 +24,7 @@ Server.
 - [Spring Security OAuth2 Login](https://relive27.github.io/blog/oauth2-login)
 - [Spring Security and OpenID Connect](https://relive27.github.io/blog/springn-security-oidc)
 - [Spring Cloud Gateway Combined with the Security Practice of OAuth2.0 Protocol](https://relive27.github.io/blog/spring-gateway-oauth2)
-- [Spring Security OAuth2 implements simple key rotation and configures resource server JWK cache](https://relive27.github.io/blog/jwk-cache-and-rotate-key)
+- [Spring Security OAuth2 implements Simple Key Rotation and Configures Resource Server JWK Cache](https://relive27.github.io/blog/jwk-cache-and-rotate-key)
 - [Using Spring Security OAuth2 Authorization Service JWK with Consul Configuration Center](https://relive27.github.io/blog/oauth2-jwk-consul-config)
 - [A Simple Guide to Using Spring Security OAuth2 Opaque Tokens](https://relive27.github.io/blog/oauth2-opaque-token)
 - [Spring Security OAuth2 Introspection Protocol in conjunction with JWT Guide](https://relive27.github.io/blog/oauth2-introspection-with-jwt)
