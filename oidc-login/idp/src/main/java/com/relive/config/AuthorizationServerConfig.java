@@ -13,7 +13,6 @@ import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.OAuth2AuthorizationServerConfiguration;
-import org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer;
 import org.springframework.security.config.annotation.web.configurers.oauth2.server.authorization.OAuth2AuthorizationServerConfigurer;
 import org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer;
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
@@ -69,9 +68,9 @@ public class AuthorizationServerConfig {
         RequestMatcher endpointsMatcher = authorizationServerConfigurer.getEndpointsMatcher();
 
         return http.requestMatcher(endpointsMatcher).authorizeRequests((authorizeRequests) -> {
-            ((ExpressionUrlAuthorizationConfigurer.AuthorizedUrl) authorizeRequests.anyRequest()).authenticated();
+            authorizeRequests.anyRequest().authenticated();
         }).csrf((csrf) -> {
-            csrf.ignoringRequestMatchers(new RequestMatcher[]{endpointsMatcher});
+            csrf.ignoringRequestMatchers(endpointsMatcher);
         }).apply(authorizationServerConfigurer)
                 .and()
                 .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
