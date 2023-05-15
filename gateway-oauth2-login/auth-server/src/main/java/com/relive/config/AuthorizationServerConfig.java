@@ -12,7 +12,6 @@ import org.springframework.core.annotation.Order;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer;
 import org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer;
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
 import org.springframework.security.oauth2.core.ClientAuthenticationMethod;
@@ -59,9 +58,9 @@ public class AuthorizationServerConfig {
 
         return http.requestMatcher(endpointsMatcher)
                 .authorizeRequests((authorizeRequests) -> {
-                    ((ExpressionUrlAuthorizationConfigurer.AuthorizedUrl) authorizeRequests.anyRequest()).authenticated();
+                    authorizeRequests.anyRequest().authenticated();
                 }).csrf((csrf) -> {
-                    csrf.ignoringRequestMatchers(new RequestMatcher[]{endpointsMatcher});
+                    csrf.ignoringRequestMatchers(endpointsMatcher);
                 }).apply(authorizationServerConfigurer)
                 .and()
                 .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
