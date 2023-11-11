@@ -30,6 +30,7 @@ Server.
 - [Spring Security OAuth2 Introspection Protocol in conjunction with JWT Guide](https://relive27.github.io/blog/oauth2-introspection-with-jwt)
 - [Spring Security OAuth 2.0 Authorization Server Combined with Redis implements Access to AccessToken Rate Limits](https://relive27.github.io/blog/oauth2-token-access-restrictions)
 - [Building an OAuth2 Authorization Consent Page with Vue.js](https://github.com/ReLive27/spring-security-oauth2-sample/tree/main/oauth2-custom-consent-page-with-vue)
+- [OAuth2.0 Device Code Authorization Process]()
 - ...
 
 ## Description of applicable version
