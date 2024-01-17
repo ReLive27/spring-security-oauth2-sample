@@ -64,7 +64,9 @@ public class JdbcClientRegistrationRepository implements ClientRegistrationRepos
     }
 
     private void updateRegisteredClient(ClientRegistration clientRegistration) {
-        List<SqlParameterValue> parameterValues = this.clientRegistrationListParametersMapper.apply(clientRegistration);
+        List<SqlParameterValue> parameterValues = new ArrayList(this.clientRegistrationListParametersMapper.apply(clientRegistration));
+        SqlParameterValue id = parameterValues.remove(0);
+        parameterValues.add(id);
         PreparedStatementSetter statementSetter = new ArgumentPreparedStatementSetter(parameterValues.toArray());
         this.jdbcOperations.update(UPDATE_CLIENT_REGISTERED_SQL, statementSetter);
     }
