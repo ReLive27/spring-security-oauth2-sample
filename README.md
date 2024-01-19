@@ -29,11 +29,9 @@ Server.
 - [A Simple Guide to Using Spring Security OAuth2 Opaque Tokens](https://relive27.github.io/blog/oauth2-opaque-token)
 - [Spring Security OAuth2 Introspection Protocol in conjunction with JWT Guide](https://relive27.github.io/blog/oauth2-introspection-with-jwt)
 - [Spring Security OAuth 2.0 Authorization Server Combined with Redis implements Access to AccessToken Rate Limits](https://relive27.github.io/blog/oauth2-token-access-restrictions)
-- [Building an OAuth2 Authorization Consent Page with Vue.js](https://github.com/ReLive27/spring-security-oauth2-sample/tree/main/oauth2-custom-consent-page-with-vue)
-
-[comment]: <> (- [OAuth2.0 Device Code Authorization Process]&#40;&#41;)
-
-[comment]: <> (- [Register a client dynamically]&#40;&#41;)
+- [Building an OAuth2 Authorization Consent Page with Vue.js](https://relive27.github.io/blog/oauth2-custom-consent-page-with-vue)
+- [(Stay Tuned) OAuth2.0 Device Code Authorization Process]()
+- [(Stay Tuned) Register a client dynamically]()
 - ...
 
 ## Description of applicable version
