@@ -29,7 +29,7 @@ Server.
 - [A Simple Guide to Using Spring Security OAuth2 Opaque Tokens](https://relive27.github.io/blog/oauth2-opaque-token)
 - [Spring Security OAuth2 Introspection Protocol in conjunction with JWT Guide](https://relive27.github.io/blog/oauth2-introspection-with-jwt)
 - [Spring Security OAuth 2.0 Authorization Server Combined with Redis implements Access to AccessToken Rate Limits](https://relive27.github.io/blog/oauth2-token-access-restrictions)
-- [Building an OAuth2 Authorization Consent Page with Vue.js]()
+- [Building an OAuth2 Authorization Consent Page with Vue.js](https://relive27.github.io/blog/oauth2-custom-consent-page-with-vue)
 - ...
 
 ## Spring Framework Version
