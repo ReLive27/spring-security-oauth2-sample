@@ -8,7 +8,7 @@ Let's test it out by visiting [http://127.0.0.1:8070/home](http://127.0.0.1:8070
 
 ## Relevant Articles:
 
-- [Building an OAuth2 Authorization Consent Page with Vue.js]()
+- [Building an OAuth2 Authorization Consent Page with Vue.js](https://relive27.github.io/blog/oauth2-custom-consent-page-with-vue)
 
 ## Demo
 
