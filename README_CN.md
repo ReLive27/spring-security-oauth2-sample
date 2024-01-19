@@ -28,7 +28,7 @@ Security 5 之上， 这里的模块涵盖了 Spring Authorization Server 的许
 - [Spring Security OAuth2 Opaque 令牌的简单使用指南](https://relive27.github.io/blog/oauth2-opaque-token)
 - [Spring Security OAuth2 内省协议与 JWT 结合使用指南](https://relive27.github.io/blog/oauth2-introspection-with-jwt)
 - [Spring Security OAuth 2.0授权服务器结合Redis实现获取accessToken速率限制](https://relive27.github.io/blog/oauth2-token-access-restrictions)
-- [使用 Vue.js 构建 OAuth2.0 授权同意页面]()
+- [使用 Vue.js 构建 OAuth2.0 授权同意页面](https://relive27.github.io/blog/oauth2-custom-consent-page-with-vue)
 - ...
 
 ## Spring 框架版本
