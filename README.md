@@ -38,6 +38,7 @@ Server.
 
 | Project Branch  | Spring Security  | Spring Authorization Server  |  
 | -----  |----------------- |  -------  |
+| main  |  6.1.5  |  1.2.1    |
 | 1.0.1  |  6.0.2  |  1.0.1    |
 | 0.4.1  |  5.7.7  |    0.4.1  |
 | 0.3.1  | 5.6.3   |  0.3.1    |
