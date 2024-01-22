@@ -9,8 +9,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/oidc_login?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
-    username: <<username>> # update username
-    password: <<password>> # update password
+    username: {MYSQL_USERNAME:root} # update username
+    password: {MYSQL_PASSWORD:123456} # update password
   flyway:
     baseline-on-migrate: true
     baseline-description: <<Flyway Baseline>>
