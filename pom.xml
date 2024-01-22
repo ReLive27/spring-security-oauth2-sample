@@ -7,7 +7,7 @@
     <groupId>com.relive</groupId>
     <artifactId>spring-oauth2-sample</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.2.1-SNAPSHOT</version>
     <modules>
         <module>oauth2-custom-consent-authorizationserver</module>
         <module>gateway-oauth2-login</module>
@@ -24,12 +24,13 @@
         <module>oauth2-token-access-restrictions</module>
         <module>oauth2-introspection-with-jwt</module>
         <module>oauth2-custom-consent-page-with-vue</module>
+        <module>device-authorization-flow</module>
     </modules>
 
     <parent>
         <artifactId>spring-boot-starter-parent</artifactId>
         <groupId>org.springframework.boot</groupId>
-        <version>3.0.5</version>
+        <version>3.1.5</version>
     </parent>
 
     <properties>
@@ -42,7 +43,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>2022.0.1</version>
+                <version>2022.0.4</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -50,7 +51,7 @@
             <dependency>
                 <groupId>org.springframework.security</groupId>
                 <artifactId>spring-security-oauth2-authorization-server</artifactId>
-                <version>1.0.1</version>
+                <version>1.2.1</version>
             </dependency>
 
             <dependency>

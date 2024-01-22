@@ -125,6 +125,12 @@ public class JdbcClientRegistrationRepository implements ClientRegistrationRepos
                 return AuthorizationGrantType.AUTHORIZATION_CODE;
             } else if (AuthorizationGrantType.CLIENT_CREDENTIALS.getValue().equals(authorizationGrantType)) {
                 return AuthorizationGrantType.CLIENT_CREDENTIALS;
+            } else if (AuthorizationGrantType.PASSWORD.getValue().equals(authorizationGrantType)) {
+                return AuthorizationGrantType.PASSWORD;
+            } else if (AuthorizationGrantType.JWT_BEARER.getValue().equals(authorizationGrantType)) {
+                return AuthorizationGrantType.JWT_BEARER;
+            } else if (AuthorizationGrantType.DEVICE_CODE.getValue().equals(authorizationGrantType)) {
+                return AuthorizationGrantType.DEVICE_CODE;
             } else {
                 return AuthorizationGrantType.REFRESH_TOKEN.getValue().equals(authorizationGrantType) ? AuthorizationGrantType.REFRESH_TOKEN : new AuthorizationGrantType(authorizationGrantType);
             }
@@ -135,6 +141,10 @@ public class JdbcClientRegistrationRepository implements ClientRegistrationRepos
                 return ClientAuthenticationMethod.CLIENT_SECRET_BASIC;
             } else if (ClientAuthenticationMethod.CLIENT_SECRET_POST.getValue().equals(clientAuthenticationMethod)) {
                 return ClientAuthenticationMethod.CLIENT_SECRET_POST;
+            } else if (ClientAuthenticationMethod.CLIENT_SECRET_JWT.getValue().equals(clientAuthenticationMethod)) {
+                return ClientAuthenticationMethod.CLIENT_SECRET_JWT;
+            } else if (ClientAuthenticationMethod.PRIVATE_KEY_JWT.getValue().equals(clientAuthenticationMethod)) {
+                return ClientAuthenticationMethod.PRIVATE_KEY_JWT;
             } else {
                 return ClientAuthenticationMethod.NONE.getValue().equals(clientAuthenticationMethod) ? ClientAuthenticationMethod.NONE : new ClientAuthenticationMethod(clientAuthenticationMethod);
             }
