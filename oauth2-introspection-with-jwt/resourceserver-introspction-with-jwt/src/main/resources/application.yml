@@ -7,9 +7,23 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/resourceserver-introspection?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
-    username: {MYSQL_USERNAME:root} # update user
-    password: {MYSQL_PASSWORD:123456} # update password
+    username: ${MYSQL_USERNAME:root} # update user
+    password: ${MYSQL_PASSWORD:123456} # update password
   sql:
     init:
       mode: always
       schema-locations: classpath:db/oauth2-introspection-schema.sql
+  data:
+    redis:
+      host: localhost
+      database: 0
+      port: 6379
+      password: 123456
+      timeout: 1800
+      lettuce:
+        pool:
+          max-active: 20
+          max-wait: 60
+          max-idle: 5
+          min-idle: 0
+        shutdown-timeout: 100
