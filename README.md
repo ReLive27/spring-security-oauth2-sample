@@ -1,3 +1,5 @@
+![video_spider](https://socialify.git.ci/ReLive27/spring-security-oauth2-sample/image?forks=1&issues=1&language=1&name=1&owner=1&stargazers=1&theme=Light)
+
 # <font size="6p">spring-oauth2-sample</font> <font size="5p">  | [中文文档](README_CN.md)</font>
 
 <p align="left">
