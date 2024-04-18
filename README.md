@@ -34,6 +34,7 @@ Server.
 - [Building an OAuth2 Authorization Consent Page with Vue.js](https://relive27.github.io/blog/oauth2-custom-consent-page-with-vue)
 - [(Stay Tuned) OAuth2.0 Device Code Authorization Process]()
 - [(Stay Tuned) Register a client dynamically]()
+- [(Stay Tuned) The resource server retrieves JWK via HTTP, File, Minio, or Vault]()
 - ...
 
 ## Description of applicable version
