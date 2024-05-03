@@ -1,0 +1,25 @@
+server:
+  port: 8070
+  servlet:
+    session:
+      cookie:
+        name: DEVICE_CLIENT
+
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          messaging-device-client:
+            provider: client-provider
+            client-id: relive-device-client
+            authorization-grant-type: urn:ietf:params:oauth:grant-type:device_code
+            client-authentication-method: none
+            scope: message.read
+            client-name: messaging-device-client
+        provider:
+          client-provider:
+            authorization-uri: http://127.0.0.1:8080/oauth2/device_authorization
+            token-uri: http://127.0.0.1:8080/oauth2/token
+            user-info-uri: http://127.0.0.1:8080/userInfo
+            user-name-attribute: sub

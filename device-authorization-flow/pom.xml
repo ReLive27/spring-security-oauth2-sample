@@ -14,6 +14,7 @@
 
     <modules>
         <module>device-authorization-server</module>
+        <module>device-client</module>
     </modules>
 
     <properties>
