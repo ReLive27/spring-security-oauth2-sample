@@ -3,6 +3,8 @@ package com.relive.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -22,9 +24,11 @@ public class DefaultSecurityConfig {
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authorizeRequests ->
-                        authorizeRequests.anyRequest().permitAll()
+                        authorizeRequests.anyRequest().authenticated()
                 )
-                .formLogin(withDefaults());
+                .formLogin(withDefaults())
+                .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
+                .csrf(AbstractHttpConfigurer::disable);
         return http.build();
     }
 

@@ -1,5 +1,9 @@
 package com.relive.config;
 
+import com.nimbusds.jose.jwk.JWKSet;
+import com.nimbusds.jose.jwk.RSAKey;
+import com.nimbusds.jose.jwk.source.JWKSource;
+import com.nimbusds.jose.proc.SecurityContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
@@ -22,9 +26,15 @@ import org.springframework.security.oauth2.server.authorization.settings.OAuth2T
 import org.springframework.security.oauth2.server.authorization.settings.TokenSettings;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
+import java.security.interfaces.RSAPrivateKey;
+import java.security.interfaces.RSAPublicKey;
 import java.time.Duration;
+import java.util.UUID;
 
 /**
  * @author: ReLive27
@@ -38,7 +48,8 @@ public class AuthorizationServerConfig {
     public SecurityFilterChain authorizationServerSecurityFilterChain(HttpSecurity http) throws Exception {
         OAuth2AuthorizationServerConfigurer authorizationServerConfigurer = new OAuth2AuthorizationServerConfigurer();
         authorizationServerConfigurer.deviceAuthorizationEndpoint(Customizer.withDefaults())
-                .deviceVerificationEndpoint(Customizer.withDefaults());
+                .deviceVerificationEndpoint(deviceVerification ->
+                        deviceVerification.deviceVerificationResponseHandler(new SimpleUrlAuthenticationSuccessHandler("/success")));
 
         RequestMatcher endpointsMatcher = authorizationServerConfigurer.getEndpointsMatcher();
 
@@ -56,8 +67,8 @@ public class AuthorizationServerConfig {
         deviceClientAuthenticationConfigurer.configure(http);
 
         http.exceptionHandling(exceptions -> exceptions.
-                authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/login")))
-                .oauth2ResourceServer(oauth2ResourceServer -> oauth2ResourceServer.jwt(Customizer.withDefaults()));
+                authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/login")));
+
         return http.build();
     }
 
@@ -78,10 +89,10 @@ public class AuthorizationServerConfig {
                         .requireProofKey(false)
                         .build())
                 .tokenSettings(TokenSettings.builder()
-                        .accessTokenFormat(OAuth2TokenFormat.REFERENCE)
+                        .accessTokenFormat(OAuth2TokenFormat.SELF_CONTAINED)
                         .accessTokenTimeToLive(Duration.ofSeconds(30 * 60))
                         .refreshTokenTimeToLive(Duration.ofSeconds(60 * 60))
-                        .deviceCodeTimeToLive(Duration.ofSeconds(5 * 60))
+                        .deviceCodeTimeToLive(Duration.ofSeconds(30 * 60))
                         .reuseRefreshTokens(true)
                         .build())
                 .build();
@@ -101,7 +112,48 @@ public class AuthorizationServerConfig {
     @Bean
     public AuthorizationServerSettings authorizationServerSettings() {
         return AuthorizationServerSettings.builder()
-                .issuer("http://127.0.0.1:8080")
+                .issuer("http://localhost:8080")
                 .build();
+    }
+
+    @Bean
+    public JWKSource<SecurityContext> jwkSource() {
+        RSAKey rsaKey = Jwks.generateRsa();
+        JWKSet jwkSet = new JWKSet(rsaKey);
+        return (jwkSelector, securityContext) -> jwkSelector.select(jwkSet);
+    }
+
+    static class Jwks {
+
+        private Jwks() {
+        }
+
+        public static RSAKey generateRsa() {
+            KeyPair keyPair = KeyGeneratorUtils.generateRsaKey();
+            RSAPublicKey publicKey = (RSAPublicKey) keyPair.getPublic();
+            RSAPrivateKey privateKey = (RSAPrivateKey) keyPair.getPrivate();
+            return new RSAKey.Builder(publicKey)
+                    .privateKey(privateKey)
+                    .keyID(UUID.randomUUID().toString())
+                    .build();
+        }
+    }
+
+    static class KeyGeneratorUtils {
+
+        private KeyGeneratorUtils() {
+        }
+
+        static KeyPair generateRsaKey() {
+            KeyPair keyPair;
+            try {
+                KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
+                keyPairGenerator.initialize(2048);
+                keyPair = keyPairGenerator.generateKeyPair();
+            } catch (Exception ex) {
+                throw new IllegalStateException(ex);
+            }
+            return keyPair;
+        }
     }
 }
