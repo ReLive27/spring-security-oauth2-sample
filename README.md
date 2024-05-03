@@ -73,6 +73,10 @@ git clone git@github.com:ReLive27/spring-security-oauth2-sample.git
 
 [Pull requests](https://help.github.com/articles/creating-a-pull-request) are welcome.
 
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=ReLive27/spring-security-oauth2-sample&type=Date)](https://star-history.com/#/ReLive27/spring-security-oauth2-sample&Date)
+
 ## License
 
 spring-oauth2-sample is Open Source software released under the
