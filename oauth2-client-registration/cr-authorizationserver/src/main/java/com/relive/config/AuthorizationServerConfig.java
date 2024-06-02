@@ -18,6 +18,7 @@ import org.springframework.security.oauth2.server.authorization.config.annotatio
 import org.springframework.security.oauth2.server.authorization.config.annotation.web.configurers.OAuth2AuthorizationServerConfigurer;
 import org.springframework.security.oauth2.server.authorization.settings.AuthorizationServerSettings;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
 
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
@@ -45,12 +46,13 @@ public class AuthorizationServerConfig {
         http.oauth2ResourceServer(oauth2ResourceServer ->
                 oauth2ResourceServer.jwt(Customizer.withDefaults()));
 
-        return http.build();
+        return http.exceptionHandling(exceptions -> exceptions.
+                authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/login"))).build();
     }
 
     @Bean
     public RegisteredClientRepository registeredClientRepository(JdbcTemplate jdbcTemplate) {
-        RegisteredClient registrarClient = RegisteredClient.withId(UUID.randomUUID().toString())
+        RegisteredClient registrarClient = RegisteredClient.withId("1")
                 .clientId("registrar-client")
                 .clientSecret("{noop}relive27-client")
                 .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)

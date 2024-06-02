@@ -11,12 +11,11 @@ import org.springframework.security.oauth2.server.authorization.oidc.converter.R
 import org.springframework.security.oauth2.server.authorization.settings.ClientSettings;
 import org.springframework.util.CollectionUtils;
 
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -26,7 +25,7 @@ import java.util.stream.Collectors;
 public class CustomClientMetadataConfig {
 
     public static Consumer<List<AuthenticationProvider>> configureCustomClientMetadataConverters() {
-        List<String> customClientMetadata = Collections.singletonList("logo_uri");
+        List<String> customClientMetadata = Arrays.asList("require-authorization-consent", "require-proof-key");
 
         return (authenticationProviders) -> {
             CustomRegisteredClientConverter registeredClientConverter =
@@ -53,6 +52,7 @@ public class CustomClientMetadataConfig {
 
         private final List<String> customClientMetadata;
         private final OidcClientRegistrationRegisteredClientConverter delegate;
+        private static final String CLIENT_SETTINGS_NAMESPACE = "settings.client.";
 
         private CustomRegisteredClientConverter(List<String> customClientMetadata) {
             this.customClientMetadata = customClientMetadata;
@@ -67,7 +67,7 @@ public class CustomClientMetadataConfig {
             if (!CollectionUtils.isEmpty(this.customClientMetadata)) {
                 clientRegistration.getClaims().forEach((claim, value) -> {
                     if (this.customClientMetadata.contains(claim)) {
-                        clientSettingsBuilder.setting(claim, value);
+                        clientSettingsBuilder.setting(CLIENT_SETTINGS_NAMESPACE.concat(claim), value);
                     }
                 });
             }
@@ -83,6 +83,8 @@ public class CustomClientMetadataConfig {
 
         private final List<String> customClientMetadata;
         private final RegisteredClientOidcClientRegistrationConverter delegate;
+        private static final String CLIENT_SETTINGS_NAMESPACE = "settings.client.";
+
 
         private CustomClientRegistrationConverter(List<String> customClientMetadata) {
             this.customClientMetadata = customClientMetadata;
@@ -96,8 +98,9 @@ public class CustomClientMetadataConfig {
             if (!CollectionUtils.isEmpty(this.customClientMetadata)) {
                 ClientSettings clientSettings = registeredClient.getClientSettings();
                 claims.putAll(this.customClientMetadata.stream()
-                        .filter(metadata -> clientSettings.getSetting(metadata) != null)
-                        .collect(Collectors.toMap(Function.identity(), clientSettings::getSetting)));
+                        .filter(metadata -> clientSettings.getSetting(CLIENT_SETTINGS_NAMESPACE.concat(metadata)) != null)
+                        .collect(Collectors.toMap(name -> CLIENT_SETTINGS_NAMESPACE + name, value -> clientSettings.getSetting(CLIENT_SETTINGS_NAMESPACE.concat(value)))));
+
             }
 
             return OidcClientRegistration.withClaims(claims).build();
