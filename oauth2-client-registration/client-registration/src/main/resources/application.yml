@@ -1,0 +1,44 @@
+server:
+  port: 8070
+  servlet:
+    session:
+      cookie:
+        name: CLIENT-SESSION
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/oauth2_client?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: ${MYSQL_USERNAME:root} # update username
+    password: ${MYSQL_PASSWORD:123456} # update password
+  flyway:
+    baseline-on-migrate: true
+    baseline-description: <<Flyway Baseline>>
+    enabled: true
+    locations: classpath:db/migration
+    validate-on-migrate: true
+    fail-on-missing-locations: true
+  security:
+    oauth2:
+      client:
+        registration:
+          client-registration:
+            provider: client-registartion-provider
+            client-id: registrar-client
+            client-secret: relive27-client
+            authorization-grant-type: client_credentials
+            client-authentication-method: client_secret_basic
+            scope:
+              - "client.create"
+            client-name: client-registration
+        provider:
+          client-registartion-provider:
+            token-uri: http://127.0.0.1:8080/oauth2/token
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+    org.springframework.security: INFO
+    org.springframework.security.oauth2: INFO
+
