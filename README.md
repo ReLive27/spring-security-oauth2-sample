@@ -35,6 +35,7 @@ Server.
 - [OAuth 2.0 Device Authorization Grant](https://github.com/ReLive27/spring-security-oauth2-sample/tree/main/device-authorization-flow)
 - [(Stay Tuned) Register a client dynamically]()
 - [(Stay Tuned) The resource server retrieves JWK via HTTP, File, Minio, or Vault]()
+- [(Stay Tuned) Implementation of JWT Combined with OAuth2 Authorization Service Based on the SM9 Algorithm]()
 - ...
 
 ## Description of applicable version

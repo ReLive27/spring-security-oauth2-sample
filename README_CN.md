@@ -34,6 +34,7 @@ Security 6 之上， 这里的模块涵盖了 Spring Authorization Server 的许
 - [OAuth2.0 设备授权流程](https://github.com/ReLive27/spring-security-oauth2-sample/tree/main/device-authorization-flow)
 - [(敬请期待) 动态注册客户端]()
 - [(敬请期待) 资源服务器通过HTTP、File、Minio、Vault获取JWK]()
+- [(敬请期待) 基于SM9算法的JWT与OAuth2授权服务结合的实现]()
 - ...
 
 ## 适用版本说明
