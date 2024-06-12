@@ -33,8 +33,8 @@ Server.
 - [Spring Security OAuth 2.0 Authorization Server Combined with Redis implements Access to AccessToken Rate Limits](https://relive27.github.io/blog/oauth2-token-access-restrictions)
 - [Building an OAuth2 Authorization Consent Page with Vue.js](https://relive27.github.io/blog/oauth2-custom-consent-page-with-vue)
 - [OAuth 2.0 Device Authorization Grant](https://github.com/ReLive27/spring-security-oauth2-sample/tree/main/device-authorization-flow)
-- [(Stay Tuned) Register a client dynamically]()
-- [(Stay Tuned) The resource server retrieves JWK via HTTP, File, Minio, or Vault]()
+- [Register a client dynamically](https://github.com/ReLive27/spring-security-oauth2-sample/tree/main/oauth2-client-registration)
+- [(Stay Tuned) How to Protect and Manage Spring Authorization Server JWT Keys with Vault]()
 - [(Stay Tuned) Implementation of JWT Combined with OAuth2 Authorization Service Based on the SM9 Algorithm]()
 - ...
 
