@@ -25,6 +25,7 @@
         <module>oauth2-introspection-with-jwt</module>
         <module>oauth2-custom-consent-page-with-vue</module>
         <module>device-authorization-flow</module>
+        <module>oauth2-jwk-with-vault</module>
     </modules>
 
     <parent>
