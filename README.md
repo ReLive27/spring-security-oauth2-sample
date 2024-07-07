@@ -35,7 +35,6 @@ Server.
 - [OAuth 2.0 Device Authorization Grant](https://github.com/ReLive27/spring-security-oauth2-sample/tree/main/device-authorization-flow)
 - [Register a client dynamically](https://github.com/ReLive27/spring-security-oauth2-sample/tree/main/oauth2-client-registration)
 - [(Stay Tuned) How to Protect and Manage Spring Authorization Server JWT Keys with Vault]()
-- [(Stay Tuned) Implementation of JWT Combined with OAuth2 Authorization Service Based on the SM9 Algorithm]()
 - ...
 
 ## Description of applicable version
