@@ -9,7 +9,7 @@ spring:
       scheme: http
       uri: http://127.0.0.1:8200
       authentication: token
-      token: hvs.hglQ55cjynUL4KoREE31eN8o
+      token: ${VAULT_TOKEN}
       fail-fast: true
       kv:
         enabled: true
