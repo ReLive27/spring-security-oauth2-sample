@@ -48,12 +48,12 @@ public final class VaultJwtEncoder implements JwtEncoder {
         JWSObject jwsObject = new JWSObject(jwsHeader, new Payload(jwtClaimsSet.toJSONObject()));
 
         // Sign the JWS object
-        String signingInput = jwsObject.getSigningInput().toString();
+        String signingInput = new String(jwsObject.getSigningInput());
         Plaintext plaintext = Plaintext.of(signingInput).with(VaultTransitContext.builder().build());
         String signature = vaultOperations.opsForTransit().sign(key, plaintext).getSignature();
 
         // Attach the signature to the JWS object
-        Base64URL signatureBase64URL = Base64URL.from(signature);
+        Base64URL signatureBase64URL = Base64URL.from(signature.startsWith("vault:v1:") ? signature.substring(9) : signature);
         jwsObject = new JWSObject(jwsHeader.toBase64URL(), new Payload(jwtClaimsSet.toJSONObject()), signatureBase64URL);
 
         // Serialize JWS to compact format
