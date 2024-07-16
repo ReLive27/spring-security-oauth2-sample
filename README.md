@@ -34,7 +34,7 @@ Server.
 - [Building an OAuth2 Authorization Consent Page with Vue.js](https://relive27.github.io/blog/oauth2-custom-consent-page-with-vue)
 - [OAuth 2.0 Device Authorization Grant](https://github.com/ReLive27/spring-security-oauth2-sample/tree/main/device-authorization-flow)
 - [Register a client dynamically](https://github.com/ReLive27/spring-security-oauth2-sample/tree/main/oauth2-client-registration)
-- [(Stay Tuned) How to Protect and Manage Spring Authorization Server JWT Keys with Vault]()
+- [How to Protect and Manage Spring Authorization Server JWT Keys with Vault](https://github.com/ReLive27/spring-security-oauth2-sample/tree/main/oauth2-jwk-with-vault)
 - ...
 
 ## Description of applicable version

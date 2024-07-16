@@ -33,7 +33,7 @@ Security 6 之上， 这里的模块涵盖了 Spring Authorization Server 的许
 - [使用 Vue.js 构建 OAuth2.0 授权同意页面](https://relive27.github.io/blog/oauth2-custom-consent-page-with-vue)
 - [OAuth2.0 设备授权流程](https://github.com/ReLive27/spring-security-oauth2-sample/tree/main/device-authorization-flow)
 - [动态注册客户端](https://github.com/ReLive27/spring-security-oauth2-sample/tree/main/oauth2-client-registration)
-- [(敬请期待) 如何用 Vault 保护和管理 Spring Authorization Server JWT 密钥]()
+- [如何用 Vault 保护和管理 Spring Authorization Server JWT 密钥](https://github.com/ReLive27/spring-security-oauth2-sample/tree/main/oauth2-jwk-with-vault)
 - ...
 
 ## 适用版本说明
