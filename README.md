@@ -32,7 +32,7 @@ Server.
 - [Spring Security OAuth2 Introspection Protocol in conjunction with JWT Guide](https://relive27.github.io/blog/oauth2-introspection-with-jwt)
 - [Spring Security OAuth 2.0 Authorization Server Combined with Redis implements Access to AccessToken Rate Limits](https://relive27.github.io/blog/oauth2-token-access-restrictions)
 - [Building an OAuth2 Authorization Consent Page with Vue.js](https://relive27.github.io/blog/oauth2-custom-consent-page-with-vue)
-- [OAuth 2.0 Device Authorization Grant](https://github.com/ReLive27/spring-security-oauth2-sample/tree/main/device-authorization-flow)
+- [OAuth 2.0 Device Authorization Grant](https://relive27.github.io/blog/oauth2-device-flow)
 - [Register a client dynamically](https://github.com/ReLive27/spring-security-oauth2-sample/tree/main/oauth2-client-registration)
 - [How to Protect and Manage Spring Authorization Server JWT Keys with Vault](https://github.com/ReLive27/spring-security-oauth2-sample/tree/main/oauth2-jwk-with-vault)
 - ...
