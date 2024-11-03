@@ -75,6 +75,17 @@ Error checking seal status: Get "https://127.0.0.1:8200/v1/sys/seal-status": htt
 ```
 Ensure that the `VAULT_ADDR` environment variable is configured correctly.
 
+### 6. Enable the Transit Engine
+```shell
+vault secrets enable transit
+```
+
+### 7. Create a Signing-Supported Key (e.g., RSA-2048)
+Use the `rsa-2048` type of key to support signing operations:
+```bash
+vault write -f transit/keys/oauth2 type="rsa-2048"
+```
+
 ## Configure Vault Token in Services
 Configure the Root Token in the `application.yml` files of both the authorization-service and resource-service as `${vault_token}`. After starting the services, visit [http://127.0.0.1:8070/client/test](http://127.0.0.1:8070/client/test) in your browser.
 
