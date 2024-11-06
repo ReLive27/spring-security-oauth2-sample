@@ -37,14 +37,11 @@ Server.
 - [How to Protect and Manage Spring Authorization Server JWT Keys with Vault](https://relive27.github.io/blog/oauth2-vault)
 - ...
 
-## Description of applicable version
+## Spring Framework Version
 
-| Project Branch  | Spring Security  | Spring Authorization Server  |  
-| -----  |----------------- |  -------  |
-| main  |  6.1.5  |  1.2.1    |
-| 1.0.1  |  6.0.2  |  1.0.1    |
-| 0.4.1  |  5.7.7  |    0.4.1  |
-| 0.3.1  | 5.6.3   |  0.3.1    |
+| Spring Boot   | Spring Cloud  | Spring Authorization Server  |  Spring Security  |
+| ---------------- | ----------------- |----------------- |  -------- |
+| 3.1.5           | 2022.0.4      | 1.2.1            |   6.1.5  |
 
 ## Building from Source
 
@@ -72,10 +69,6 @@ git clone git@github.com:ReLive27/spring-security-oauth2-sample.git
 ## Contributing
 
 [Pull requests](https://help.github.com/articles/creating-a-pull-request) are welcome.
-
-## Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=ReLive27/spring-security-oauth2-sample&type=Date)](https://star-history.com/#/ReLive27/spring-security-oauth2-sample&Date)
 
 ## License
 
