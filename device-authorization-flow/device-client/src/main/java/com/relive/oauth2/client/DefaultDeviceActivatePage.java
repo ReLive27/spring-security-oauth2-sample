@@ -32,27 +32,66 @@ import java.util.Base64;
 import java.util.Map;
 
 
+/**
+ * 默认设备激活页面生成类。
+ * 该类用于生成一个包含设备激活二维码和相关指令的HTML页面，用户可以通过扫描二维码或者手动输入激活码来完成设备激活。
+ * <p>
+ *
+ * @author: ReLive27
+ * @date: 2024/5/3 09:29
+ */
 class DefaultDeviceActivatePage {
+
+    // UTF-8编码的HTML内容类型
     private static final MediaType TEXT_HTML_UTF8 = new MediaType("text", "html", StandardCharsets.UTF_8);
 
+    // 私有构造函数，防止实例化
     private DefaultDeviceActivatePage() {
     }
 
-    static void displayDeviceActivate(HttpServletRequest request, HttpServletResponse response, String userCode,
-                                      String verificationUriComplete, String verificationUri, Map<String, String> additionalParameters) throws IOException {
+    /**
+     * 显示设备激活页面。
+     *
+     * @param request                 当前的HttpServletRequest对象
+     * @param response                当前的HttpServletResponse对象
+     * @param userCode                设备激活码
+     * @param verificationUriComplete 完整的验证URI
+     * @param verificationUri         手动输入的验证URI
+     * @param additionalParameters    其他附加参数，用于页面定制
+     * @throws IOException 如果输入输出发生错误
+     */
+    static void displayDeviceActivate(HttpServletRequest request, HttpServletResponse response,
+                                      String userCode, String verificationUriComplete,
+                                      String verificationUri, Map<String, String> additionalParameters) throws IOException {
 
-        String deviceActivatePage = generateDeviceActivatePage(request, userCode, verificationUriComplete, verificationUri, additionalParameters);
+        // 生成设备激活页面的HTML内容
+        String deviceActivatePage = generateDeviceActivatePage(request, userCode, verificationUriComplete,
+                verificationUri, additionalParameters);
+
+        // 设置响应内容类型为HTML并写入页面内容
         response.setContentType(TEXT_HTML_UTF8.toString());
         response.setContentLength(deviceActivatePage.getBytes(StandardCharsets.UTF_8).length);
         response.getWriter().write(deviceActivatePage);
     }
 
+    /**
+     * 生成设备激活页面的HTML内容。
+     *
+     * @param request                 当前的HttpServletRequest对象
+     * @param userCode                设备激活码
+     * @param verificationUriComplete 完整的验证URI
+     * @param verificationUri         手动输入的验证URI
+     * @param additionalParameters    其他附加参数，用于页面定制
+     * @return 生成的HTML页面字符串
+     */
     private static String generateDeviceActivatePage(HttpServletRequest request,
                                                      String userCode, String verificationUriComplete, String verificationUri,
                                                      Map<String, String> additionalParameters) {
 
+        // 生成二维码图像
         byte[] qrCodeImage = generateQRCodeImage(verificationUriComplete);
 
+        // 开始构建HTML页面内容
         StringBuilder builder = new StringBuilder();
 
         builder.append("<!DOCTYPE html>");
@@ -167,13 +206,19 @@ class DefaultDeviceActivatePage {
         return builder.toString();
     }
 
+    /**
+     * 生成指定URI的二维码图像。
+     *
+     * @param qrCodeData 要编码到二维码中的URI
+     * @return 生成的二维码图像字节数组
+     */
     private static byte[] generateQRCodeImage(String qrCodeData) {
         try {
-            // ZXing library to generate QR Code
+            // 使用ZXing库生成二维码
             BitMatrix bitMatrix = new MultiFormatWriter().encode(qrCodeData, BarcodeFormat.QR_CODE, 200, 200);
             BufferedImage qrCodeImage = MatrixToImageWriter.toBufferedImage(bitMatrix);
 
-            // Convert BufferedImage to byte array
+            // 将BufferedImage转换为字节数组
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             ImageIO.write(qrCodeImage, "png", baos);
             return baos.toByteArray();
