@@ -30,13 +30,23 @@ import java.security.interfaces.RSAPublicKey;
 import java.time.Duration;
 import java.util.UUID;
 
+
 /**
+ * 配置 OAuth2 授权服务器。
+ *
  * @author: ReLive
  * @date: 2022/7/2 10:57 下午
  */
 @Configuration
 public class OAuth2ServerConfig {
 
+    /**
+     * 配置 OAuth2 授权服务器的安全过滤器链。
+     *
+     * @param http HttpSecurity 配置对象
+     * @return SecurityFilterChain 过滤器链
+     * @throws Exception 配置可能抛出的异常
+     */
     @Bean
     @Order(Ordered.HIGHEST_PRECEDENCE)
     public SecurityFilterChain authorizationServerSecurityFilterChain(HttpSecurity http) throws Exception {
@@ -45,6 +55,11 @@ public class OAuth2ServerConfig {
                 authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/login"))).build();
     }
 
+    /**
+     * 配置已注册的 OAuth2 客户端存储库。
+     *
+     * @return RegisteredClientRepository 客户端存储库
+     */
     @Bean
     public RegisteredClientRepository registeredClientRepository() {
         RegisteredClient registeredClient = RegisteredClient.withId(UUID.randomUUID().toString())
@@ -62,17 +77,22 @@ public class OAuth2ServerConfig {
                         .requireProofKey(false)
                         .build())
                 .tokenSettings(TokenSettings.builder()
-                        .accessTokenFormat(OAuth2TokenFormat.SELF_CONTAINED) // Generate JWT token
-                        .idTokenSignatureAlgorithm(SignatureAlgorithm.RS256)//idTokenSignatureAlgorithm: signature algorithm
-                        .accessTokenTimeToLive(Duration.ofSeconds(30 * 60))//accessTokenTimeToLive：access_token validity period
-                        .refreshTokenTimeToLive(Duration.ofSeconds(60 * 60))//refreshTokenTimeToLive：refresh_token validity period
-                        .reuseRefreshTokens(true)//reuseRefreshTokens: whether to reuse refresh tokens
+                        .accessTokenFormat(OAuth2TokenFormat.SELF_CONTAINED) // 生成 JWT 访问令牌
+                        .idTokenSignatureAlgorithm(SignatureAlgorithm.RS256) // ID 令牌签名算法
+                        .accessTokenTimeToLive(Duration.ofSeconds(30 * 60)) // 访问令牌有效期
+                        .refreshTokenTimeToLive(Duration.ofSeconds(60 * 60)) // 刷新令牌有效期
+                        .reuseRefreshTokens(true) // 是否允许重复使用刷新令牌
                         .build())
                 .build();
 
         return new InMemoryRegisteredClientRepository(registeredClient);
     }
 
+    /**
+     * 配置授权服务器设置。
+     *
+     * @return AuthorizationServerSettings 授权服务器配置
+     */
     @Bean
     public AuthorizationServerSettings authorizationServerSettings() {
         return AuthorizationServerSettings.builder()
@@ -80,6 +100,11 @@ public class OAuth2ServerConfig {
                 .build();
     }
 
+    /**
+     * 配置 JWK（JSON Web Key）源。
+     *
+     * @return JWKSource<SecurityContext> JWK 源
+     */
     @Bean
     public JWKSource<SecurityContext> jwkSource() {
         RSAKey rsaKey = Jwks.generateRsa();
@@ -87,11 +112,19 @@ public class OAuth2ServerConfig {
         return (jwkSelector, securityContext) -> jwkSelector.select(jwkSet);
     }
 
+    /**
+     * JWK 生成工具类。
+     */
     static class Jwks {
 
         private Jwks() {
         }
 
+        /**
+         * 生成 RSA 密钥对并创建 RSAKey。
+         *
+         * @return 生成的 RSAKey
+         */
         public static RSAKey generateRsa() {
             KeyPair keyPair = KeyGeneratorUtils.generateRsaKey();
             RSAPublicKey publicKey = (RSAPublicKey) keyPair.getPublic();
@@ -103,21 +136,27 @@ public class OAuth2ServerConfig {
         }
     }
 
+    /**
+     * RSA 密钥对生成工具类。
+     */
     static class KeyGeneratorUtils {
 
         private KeyGeneratorUtils() {
         }
 
+        /**
+         * 生成 RSA 密钥对。
+         *
+         * @return 生成的 KeyPair
+         */
         static KeyPair generateRsaKey() {
-            KeyPair keyPair;
             try {
                 KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
                 keyPairGenerator.initialize(2048);
-                keyPair = keyPairGenerator.generateKeyPair();
+                return keyPairGenerator.generateKeyPair();
             } catch (Exception ex) {
                 throw new IllegalStateException(ex);
             }
-            return keyPair;
         }
     }
 }
