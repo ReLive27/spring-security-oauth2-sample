@@ -28,10 +28,14 @@ import org.springframework.security.web.SecurityFilterChain;
 import static org.springframework.security.config.Customizer.withDefaults;
 
 /**
- * Default Spring Web Security Configuration
+ * 默认的 Spring Security Web 安全配置类，负责配置 HTTP 安全策略、
+ * 表单登录、OAuth2 登录、用户信息加载、以及客户端授权信息的持久化。
+ * <p>
+ * 本配置类将 Spring Security 与 OAuth2 Client 机制结合，并通过 JDBC 实现持久化。
+ * </p>
  *
- * @author: ReLive
- * @date: 2022/6/23 7:26 下午
+ * @author ReLive
+ * @date 2022/6/23
  */
 @Configuration(proxyBeanMethods = false)
 @EnableWebSecurity
@@ -40,6 +44,18 @@ public class DefaultSecurityConfig {
     @Autowired
     UserRepositoryOAuth2UserHandler userHandler;
 
+    /**
+     * 配置 Spring Security 的安全过滤链。
+     * <p>
+     * - 所有请求需要认证
+     * - 启用表单登录
+     * - 启用 OAuth2 登录，并设置自定义认证成功处理器
+     * </p>
+     *
+     * @param http HttpSecurity 实例
+     * @return SecurityFilterChain
+     * @throws Exception 配置失败时抛出
+     */
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -55,12 +71,11 @@ public class DefaultSecurityConfig {
         return http.build();
     }
 
-
     /**
-     * User information container class, used to obtain user information during Form authentication.
+     * 注册自定义的 UserDetailsService，实现从数据库加载表单登录用户信息。
      *
-     * @param userRepository
-     * @return
+     * @param userRepository 用户信息仓库接口
+     * @return UserDetailsService 实例
      */
     @Bean
     UserDetailsService userDetailsService(UserRepository userRepository) {
@@ -68,10 +83,13 @@ public class DefaultSecurityConfig {
     }
 
     /**
-     * Extended OAuth2 login mapping permission information.
+     * 注册扩展的 OAuth2UserService，在用户 OAuth2 登录成功后映射权限信息。
+     * <p>
+     * 用于将外部登录的用户（如 GitHub）权限映射为本地系统角色。
+     * </p>
      *
-     * @param oAuth2ClientRoleRepository
-     * @return
+     * @param oAuth2ClientRoleRepository OAuth2 客户端角色仓库
+     * @return OAuth2UserService 实例
      */
     @Bean
     OAuth2UserService<OAuth2UserRequest, OAuth2User> auth2UserService(OAuth2ClientRoleRepository oAuth2ClientRoleRepository) {
@@ -79,15 +97,18 @@ public class DefaultSecurityConfig {
     }
 
     /**
-     * Persistent GitHub Client.
+     * 配置客户端注册信息，并持久化到数据库。
+     * <p>
+     * 示例中手动注册了 GitHub 客户端信息，后续可拓展为从配置文件或管理界面动态注册。
+     * </p>
      *
-     * @param jdbcTemplate
-     * @return
+     * @param jdbcTemplate Spring JDBC 操作对象
+     * @return ClientRegistrationRepository 客户端注册信息仓库
      */
     @Bean
     ClientRegistrationRepository clientRegistrationRepository(JdbcTemplate jdbcTemplate) {
         JdbcClientRegistrationRepository jdbcClientRegistrationRepository = new JdbcClientRegistrationRepository(jdbcTemplate);
-        //Please apply for the correct clientId and clientSecret on github
+        // 示例：请替换为实际申请的 GitHub clientId 和 clientSecret
         ClientRegistration clientRegistration = ClientRegistration.withRegistrationId("github")
                 .clientId("123456")
                 .clientSecret("123456")
@@ -99,18 +120,19 @@ public class DefaultSecurityConfig {
                 .tokenUri("https://github.com/login/oauth/access_token")
                 .userInfoUri("https://api.github.com/user")
                 .userNameAttributeName("login")
-                .clientName("GitHub").build();
+                .clientName("GitHub")
+                .build();
 
         jdbcClientRegistrationRepository.save(clientRegistration);
         return jdbcClientRegistrationRepository;
     }
 
     /**
-     * Responsible for OAuth2AuthorizedClient persistence between web requests.
+     * 用于管理 OAuth2 客户端授权信息的服务，负责持久化 Access Token、Refresh Token 等信息。
      *
-     * @param jdbcTemplate
-     * @param clientRegistrationRepository
-     * @return
+     * @param jdbcTemplate JDBC 工具类
+     * @param clientRegistrationRepository 客户端注册仓库
+     * @return OAuth2AuthorizedClientService 实例
      */
     @Bean
     OAuth2AuthorizedClientService authorizedClientService(
@@ -120,10 +142,10 @@ public class DefaultSecurityConfig {
     }
 
     /**
-     * Used to save and persist authorized clients between requests.
+     * 配置 OAuth2 客户端授权信息的存储方式，结合 Spring Security 的认证主体进行持久化存储。
      *
-     * @param authorizedClientService
-     * @return
+     * @param authorizedClientService 客户端授权服务
+     * @return OAuth2AuthorizedClientRepository 实例
      */
     @Bean
     OAuth2AuthorizedClientRepository authorizedClientRepository(
