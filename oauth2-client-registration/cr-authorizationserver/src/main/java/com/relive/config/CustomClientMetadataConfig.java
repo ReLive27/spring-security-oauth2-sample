@@ -19,12 +19,26 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 /**
- * @author: ReLive27
- * @date: 2024/6/2 16:49
+ * 自定义客户端元数据配置类，用于扩展 OIDC 动态客户端注册功能，支持处理自定义客户端元数据字段。
+ * <p>
+ * 通过扩展 Spring Authorization Server 的默认注册转换器，实现对自定义字段的注入和提取，
+ * 例如 "require-authorization-consent"、"require-proof-key"。
+ *
+ * 本配置类适用于构建身份认证系统时需要支持客户端自助注册并扩展客户端元数据字段的场景。
+ * 可用于 OAuth2/OIDC 动态注册支持增强。
+ *
+ * @author ReLive27
+ * @date 2024/6/2
  */
 public class CustomClientMetadataConfig {
 
+    /**
+     * 配置自定义客户端元数据转换器
+     *
+     * @return 用于注册到 OIDC 客户端注册相关 AuthenticationProvider 的 Consumer 实例
+     */
     public static Consumer<List<AuthenticationProvider>> configureCustomClientMetadataConverters() {
+        // 定义自定义支持的客户端元数据字段
         List<String> customClientMetadata = Arrays.asList("require-authorization-consent", "require-proof-key");
 
         return (authenticationProviders) -> {
@@ -33,6 +47,7 @@ public class CustomClientMetadataConfig {
             CustomClientRegistrationConverter clientRegistrationConverter =
                     new CustomClientRegistrationConverter(customClientMetadata);
 
+            // 设置自定义转换器到 Spring Authorization Server 提供的 Provider 中
             authenticationProviders.forEach((authenticationProvider) -> {
                 if (authenticationProvider instanceof OidcClientRegistrationAuthenticationProvider) {
                     OidcClientRegistrationAuthenticationProvider provider = (OidcClientRegistrationAuthenticationProvider) authenticationProvider;
@@ -47,6 +62,9 @@ public class CustomClientMetadataConfig {
         };
     }
 
+    /**
+     * 自定义 RegisteredClient 转换器，将 OIDC 注册请求中的自定义字段写入 ClientSettings
+     */
     private static class CustomRegisteredClientConverter
             implements Converter<OidcClientRegistration, RegisteredClient> {
 
@@ -61,7 +79,10 @@ public class CustomClientMetadataConfig {
 
         @Override
         public RegisteredClient convert(OidcClientRegistration clientRegistration) {
+            // 使用默认转换器创建 RegisteredClient 实例
             RegisteredClient registeredClient = this.delegate.convert(clientRegistration);
+
+            // 提取自定义字段并写入 ClientSettings
             ClientSettings.Builder clientSettingsBuilder = ClientSettings.withSettings(
                     registeredClient.getClientSettings().getSettings());
             if (!CollectionUtils.isEmpty(this.customClientMetadata)) {
@@ -78,13 +99,15 @@ public class CustomClientMetadataConfig {
         }
     }
 
+    /**
+     * 自定义 OIDC ClientRegistration 转换器，将 ClientSettings 中的自定义字段返回给客户端
+     */
     private static class CustomClientRegistrationConverter
             implements Converter<RegisteredClient, OidcClientRegistration> {
 
         private final List<String> customClientMetadata;
         private final RegisteredClientOidcClientRegistrationConverter delegate;
         private static final String CLIENT_SETTINGS_NAMESPACE = "settings.client.";
-
 
         private CustomClientRegistrationConverter(List<String> customClientMetadata) {
             this.customClientMetadata = customClientMetadata;
@@ -93,7 +116,10 @@ public class CustomClientMetadataConfig {
 
         @Override
         public OidcClientRegistration convert(RegisteredClient registeredClient) {
+            // 使用默认转换器生成 OIDC 客户端注册对象
             OidcClientRegistration clientRegistration = this.delegate.convert(registeredClient);
+
+            // 将自定义设置字段添加到返回的 claims 中
             Map<String, Object> claims = new HashMap<>(clientRegistration.getClaims());
             if (!CollectionUtils.isEmpty(this.customClientMetadata)) {
                 ClientSettings clientSettings = registeredClient.getClientSettings();
