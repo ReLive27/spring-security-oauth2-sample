@@ -1,27 +1,27 @@
 server:
-  port: 8070
+  port: 8070  # 配置服务器的端口号，服务将运行在 8070 端口
 
 spring:
   security:
     oauth2:
       client:
         registration:
-          messaging-client-oidc:
-            provider: client-provider
-            client-id: relive-client
-            client-secret: relive-client
-            authorization-grant-type: authorization_code
-            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
-            scope:
-              - openid
-              - profile
-              - email
-            client-name: messaging-client-oidc
+          messaging-client-oidc:  # 该注册配置的 ID，用于指定一个 OAuth2 客户端
+            provider: client-provider  # 提供者的 ID，指向下面的 provider 配置
+            client-id: relive-client  # OAuth2 客户端的 ID，向认证服务器申请客户端时获得
+            client-secret: relive-client  # OAuth2 客户端的密钥
+            authorization-grant-type: authorization_code  # 使用授权码方式授权
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"  # 回调 URI，用于认证服务器重定向客户端
+            scope:  # OAuth2 请求的权限范围
+              - openid  # 使用 OpenID Connect 协议
+              - profile  # 请求访问用户的个人资料
+              - email  # 请求访问用户的电子邮件
+            client-name: messaging-client-oidc  # 客户端名称，用于 OAuth2 客户端注册页面显示
         provider:
-          client-provider:
-            authorization-uri: http://localhost:9528/oauth2/authorize
-            token-uri: http://localhost:9528/dev-api/oauth2/token
-            user-info-uri: http://localhost:9528/dev-api/userinfo
-            jwk-set-uri: http://localhost:9528/dev-api/oauth2/jwks
-            user-info-authentication-method: header
-            user-name-attribute: sub
+          client-provider:  # 配置 OAuth2 认证提供者的信息
+            authorization-uri: http://localhost:9528/oauth2/authorize  # 授权 URI，用于客户端引导用户进行认证
+            token-uri: http://localhost:9528/dev-api/oauth2/token  # 令牌 URI，用于交换授权码换取令牌
+            user-info-uri: http://localhost:9528/dev-api/userinfo  # 用户信息 URI，用于获取认证用户的信息
+            jwk-set-uri: http://localhost:9528/dev-api/oauth2/jwks  # JSON Web Key Set URI，用于获取公钥，验证 JWT
+            user-info-authentication-method: header  # 用户信息验证方法，这里使用 HTTP 请求头
+            user-name-attribute: sub  # 用户名属性，OpenID Connect 中用户的唯一标识符，通常是 "sub" 字段

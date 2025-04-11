@@ -46,13 +46,21 @@ import java.util.UUID;
 import java.util.function.Function;
 
 /**
- * @author: ReLive
+ * 授权服务器配置类，配置 OIDC、Token 签发、客户端注册、安全过滤器等
+ * @author ReLive
  * @date: 2023/3/14 19:06
  */
 @Configuration(proxyBeanMethods = false)
 public class AuthorizationServerConfig {
+
+    /**
+     * 自定义授权确认页地址，适配前端页面
+     */
     private static final String CUSTOM_CONSENT_PAGE_URI = "http://localhost:9528/dev-api/oauth2/consent";
 
+    /**
+     * 授权服务器安全过滤器链配置
+     */
     @Bean
     @Order(Ordered.HIGHEST_PRECEDENCE)
     public SecurityFilterChain authorizationServerSecurityFilterChain(HttpSecurity http,
@@ -61,7 +69,7 @@ public class AuthorizationServerConfig {
         OAuth2AuthorizationServerConfigurer authorizationServerConfigurer =
                 new OAuth2AuthorizationServerConfigurer();
 
-        //Custom User Mapper
+        // 设置 OIDC UserInfo 映射器，用于生成 /userinfo 返回的用户信息
         Function<OidcUserInfoAuthenticationContext, OidcUserInfo> userInfoMapper = (context) -> {
             OidcUserInfoAuthenticationToken authentication = context.getAuthentication();
             JwtAuthenticationToken principal = (JwtAuthenticationToken) authentication.getPrincipal();
@@ -71,12 +79,13 @@ public class AuthorizationServerConfig {
             oidc.userInfoEndpoint((userInfo) -> userInfo.userInfoMapper(userInfoMapper));
         });
 
-        //define authorization consent page
+        //定义授权同意页面
         authorizationServerConfigurer.authorizationEndpoint(authorizationEndpoint ->
                 authorizationEndpoint.consentPage(CUSTOM_CONSENT_PAGE_URI)
                         .authorizationResponseHandler(new OAuth2AuthorizationAuthenticationSuccessHandler())
                         .errorResponseHandler(new OAuth2AuthorizationAuthenticationFailureHandler()));
 
+        // 匹配授权服务器所有端点（如 /oauth2/token, /oauth2/authorize）
         RequestMatcher endpointsMatcher = authorizationServerConfigurer.getEndpointsMatcher();
 
         return http.securityMatcher(endpointsMatcher).authorizeHttpRequests((authorizeRequests) ->
@@ -95,14 +104,17 @@ public class AuthorizationServerConfig {
                 .build();
     }
 
+    /**
+     * 注册 OAuth2 客户端到内存中
+     */
     @Bean
     public RegisteredClientRepository registeredClientRepository() {
         RegisteredClient registeredClient = RegisteredClient.withId(UUID.randomUUID().toString())
                 .clientId("relive-client")
                 .clientSecret("{noop}relive-client")
-                .clientAuthenticationMethods(s -> {
-                    s.add(ClientAuthenticationMethod.CLIENT_SECRET_POST);
-                    s.add(ClientAuthenticationMethod.CLIENT_SECRET_BASIC);
+                .clientAuthenticationMethods(methods -> {
+                    methods.add(ClientAuthenticationMethod.CLIENT_SECRET_POST);
+                    methods.add(ClientAuthenticationMethod.CLIENT_SECRET_BASIC);
                 })
                 .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
                 .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
@@ -111,8 +123,8 @@ public class AuthorizationServerConfig {
                 .scope(OidcScopes.PROFILE)
                 .scope(OidcScopes.EMAIL)
                 .clientSettings(ClientSettings.builder()
-                        .requireAuthorizationConsent(true)
-                        .requireProofKey(false)
+                        .requireAuthorizationConsent(true) // 是否显示授权确认页
+                        .requireProofKey(false) // 是否启用 PKCE
                         .build())
                 .tokenSettings(TokenSettings.builder()
                         .accessTokenFormat(OAuth2TokenFormat.SELF_CONTAINED)
@@ -125,7 +137,9 @@ public class AuthorizationServerConfig {
         return new InMemoryRegisteredClientRepository(registeredClient);
     }
 
-
+    /**
+     * 配置授权服务器相关元数据，如 issuer
+     */
     @Bean
     public AuthorizationServerSettings authorizationServerSettings() {
         return AuthorizationServerSettings.builder()
@@ -133,6 +147,9 @@ public class AuthorizationServerConfig {
                 .build();
     }
 
+    /**
+     * 配置 JWK（用于生成 JWT）
+     */
     @Bean
     public JWKSource<SecurityContext> jwkSource() {
         RSAKey rsaKey = Jwks.generateRsa();
@@ -140,16 +157,19 @@ public class AuthorizationServerConfig {
         return (jwkSelector, securityContext) -> jwkSelector.select(jwkSet);
     }
 
+    /**
+     * JWT 解码器配置，供资源服务器使用
+     */
     @Bean
     public JwtDecoder jwtDecoder(JWKSource<SecurityContext> jwkSource) {
         return OAuth2AuthorizationServerConfiguration.jwtDecoder(jwkSource);
     }
 
-
+    /**
+     * 内部工具类：生成 RSA 密钥对
+     */
     static class Jwks {
-
-        private Jwks() {
-        }
+        private Jwks() {}
 
         public static RSAKey generateRsa() {
             KeyPair keyPair = KeyGeneratorUtils.generateRsaKey();
@@ -162,10 +182,11 @@ public class AuthorizationServerConfig {
         }
     }
 
+    /**
+     * 内部工具类：生成 RSA 密钥对
+     */
     static class KeyGeneratorUtils {
-
-        private KeyGeneratorUtils() {
-        }
+        private KeyGeneratorUtils() {}
 
         static KeyPair generateRsaKey() {
             KeyPair keyPair;
