@@ -23,26 +23,47 @@ import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * 配置 OAuth2 资源服务器的相关服务，包含缓存、Redis 配置和 OAuth2 introspection 服务。
+ * 该类主要提供两个配置：
+ * 1. CacheManager：用于配置缓存管理器，支持 Caffeine 缓存。
+ * 2. OAuth2IntrospectionService：用于配置 OAuth2 introspection 服务，支持 Redis 和数据库 JDBC。
+ *
  * @author: ReLive
  * @date: 2022/11/24 20:39
  */
 @Configuration(proxyBeanMethods = false)
 public class OAuth2IntrospectiveResourceServerConfiguration {
 
+    /**
+     * 配置 Caffeine 缓存管理器，用于 OAuth2 introspection 缓存
+     * Caffeine 是一种高性能的 Java 缓存库，支持基于时间、大小和访问的缓存过期策略。
+     *
+     * @return 返回一个 CaffeineCacheManager 实例
+     */
     @Bean
     public CacheManager cacheManager() {
         CaffeineCacheManager cacheManager = new CaffeineCacheManager();
+        // 配置 Caffeine 缓存
         cacheManager.setCaffeine(Caffeine.newBuilder()
-                .initialCapacity(100)
-                .maximumSize(200)
-                .expireAfterWrite(10, TimeUnit.MINUTES)
-                .recordStats());
+                .initialCapacity(100)  // 初始容量
+                .maximumSize(200)  // 最大缓存条目数
+                .expireAfterWrite(10, TimeUnit.MINUTES)  // 设置缓存过期时间
+                .recordStats());  // 开启统计
         return cacheManager;
     }
 
+    /**
+     * 配置 OAuth2 introspection 服务，支持 Redis 缓存和数据库 JDBC。
+     * 此方法通过 Redis 和数据库连接配置一个联合的 OAuth2 introspection 服务，缓存 introspection 响应。
+     *
+     * @param redisConnectionFactory Redis 连接工厂
+     * @param jdbcTemplate           JDBC 模板，用于访问数据库
+     * @return 返回一个配置好的 OAuth2IntrospectionService 实例
+     */
     @Bean
     public OAuth2IntrospectionService oAuth2IntrospectionService(RedisConnectionFactory redisConnectionFactory,
                                                                  JdbcTemplate jdbcTemplate) {
+        // 配置 Redis 缓存
         RedisCacheConfiguration defaultCacheConfig = RedisCacheConfiguration.defaultCacheConfig()
                 // 设置key为string序列化
                 .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(new StringRedisSerializer()))
@@ -53,13 +74,16 @@ public class OAuth2IntrospectiveResourceServerConfiguration {
                 // 设置缓存过期时间
                 .entryTtl(Duration.ofMinutes(5));
 
+        // 配置 RedisCacheManager，管理 Redis 缓存
         RedisCacheManager cacheManager = RedisCacheManager.builder(redisConnectionFactory)
-                .cacheDefaults(defaultCacheConfig)
-                .initialCacheNames(Collections.singleton("oauth2Introspection"))
+                .cacheDefaults(defaultCacheConfig)  // 使用默认配置
+                .initialCacheNames(Collections.singleton("oauth2Introspection"))  // 设置初始缓存名称
                 .build();
 
+        // 配置 CachingOAuth2IntrospectionService，结合 Redis 缓存和数据库 JDBC 服务
         OAuth2IntrospectionService oAuth2IntrospectionService = new CachingOAuth2IntrospectionService(cacheManager.getCache("oauth2Introspection"), new JdbcOAuth2IntrospectionService(jdbcTemplate));
 
+        // 保存默认的 OAuth2 introspection 信息
         oAuth2IntrospectionService.saveOAuth2Introspection(OAuth2Introspection.withIssuer("http://127.0.0.1:8080")
                 .id(UUID.randomUUID().toString())
                 .clientId("relive-client")

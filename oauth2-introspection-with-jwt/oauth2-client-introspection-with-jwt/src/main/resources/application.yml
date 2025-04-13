@@ -1,23 +1,27 @@
 server:
-  port: 8070
+  port: 8070  # 配置服务启动端口为 8070
   servlet:
     session:
       cookie:
-        name: CLINET-SESSION
+        name: CLINET-SESSION  # 设置客户端会话 Cookie 的名称（注意：此处可能有拼写错误，Client 通常拼作 Client）
+
 spring:
   security:
     oauth2:
       client:
         registration:
+          # 配置一个 OAuth2 客户端，注册 ID 为 messaging-client-authorization-code
           messaging-client-authorization-code:
-            provider: client-provider
-            client-id: relive-client
-            client-secret: relive-client
-            authorization-grant-type: authorization_code
-            redirect-uri: "http://127.0.0.1:8070/login/oauth2/code/{registrationId}"
-            scope: message.read
-            client-name: messaging-client-authorization-code
+            provider: client-provider  # 指定使用的 provider ID
+            client-id: relive-client  # 客户端 ID，需与授权服务器注册一致
+            client-secret: relive-client  # 客户端密钥，需与授权服务器一致
+            authorization-grant-type: authorization_code  # 授权方式：授权码模式
+            redirect-uri: "http://127.0.0.1:8070/login/oauth2/code/{registrationId}"  # 授权完成后重定向的 URI，Spring Security 会自动处理
+            scope: message.read  # 请求的权限范围（Scope），可多个
+            client-name: messaging-client-authorization-code  # 客户端名称，可用于 UI 显示等
+
         provider:
+          # 配置 OAuth2 提供者，ID 为 client-provider
           client-provider:
-            authorization-uri: http://127.0.0.1:8080/oauth2/authorize
-            token-uri: http://127.0.0.1:8080/oauth2/token
+            authorization-uri: http://127.0.0.1:8080/oauth2/authorize  # 授权端点 URI
+            token-uri: http://127.0.0.1:8080/oauth2/token  # 令牌获取端点 URI
