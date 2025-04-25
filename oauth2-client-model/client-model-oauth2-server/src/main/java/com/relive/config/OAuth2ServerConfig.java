@@ -70,7 +70,6 @@ public class OAuth2ServerConfig {
                     s.add(ClientAuthenticationMethod.CLIENT_SECRET_BASIC);
                 })
                 .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
-                .redirectUri("http://127.0.0.1:8070/login/oauth2/code/messaging-client-model")
                 .scope("message.read")
                 .clientSettings(ClientSettings.builder()
                         .requireAuthorizationConsent(true)

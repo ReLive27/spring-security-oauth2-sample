@@ -31,7 +31,7 @@
     <parent>
         <artifactId>spring-boot-starter-parent</artifactId>
         <groupId>org.springframework.boot</groupId>
-        <version>3.2.11</version>
+        <version>3.3.0</version>
     </parent>
 
     <properties>
