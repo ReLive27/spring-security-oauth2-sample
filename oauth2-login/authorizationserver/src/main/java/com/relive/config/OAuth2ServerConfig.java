@@ -29,12 +29,34 @@ import java.time.Duration;
 import java.util.UUID;
 
 /**
- * @author: ReLive
- * @date: 2022/6/24 4:12 下午
+ * OAuth2 登录授权服务器配置类
+ *
+ * <p>
+ * 配置 Spring Authorization Server 支持 OAuth2 登录流程，
+ * 用于演示授权服务器如何支持第三方客户端登录。
+ *
+ * <p>
+ * 主要配置：
+ * <ul>
+ *     <li>授权服务器端点安全</li>
+ *     <li>OIDC 支持（OpenID Connect）</li>
+ *     <li>JWT 密钥源</li>
+ *     <li>授权服务器元数据</li>
+ * </ul>
+ *
+ * @author ReLive
+ * @date 2022/6/24 4:12 下午
  */
 @Configuration(proxyBeanMethods = false)
 public class OAuth2ServerConfig {
 
+    /**
+     * 配置授权服务器安全过滤器链
+     *
+     * @param http HttpSecurity 配置对象
+     * @return SecurityFilterChain 安全过滤器链
+     * @throws Exception 配置过程中可能抛出的异常
+     */
     @Bean
     @Order(Ordered.HIGHEST_PRECEDENCE)
     public SecurityFilterChain authorizationServerSecurityFilterChain(HttpSecurity http) throws Exception {
@@ -46,6 +68,14 @@ public class OAuth2ServerConfig {
                 .build();
     }
 
+    /**
+     * 配置客户端注册信息存储库
+     *
+     * <p>
+     * 注册支持 OIDC 的客户端，包含 profile 范围用于获取用户信息。
+     *
+     * @return RegisteredClientRepository 客户端注册信息存储库
+     */
     @Bean
     public RegisteredClientRepository registeredClientRepository() {
         RegisteredClient registeredClient = RegisteredClient.withId(UUID.randomUUID().toString())
@@ -75,6 +105,11 @@ public class OAuth2ServerConfig {
     }
 
 
+    /**
+     * 配置授权服务器元数据
+     *
+     * @return AuthorizationServerSettings 授权服务器设置
+     */
     @Bean
     public AuthorizationServerSettings authorizationServerSettings() {
         return AuthorizationServerSettings.builder()
@@ -82,6 +117,11 @@ public class OAuth2ServerConfig {
                 .build();
     }
 
+    /**
+     * 配置 JSON Web Key（JWK）源
+     *
+     * @return JWKSource<SecurityContext> JWK 密钥源
+     */
     @Bean
     public JWKSource<SecurityContext> jwkSource() {
         RSAKey rsaKey = Jwks.generateRsa();

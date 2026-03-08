@@ -15,14 +15,26 @@ import org.springframework.security.web.SecurityFilterChain;
 import static org.springframework.security.config.Customizer.withDefaults;
 
 /**
- * @author: ReLive
- * @date: 2022/6/27 12:46 下午
+ * 默认安全配置类（持久化客户端示例）
+ *
+ * <p>
+ * 配置 Spring Security 的基本安全设置，用于保护授权服务器的登录端点。
+ *
+ * @author ReLive
+ * @date 2022/6/27 12:46 下午
  */
 @EnableWebSecurity
 @Configuration
 public class DefaultSecurityConfig {
 
 
+    /**
+     * 配置默认安全过滤器链
+     *
+     * @param http HttpSecurity 配置对象
+     * @return SecurityFilterChain 安全过滤器链
+     * @throws Exception 配置过程中可能抛出的异常
+     */
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -33,6 +45,11 @@ public class DefaultSecurityConfig {
         return http.build();
     }
 
+    /**
+     * 配置用户详情服务（内存存储）
+     *
+     * @return UserDetailsService 用户详情服务
+     */
     @Bean
     UserDetailsService users() {
         UserDetails user = User.withUsername("admin")
@@ -42,6 +59,11 @@ public class DefaultSecurityConfig {
         return new InMemoryUserDetailsManager(user);
     }
 
+    /**
+     * 配置密码编码器
+     *
+     * @return PasswordEncoder 密码编码器
+     */
     @Bean
     PasswordEncoder passwordEncoder() {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
